@@ -1,0 +1,244 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://docs.aws.amazon.com/sns/latest/dg/schemas/sns-notification.json",
+  "title": "Amazon SNS Notification Message",
+  "description": "Schema for Amazon SNS notification messages delivered to HTTP/S endpoints, SQS queues, and email-json subscribers. When a message is published to an SNS topic, SNS wraps it in a JSON notification envelope containing the message, topic ARN, timestamp, cryptographic signature for verification, and an unsubscribe URL. This schema covers all three message types: Notification, SubscriptionConfirmation, and UnsubscribeConfirmation.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/Notification"
+    },
+    {
+      "$ref": "#/$defs/SubscriptionConfirmation"
+    },
+    {
+      "$ref": "#/$defs/UnsubscribeConfirmation"
+    }
+  ],
+  "$defs": {
+    "Notification": {
+      "type": "object",
+      "title": "SNS Notification",
+      "description": "A notification message delivered when a message is published to a topic. Contains the published message body, topic ARN, timestamp, and a cryptographic signature that the subscriber should verify before processing.",
+      "required": [
+        "Type",
+        "MessageId",
+        "TopicArn",
+        "Message",
+        "Timestamp",
+        "SignatureVersion",
+        "Signature",
+        "SigningCertURL"
+      ],
+      "properties": {
+        "Type": {
+          "type": "string",
+          "const": "Notification",
+          "description": "The message type identifier. Always set to Notification for published messages."
+        },
+        "MessageId": {
+          "type": "string",
+          "format": "uuid",
+          "description": "A universally unique identifier (UUID) for this notification message. Each message published to a topic receives a unique MessageId."
+        },
+        "TopicArn": {
+          "type": "string",
+          "description": "The Amazon Resource Name (ARN) of the topic to which the message was published.",
+          "pattern": "^arn:aws:sns:[a-z0-9-]+:\\d{12}:.+$"
+        },
+        "Subject": {
+          "type": "string",
+          "description": "The optional Subject parameter specified when the notification was published. Commonly used as the email subject line for email protocol subscribers. Not all notifications include a subject."
+        },
+        "Message": {
+          "type": "string",
+          "description": "The message body as published to the topic. For standard delivery, this is the full message text. For structured JSON messages (MessageStructure=json), this contains the protocol-specific message content. Maximum size is 256 KB.",
+          "maxLength": 262144
+        },
+        "Timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The time (in UTC/ISO 8601 format) when the notification was published to the topic."
+        },
+        "SignatureVersion": {
+          "type": "string",
+          "description": "The version of the Amazon SNS signature algorithm used to generate the Signature. Version 1 uses SHA1withRSA and version 2 uses SHA256withRSA.",
+          "enum": ["1", "2"]
+        },
+        "Signature": {
+          "type": "string",
+          "description": "A Base64-encoded SHA1withRSA or SHA256withRSA signature of the message. Subscribers should verify this signature using the certificate at SigningCertURL to ensure the message authenticity."
+        },
+        "SigningCertURL": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL to the X.509 certificate used to sign the message. The certificate is always hosted on an amazonaws.com domain. Verify that the URL uses HTTPS and is on an amazonaws.com domain before downloading."
+        },
+        "UnsubscribeURL": {
+          "type": "string",
+          "format": "uri",
+          "description": "A URL that the endpoint can visit to unsubscribe from the topic. Visiting this URL will immediately remove the subscription."
+        },
+        "MessageAttributes": {
+          "type": "object",
+          "description": "Message attributes set by the publisher. These key-value pairs can be used by subscription filter policies to determine whether the subscriber receives the message. Each attribute has a Type (data type) and a Value.",
+          "additionalProperties": {
+            "$ref": "#/$defs/MessageAttribute"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "SubscriptionConfirmation": {
+      "type": "object",
+      "title": "SNS Subscription Confirmation",
+      "description": "A confirmation message sent to an HTTP/S endpoint when a new subscription is created. The endpoint must visit the SubscribeURL or call ConfirmSubscription with the provided Token to activate the subscription and begin receiving notifications.",
+      "required": [
+        "Type",
+        "MessageId",
+        "Token",
+        "TopicArn",
+        "Message",
+        "SubscribeURL",
+        "Timestamp",
+        "SignatureVersion",
+        "Signature",
+        "SigningCertURL"
+      ],
+      "properties": {
+        "Type": {
+          "type": "string",
+          "const": "SubscriptionConfirmation",
+          "description": "The message type identifier. Always set to SubscriptionConfirmation for subscription confirmation requests."
+        },
+        "MessageId": {
+          "type": "string",
+          "format": "uuid",
+          "description": "A universally unique identifier for this confirmation message."
+        },
+        "Token": {
+          "type": "string",
+          "description": "A value that can be used with the ConfirmSubscription API action to confirm the subscription programmatically. This token is valid for three days."
+        },
+        "TopicArn": {
+          "type": "string",
+          "description": "The ARN of the topic to which the endpoint is being subscribed.",
+          "pattern": "^arn:aws:sns:[a-z0-9-]+:\\d{12}:.+$"
+        },
+        "Message": {
+          "type": "string",
+          "description": "A human-readable message asking the endpoint owner to confirm the subscription by visiting the SubscribeURL."
+        },
+        "SubscribeURL": {
+          "type": "string",
+          "format": "uri",
+          "description": "A URL the endpoint owner can visit to confirm the subscription. Visiting this URL immediately confirms the subscription."
+        },
+        "Timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The time (in UTC/ISO 8601 format) when the confirmation was sent."
+        },
+        "SignatureVersion": {
+          "type": "string",
+          "description": "The version of the Amazon SNS signature used.",
+          "enum": ["1", "2"]
+        },
+        "Signature": {
+          "type": "string",
+          "description": "Base64-encoded cryptographic signature of the message for verification."
+        },
+        "SigningCertURL": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the X.509 certificate used to sign the message."
+        }
+      },
+      "additionalProperties": false
+    },
+    "UnsubscribeConfirmation": {
+      "type": "object",
+      "title": "SNS Unsubscribe Confirmation",
+      "description": "A confirmation message sent to an HTTP/S endpoint when a subscription is deleted. Contains a SubscribeURL the endpoint can visit to re-subscribe if the unsubscription was unintended.",
+      "required": [
+        "Type",
+        "MessageId",
+        "Token",
+        "TopicArn",
+        "Message",
+        "SubscribeURL",
+        "Timestamp",
+        "SignatureVersion",
+        "Signature",
+        "SigningCertURL"
+      ],
+      "properties": {
+        "Type": {
+          "type": "string",
+          "const": "UnsubscribeConfirmation",
+          "description": "The message type identifier. Always set to UnsubscribeConfirmation for unsubscribe confirmation messages."
+        },
+        "MessageId": {
+          "type": "string",
+          "format": "uuid",
+          "description": "A universally unique identifier for this confirmation message."
+        },
+        "Token": {
+          "type": "string",
+          "description": "A value that can be used with the ConfirmSubscription action to re-subscribe the endpoint."
+        },
+        "TopicArn": {
+          "type": "string",
+          "description": "The ARN of the topic from which the endpoint was unsubscribed.",
+          "pattern": "^arn:aws:sns:[a-z0-9-]+:\\d{12}:.+$"
+        },
+        "Message": {
+          "type": "string",
+          "description": "A human-readable message notifying the endpoint that it was unsubscribed from the topic."
+        },
+        "SubscribeURL": {
+          "type": "string",
+          "format": "uri",
+          "description": "A URL the endpoint owner can visit to re-subscribe to the topic."
+        },
+        "Timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The time (in UTC/ISO 8601 format) when the unsubscribe confirmation was sent."
+        },
+        "SignatureVersion": {
+          "type": "string",
+          "description": "The version of the Amazon SNS signature used.",
+          "enum": ["1", "2"]
+        },
+        "Signature": {
+          "type": "string",
+          "description": "Base64-encoded cryptographic signature of the message for verification."
+        },
+        "SigningCertURL": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the X.509 certificate used to sign the message."
+        }
+      },
+      "additionalProperties": false
+    },
+    "MessageAttribute": {
+      "type": "object",
+      "title": "SNS Message Attribute",
+      "description": "A single message attribute consisting of a Type (the data type descriptor) and a Value. Message attributes enable subscription filter policies to route messages to specific subscribers based on attribute values.",
+      "required": ["Type", "Value"],
+      "properties": {
+        "Type": {
+          "type": "string",
+          "description": "The data type of the attribute. Common types include String, Number, and Binary. String.Array is used for arrays of string values.",
+          "enum": ["String", "String.Array", "Number", "Binary"]
+        },
+        "Value": {
+          "type": "string",
+          "description": "The value of the attribute. For Binary type, this is a Base64-encoded string."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

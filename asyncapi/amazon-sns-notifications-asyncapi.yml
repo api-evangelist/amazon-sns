@@ -1,0 +1,548 @@
+asyncapi: 2.6.0
+info:
+  title: Amazon SNS Notifications
+  description: >-
+    Amazon Simple Notification Service (SNS) delivers notifications to
+    subscribed endpoints when messages are published to topics. This
+    AsyncAPI specification describes the notification messages that SNS
+    delivers to HTTP/HTTPS endpoints, Amazon SQS queues, AWS Lambda
+    functions, email recipients, and SMS recipients. When a message is
+    published to an SNS topic, the service fans out the message to all
+    confirmed subscribers using the delivery format appropriate for each
+    protocol. HTTP/S endpoints receive a JSON-formatted POST request
+    containing the message along with metadata such as the topic ARN,
+    message ID, timestamp, and a signature for verification.
+  version: '2010-03-31'
+  contact:
+    name: Amazon Web Services
+    url: https://aws.amazon.com/sns/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+externalDocs:
+  description: Amazon SNS Message and JSON Formats
+  url: https://docs.aws.amazon.com/sns/latest/dg/sns-message-and-json-formats.html
+servers:
+  snsRegional:
+    url: https://sns.{region}.amazonaws.com
+    protocol: https
+    description: >-
+      Amazon SNS regional endpoint. SNS delivers notifications from the
+      region where the topic is created.
+    variables:
+      region:
+        description: AWS region where the SNS topic exists
+        default: us-east-1
+    security:
+      - AWS_IAM: []
+channels:
+  /sns/http-notification:
+    description: >-
+      HTTP/HTTPS notification delivery channel. When a message is published
+      to a topic with HTTP/S subscribers, SNS sends an HTTP POST request
+      to each confirmed subscriber endpoint containing the notification
+      in JSON format. The endpoint must return a 2xx status code to
+      acknowledge receipt. SNS includes headers such as
+      x-amz-sns-message-type, x-amz-sns-message-id, and
+      x-amz-sns-topic-arn.
+    subscribe:
+      operationId: receiveHttpNotification
+      summary: Receive SNS notification via HTTP/HTTPS
+      description: >-
+        Receives an SNS notification message delivered via HTTP or HTTPS
+        POST to a subscribed endpoint. The message body contains the
+        notification payload in JSON format including the published
+        message, topic ARN, timestamp, and a cryptographic signature
+        for message verification.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/Notification'
+          - $ref: '#/components/messages/SubscriptionConfirmation'
+          - $ref: '#/components/messages/UnsubscribeConfirmation'
+  /sns/sqs-notification:
+    description: >-
+      Amazon SQS notification delivery channel. When a message is published
+      to a topic with SQS subscribers, SNS delivers the notification as
+      an SQS message to the subscribed queue. The SQS message body
+      contains the SNS notification in JSON format unless raw message
+      delivery is enabled, in which case only the published message body
+      is delivered.
+    subscribe:
+      operationId: receiveSqsNotification
+      summary: Receive SNS notification via SQS
+      description: >-
+        Receives an SNS notification message delivered to an Amazon SQS
+        queue. The message arrives as an SQS message whose body is the
+        JSON-formatted SNS notification envelope containing the
+        published message, metadata, and signature.
+      message:
+        $ref: '#/components/messages/Notification'
+  /sns/lambda-notification:
+    description: >-
+      AWS Lambda notification delivery channel. When a message is published
+      to a topic with Lambda subscribers, SNS invokes the Lambda function
+      asynchronously with an event containing an array of SNS records.
+      Each record includes the notification message, subject, timestamp,
+      message attributes, and topic ARN.
+    subscribe:
+      operationId: receiveLambdaNotification
+      summary: Receive SNS notification via Lambda invocation
+      description: >-
+        Receives an SNS notification as a Lambda event. The event
+        contains a Records array where each record has an Sns object
+        with the message payload, subject, timestamp, message
+        attributes, and topic ARN.
+      message:
+        $ref: '#/components/messages/LambdaEvent'
+  /sns/email-notification:
+    description: >-
+      Email notification delivery channel. When a message is published to
+      a topic with email subscribers, SNS delivers the message as an
+      email. For the email protocol, the message body is sent as the
+      email body with the optional Subject as the email subject line.
+      For the email-json protocol, the full JSON notification object is
+      sent as the email body.
+    subscribe:
+      operationId: receiveEmailNotification
+      summary: Receive SNS notification via email
+      description: >-
+        Receives an SNS notification as an email message. The email
+        contains the published message in either plain text (email
+        protocol) or JSON format (email-json protocol).
+      message:
+        $ref: '#/components/messages/Notification'
+  /sns/sms-notification:
+    description: >-
+      SMS notification delivery channel. When a message is published to a
+      topic with SMS subscribers or directly to a phone number, SNS
+      delivers the message as a text message. The SMS message contains
+      only the published message text, truncated to fit SMS size limits.
+    subscribe:
+      operationId: receiveSmsNotification
+      summary: Receive SNS notification via SMS
+      description: >-
+        Receives an SNS notification as an SMS text message. The message
+        contains the published text content delivered to the phone number.
+      message:
+        $ref: '#/components/messages/SmsMessage'
+components:
+  securitySchemes:
+    AWS_IAM:
+      type: http
+      scheme: bearer
+      description: >-
+        AWS Signature Version 4 authentication for SNS API operations.
+        Notification delivery to endpoints uses topic and subscription
+        permissions rather than caller credentials.
+  messages:
+    Notification:
+      name: Notification
+      title: SNS Notification Message
+      summary: >-
+        Standard notification message delivered to HTTP/S, SQS, and
+        email-json subscribers
+      description: >-
+        When a message is published to a topic, SNS wraps it in a JSON
+        notification envelope that includes the message, metadata, topic
+        ARN, and a cryptographic signature for verification. This is the
+        standard delivery format for HTTP/S, SQS, and email-json
+        protocol subscribers.
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          x-amz-sns-message-type:
+            type: string
+            description: The type of message
+            enum:
+              - Notification
+          x-amz-sns-message-id:
+            type: string
+            description: A universally unique identifier for this message
+          x-amz-sns-topic-arn:
+            type: string
+            description: The ARN of the topic the message was published to
+          x-amz-sns-subscription-arn:
+            type: string
+            description: The ARN of the subscription that received this message
+      payload:
+        $ref: '#/components/schemas/SnsNotification'
+    SubscriptionConfirmation:
+      name: SubscriptionConfirmation
+      title: Subscription Confirmation Message
+      summary: >-
+        Sent to HTTP/S endpoints when a new subscription is created
+      description: >-
+        When a new HTTP/S subscription is created, SNS sends a
+        SubscriptionConfirmation message to the endpoint. The endpoint
+        must visit the SubscribeURL to confirm the subscription. Until
+        confirmed, no notification messages are delivered.
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          x-amz-sns-message-type:
+            type: string
+            description: The type of message
+            enum:
+              - SubscriptionConfirmation
+          x-amz-sns-message-id:
+            type: string
+            description: A universally unique identifier for this message
+          x-amz-sns-topic-arn:
+            type: string
+            description: The ARN of the topic
+      payload:
+        $ref: '#/components/schemas/SnsSubscriptionConfirmation'
+    UnsubscribeConfirmation:
+      name: UnsubscribeConfirmation
+      title: Unsubscribe Confirmation Message
+      summary: >-
+        Sent to HTTP/S endpoints when a subscription is deleted
+      description: >-
+        When a subscription is deleted, SNS sends an
+        UnsubscribeConfirmation message to the endpoint. The endpoint
+        can visit the SubscribeURL to re-subscribe if the unsubscribe
+        was unintended.
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          x-amz-sns-message-type:
+            type: string
+            description: The type of message
+            enum:
+              - UnsubscribeConfirmation
+          x-amz-sns-message-id:
+            type: string
+            description: A universally unique identifier for this message
+          x-amz-sns-topic-arn:
+            type: string
+            description: The ARN of the topic
+      payload:
+        $ref: '#/components/schemas/SnsUnsubscribeConfirmation'
+    LambdaEvent:
+      name: LambdaEvent
+      title: SNS Lambda Invocation Event
+      summary: >-
+        Event payload delivered to Lambda function subscribers
+      description: >-
+        When SNS invokes a Lambda function, the event payload contains a
+        Records array. Each record includes an EventSource of aws:sns,
+        the EventVersion, the EventSubscriptionArn, and an Sns object
+        with the full notification details including message, subject,
+        timestamp, message attributes, and signing metadata.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/SnsLambdaEvent'
+    SmsMessage:
+      name: SmsMessage
+      title: SNS SMS Message
+      summary: >-
+        Text message delivered to SMS subscribers
+      description: >-
+        SMS messages contain only the published message text. The message
+        is truncated to fit within SMS size limits (160 characters for
+        GSM encoding, 70 characters for Unicode).
+      contentType: text/plain
+      payload:
+        type: string
+        description: The text content of the published message
+  schemas:
+    SnsNotification:
+      type: object
+      description: >-
+        The JSON body of an SNS notification delivered to HTTP/S, SQS,
+        and email-json subscribers. Contains the published message along
+        with metadata for identification, verification, and unsubscribe
+        support.
+      required:
+        - Type
+        - MessageId
+        - TopicArn
+        - Message
+        - Timestamp
+        - SignatureVersion
+        - Signature
+        - SigningCertURL
+      properties:
+        Type:
+          type: string
+          description: The type of message
+          const: Notification
+        MessageId:
+          type: string
+          format: uuid
+          description: A universally unique identifier for this message
+        TopicArn:
+          type: string
+          description: The Amazon Resource Name of the topic the message was published to
+          pattern: '^arn:aws:sns:[a-z0-9-]+:\d{12}:.+'
+        Subject:
+          type: string
+          description: >-
+            The Subject parameter specified when the message was published.
+            Not all messages include a subject.
+        Message:
+          type: string
+          description: >-
+            The message body as published. If the subscriber has raw message
+            delivery disabled, this is the message text. For structured JSON
+            messages, this contains the protocol-specific message content.
+        Timestamp:
+          type: string
+          format: date-time
+          description: The time (UTC) when the notification was published
+        SignatureVersion:
+          type: string
+          description: Version of the Amazon SNS signature used
+          enum:
+            - '1'
+            - '2'
+        Signature:
+          type: string
+          description: >-
+            Base64-encoded cryptographic signature of the message for
+            verification. Use the SigningCertURL to obtain the public
+            certificate and verify the signature.
+        SigningCertURL:
+          type: string
+          format: uri
+          description: >-
+            The URL to the certificate used to sign the message. Always
+            hosted on an amazonaws.com domain.
+        UnsubscribeURL:
+          type: string
+          format: uri
+          description: >-
+            A URL you can visit to unsubscribe the endpoint from this
+            topic. Visiting this URL will immediately unsubscribe the
+            endpoint.
+        MessageAttributes:
+          type: object
+          description: >-
+            Message attributes included by the publisher. Each attribute
+            has a Type and Value field.
+          additionalProperties:
+            type: object
+            properties:
+              Type:
+                type: string
+                description: The data type of the attribute
+              Value:
+                type: string
+                description: The attribute value
+    SnsSubscriptionConfirmation:
+      type: object
+      description: >-
+        JSON body sent to HTTP/S endpoints to confirm a new subscription.
+        The endpoint must visit the SubscribeURL to complete the
+        subscription handshake.
+      required:
+        - Type
+        - MessageId
+        - TopicArn
+        - Message
+        - SubscribeURL
+        - Token
+        - Timestamp
+        - SignatureVersion
+        - Signature
+        - SigningCertURL
+      properties:
+        Type:
+          type: string
+          description: The type of message
+          const: SubscriptionConfirmation
+        MessageId:
+          type: string
+          format: uuid
+          description: A universally unique identifier for this message
+        Token:
+          type: string
+          description: >-
+            A value you can use with the ConfirmSubscription action to
+            confirm the subscription. Alternatively, visit the
+            SubscribeURL.
+        TopicArn:
+          type: string
+          description: The ARN of the topic to which you are subscribing
+        Message:
+          type: string
+          description: >-
+            A string containing a message asking the endpoint owner to
+            confirm the subscription by visiting the SubscribeURL.
+        SubscribeURL:
+          type: string
+          format: uri
+          description: >-
+            The URL to visit to confirm the subscription. Visiting this
+            URL will immediately confirm the subscription.
+        Timestamp:
+          type: string
+          format: date-time
+          description: The time (UTC) when the confirmation was sent
+        SignatureVersion:
+          type: string
+          description: Version of the Amazon SNS signature used
+        Signature:
+          type: string
+          description: Base64-encoded cryptographic signature of the message
+        SigningCertURL:
+          type: string
+          format: uri
+          description: URL to the certificate used to sign the message
+    SnsUnsubscribeConfirmation:
+      type: object
+      description: >-
+        JSON body sent to HTTP/S endpoints when a subscription is deleted.
+        Contains a SubscribeURL that the endpoint can visit to
+        re-subscribe.
+      required:
+        - Type
+        - MessageId
+        - TopicArn
+        - Message
+        - SubscribeURL
+        - Token
+        - Timestamp
+        - SignatureVersion
+        - Signature
+        - SigningCertURL
+      properties:
+        Type:
+          type: string
+          description: The type of message
+          const: UnsubscribeConfirmation
+        MessageId:
+          type: string
+          format: uuid
+          description: A universally unique identifier for this message
+        Token:
+          type: string
+          description: >-
+            A value you can use with the ConfirmSubscription action to
+            re-subscribe the endpoint
+        TopicArn:
+          type: string
+          description: The ARN of the topic from which you were unsubscribed
+        Message:
+          type: string
+          description: >-
+            A string containing a notification that the endpoint was
+            unsubscribed from the topic
+        SubscribeURL:
+          type: string
+          format: uri
+          description: A URL to re-subscribe the endpoint to the topic
+        Timestamp:
+          type: string
+          format: date-time
+          description: The time (UTC) when the confirmation was sent
+        SignatureVersion:
+          type: string
+          description: Version of the Amazon SNS signature used
+        Signature:
+          type: string
+          description: Base64-encoded cryptographic signature of the message
+        SigningCertURL:
+          type: string
+          format: uri
+          description: URL to the certificate used to sign the message
+    SnsLambdaEvent:
+      type: object
+      description: >-
+        The event object passed to an AWS Lambda function when invoked
+        by SNS. Contains a Records array with one or more SNS event
+        records.
+      required:
+        - Records
+      properties:
+        Records:
+          type: array
+          description: Array of SNS event records
+          items:
+            $ref: '#/components/schemas/SnsLambdaRecord'
+    SnsLambdaRecord:
+      type: object
+      description: >-
+        A single SNS event record within a Lambda invocation event.
+        Contains the event source, version, subscription ARN, and the
+        SNS notification details.
+      required:
+        - EventVersion
+        - EventSubscriptionArn
+        - EventSource
+        - Sns
+      properties:
+        EventVersion:
+          type: string
+          description: The event version
+          const: '1.0'
+        EventSubscriptionArn:
+          type: string
+          description: The ARN of the subscription that triggered the invocation
+        EventSource:
+          type: string
+          description: The event source identifier
+          const: aws:sns
+        Sns:
+          type: object
+          description: The SNS notification details
+          required:
+            - SignatureVersion
+            - Timestamp
+            - Signature
+            - SigningCertUrl
+            - MessageId
+            - Message
+            - Type
+            - TopicArn
+          properties:
+            SignatureVersion:
+              type: string
+              description: Version of the SNS signature used
+            Timestamp:
+              type: string
+              format: date-time
+              description: The time the notification was published
+            Signature:
+              type: string
+              description: Base64-encoded signature of the message
+            SigningCertUrl:
+              type: string
+              format: uri
+              description: URL to the signing certificate
+            MessageId:
+              type: string
+              format: uuid
+              description: Unique identifier for the message
+            Message:
+              type: string
+              description: The published message body
+            MessageAttributes:
+              type: object
+              description: Message attributes set by the publisher
+              additionalProperties:
+                type: object
+                properties:
+                  Type:
+                    type: string
+                    description: The attribute data type
+                  Value:
+                    type: string
+                    description: The attribute value
+            Type:
+              type: string
+              description: The message type
+              const: Notification
+            UnsubscribeUrl:
+              type: string
+              format: uri
+              description: URL to unsubscribe the endpoint
+            TopicArn:
+              type: string
+              description: The ARN of the topic
+            Subject:
+              type: string
+              description: The subject of the message if provided

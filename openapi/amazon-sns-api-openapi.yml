@@ -1,0 +1,1437 @@
+openapi: 3.1.0
+info:
+  title: Amazon Simple Notification Service (SNS) API
+  version: '2010-03-31'
+  description: >-
+    Amazon Simple Notification Service (SNS) is a fully managed pub/sub
+    messaging service that enables application-to-application (A2A) and
+    application-to-person (A2P) communication. SNS allows you to create
+    topics, manage subscriptions, and publish messages to subscribers via
+    multiple protocols including HTTP/S, email, SMS, SQS, Lambda, and
+    mobile push. This specification models the SNS query API actions as
+    RESTful paths for topic management, subscription lifecycle, and
+    message publishing operations.
+  contact:
+    name: Amazon Web Services
+    url: https://aws.amazon.com/sns/
+  termsOfService: https://aws.amazon.com/service-terms/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+externalDocs:
+  description: Amazon SNS API Reference
+  url: https://docs.aws.amazon.com/sns/latest/api/welcome.html
+servers:
+  - url: https://sns.{region}.amazonaws.com
+    description: Amazon SNS regional endpoint
+    variables:
+      region:
+        default: us-east-1
+        description: AWS region
+        enum:
+          - us-east-1
+          - us-east-2
+          - us-west-1
+          - us-west-2
+          - eu-west-1
+          - eu-west-2
+          - eu-west-3
+          - eu-central-1
+          - eu-north-1
+          - ap-southeast-1
+          - ap-southeast-2
+          - ap-northeast-1
+          - ap-northeast-2
+          - ap-south-1
+          - sa-east-1
+          - ca-central-1
+security:
+  - AWS_IAM: []
+tags:
+  - name: Topics
+    description: >-
+      Operations for creating, listing, configuring, and deleting SNS topics.
+      Topics are communication channels to which messages are published and
+      from which notifications are delivered to subscribers.
+  - name: Subscriptions
+    description: >-
+      Operations for subscribing endpoints to topics, confirming subscriptions,
+      listing subscriptions, and unsubscribing. Subscriptions define which
+      endpoints receive messages published to a topic.
+  - name: Publishing
+    description: >-
+      Operations for publishing messages to SNS topics or directly to
+      endpoints. Messages can be plain text or structured JSON for
+      per-protocol delivery.
+  - name: Tags
+    description: >-
+      Operations for tagging and untagging SNS topics for resource
+      organization and access control.
+  - name: Platform Applications
+    description: >-
+      Operations for managing platform applications used for mobile push
+      notifications via APNs, FCM, and other push services.
+  - name: SMS
+    description: >-
+      Operations for managing SMS messaging attributes and phone number
+      opt-out lists.
+paths:
+  /?Action=CreateTopic:
+    post:
+      tags:
+        - Topics
+      operationId: createTopic
+      summary: Create a new SNS topic
+      description: >-
+        Creates a new SNS topic to which notifications can be published.
+        Topics can be standard or FIFO. Returns the TopicArn of the
+        newly created topic. If a topic with the same name already exists,
+        this action returns the TopicArn of the existing topic.
+      parameters:
+        - $ref: '#/components/parameters/ContentType'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - Name
+              properties:
+                Name:
+                  type: string
+                  description: >-
+                    The name of the topic to create. Topic names must be
+                    unique within an AWS account. For FIFO topics, the name
+                    must end with the .fifo suffix.
+                  maxLength: 256
+                  pattern: '^[a-zA-Z0-9_-]+(\\.fifo)?$'
+                Attributes:
+                  type: object
+                  description: >-
+                    A map of topic attributes to set on creation.
+                  properties:
+                    DisplayName:
+                      type: string
+                      description: The display name for the topic used in email subject lines
+                    Policy:
+                      type: string
+                      description: The access policy (JSON) for the topic
+                    DeliveryPolicy:
+                      type: string
+                      description: The delivery retry policy (JSON) for HTTP/S subscriptions
+                    KmsMasterKeyId:
+                      type: string
+                      description: >-
+                        The ID of an AWS KMS key for server-side encryption
+                        of messages published to this topic
+                    FifoTopic:
+                      type: string
+                      description: Set to true to create a FIFO topic
+                      enum:
+                        - 'true'
+                        - 'false'
+                    ContentBasedDeduplication:
+                      type: string
+                      description: >-
+                        Enables content-based deduplication for FIFO topics.
+                        Messages with identical content are treated as
+                        duplicates within the deduplication interval.
+                      enum:
+                        - 'true'
+                        - 'false'
+                    SignatureVersion:
+                      type: string
+                      description: >-
+                        The signature version for SNS message signing.
+                        Version 1 uses SHA1, version 2 uses SHA256.
+                      enum:
+                        - '1'
+                        - '2'
+                    TracingConfig:
+                      type: string
+                      description: Tracing mode for the topic
+                      enum:
+                        - Active
+                        - PassThrough
+                Tags:
+                  type: array
+                  description: Tags to add to the new topic
+                  items:
+                    $ref: '#/components/schemas/Tag'
+                DataProtectionPolicy:
+                  type: string
+                  description: >-
+                    The data protection policy (JSON) that defines sensitive
+                    data auditing, de-identification, and masking operations
+      responses:
+        '200':
+          description: Topic created successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CreateTopicResponse'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '429':
+          $ref: '#/components/responses/Throttled'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /?Action=DeleteTopic:
+    post:
+      tags:
+        - Topics
+      operationId: deleteTopic
+      summary: Delete an SNS topic
+      description: >-
+        Deletes a topic and all its subscriptions. Deleting a topic might
+        prevent some messages previously sent to the topic from being
+        delivered to subscribers. This action is idempotent, so deleting
+        a topic that does not exist does not result in an error.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - TopicArn
+              properties:
+                TopicArn:
+                  type: string
+                  description: The ARN of the topic to delete
+      responses:
+        '200':
+          description: Topic deleted successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DeleteTopicResponse'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /?Action=ListTopics:
+    get:
+      tags:
+        - Topics
+      operationId: listTopics
+      summary: List all SNS topics
+      description: >-
+        Returns a list of the requester's topics. Each call returns a
+        limited list of topics, up to 100. If there are more topics, a
+        NextToken is also returned. Use the NextToken parameter in a new
+        ListTopics call to get further results.
+      parameters:
+        - name: NextToken
+          in: query
+          description: Token returned by the previous ListTopics request for pagination
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of topics
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ListTopicsResponse'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /?Action=GetTopicAttributes:
+    get:
+      tags:
+        - Topics
+      operationId: getTopicAttributes
+      summary: Get attributes of an SNS topic
+      description: >-
+        Returns all of the properties of a topic. Topic properties returned
+        might differ based on the authorization of the user.
+      parameters:
+        - name: TopicArn
+          in: query
+          required: true
+          description: The ARN of the topic whose properties you want to get
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Topic attributes retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetTopicAttributesResponse'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /?Action=SetTopicAttributes:
+    post:
+      tags:
+        - Topics
+      operationId: setTopicAttributes
+      summary: Set attributes on an SNS topic
+      description: >-
+        Allows a topic owner to set an attribute of the topic to a new value.
+        Only one attribute can be changed per call.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - TopicArn
+                - AttributeName
+              properties:
+                TopicArn:
+                  type: string
+                  description: The ARN of the topic to modify
+                AttributeName:
+                  type: string
+                  description: >-
+                    The name of the attribute to set. Valid values include
+                    Policy, DisplayName, DeliveryPolicy, KmsMasterKeyId,
+                    SignatureVersion, TracingConfig, and others.
+                AttributeValue:
+                  type: string
+                  description: The new value for the attribute
+      responses:
+        '200':
+          description: Attribute set successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SetTopicAttributesResponse'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /?Action=Subscribe:
+    post:
+      tags:
+        - Subscriptions
+      operationId: subscribe
+      summary: Subscribe an endpoint to an SNS topic
+      description: >-
+        Subscribes an endpoint to an Amazon SNS topic. If the endpoint type
+        is HTTP/S or email, or if the endpoint and the topic are not in the
+        same AWS account, the endpoint owner must run the
+        ConfirmSubscription action to confirm the subscription. The
+        subscription request is returned with a pending confirmation status.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - TopicArn
+                - Protocol
+              properties:
+                TopicArn:
+                  type: string
+                  description: The ARN of the topic to subscribe to
+                Protocol:
+                  type: string
+                  description: The protocol to use for delivery
+                  enum:
+                    - http
+                    - https
+                    - email
+                    - email-json
+                    - sms
+                    - sqs
+                    - application
+                    - lambda
+                    - firehose
+                Endpoint:
+                  type: string
+                  description: >-
+                    The endpoint that you want to receive notifications.
+                    Endpoints vary by protocol: an email address for email,
+                    a URL for HTTP/S, an ARN for SQS/Lambda/Firehose, a
+                    phone number for SMS, or a device token ARN for
+                    application.
+                Attributes:
+                  type: object
+                  description: Subscription attributes
+                  properties:
+                    FilterPolicy:
+                      type: string
+                      description: >-
+                        A JSON string defining the filter policy that
+                        determines which messages the subscriber receives
+                    FilterPolicyScope:
+                      type: string
+                      description: >-
+                        Specifies whether the filter policy applies to
+                        message attributes or the message body
+                      enum:
+                        - MessageAttributes
+                        - MessageBody
+                    DeliveryPolicy:
+                      type: string
+                      description: The delivery retry policy (JSON) for HTTP/S endpoints
+                    RawMessageDelivery:
+                      type: string
+                      description: >-
+                        When set to true, the message is delivered as a raw
+                        message without SNS metadata wrapping
+                      enum:
+                        - 'true'
+                        - 'false'
+                    RedrivePolicy:
+                      type: string
+                      description: >-
+                        A JSON string specifying the dead-letter queue ARN
+                        for failed message delivery
+                    SubscriptionRoleArn:
+                      type: string
+                      description: >-
+                        The ARN of the IAM role that has permission to
+                        write to the Amazon Kinesis Data Firehose stream
+                ReturnSubscriptionArn:
+                  type: boolean
+                  description: >-
+                    When set to true, the response includes the subscription
+                    ARN even if the subscription is not yet confirmed
+      responses:
+        '200':
+          description: Subscription created or pending confirmation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SubscribeResponse'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /?Action=ConfirmSubscription:
+    post:
+      tags:
+        - Subscriptions
+      operationId: confirmSubscription
+      summary: Confirm a pending subscription
+      description: >-
+        Verifies an endpoint owner's intent to receive messages by
+        validating the token sent to the endpoint by an earlier Subscribe
+        action. If the token is valid, the action creates a new
+        subscription and returns its Amazon Resource Name (ARN).
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - TopicArn
+                - Token
+              properties:
+                TopicArn:
+                  type: string
+                  description: The ARN of the topic for which you wish to confirm a subscription
+                Token:
+                  type: string
+                  description: >-
+                    Short-lived token sent to an endpoint during the
+                    Subscribe action
+                AuthenticateOnUnsubscribe:
+                  type: string
+                  description: >-
+                    If set to true, disallows unauthenticated unsubscribes.
+                    Only the topic owner and subscription owner can unsubscribe.
+                  enum:
+                    - 'true'
+                    - 'false'
+      responses:
+        '200':
+          description: Subscription confirmed
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ConfirmSubscriptionResponse'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /?Action=Unsubscribe:
+    post:
+      tags:
+        - Subscriptions
+      operationId: unsubscribe
+      summary: Unsubscribe from an SNS topic
+      description: >-
+        Deletes a subscription. If the subscription requires
+        authentication for deletion, only the owner of the subscription
+        or the topic's owner can unsubscribe, and an AWS signature is
+        required. If the Unsubscribe call does not require authentication
+        and the requester is not the subscription owner, a final
+        cancellation message is delivered to the endpoint.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - SubscriptionArn
+              properties:
+                SubscriptionArn:
+                  type: string
+                  description: The ARN of the subscription to be deleted
+      responses:
+        '200':
+          description: Unsubscribed successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UnsubscribeResponse'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /?Action=ListSubscriptions:
+    get:
+      tags:
+        - Subscriptions
+      operationId: listSubscriptions
+      summary: List all subscriptions
+      description: >-
+        Returns a list of the requester's subscriptions. Each call returns
+        a limited list of subscriptions, up to 100. If there are more
+        subscriptions, a NextToken is also returned. Use the NextToken
+        parameter in a new ListSubscriptions call to get further results.
+      parameters:
+        - name: NextToken
+          in: query
+          description: Token returned by the previous request for pagination
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of subscriptions
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ListSubscriptionsResponse'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /?Action=ListSubscriptionsByTopic:
+    get:
+      tags:
+        - Subscriptions
+      operationId: listSubscriptionsByTopic
+      summary: List subscriptions for a specific topic
+      description: >-
+        Returns a list of the subscriptions to a specific topic. Each call
+        returns a limited list of subscriptions, up to 100. If there are
+        more subscriptions, a NextToken is also returned.
+      parameters:
+        - name: TopicArn
+          in: query
+          required: true
+          description: The ARN of the topic for which you wish to list subscriptions
+          schema:
+            type: string
+        - name: NextToken
+          in: query
+          description: Token returned by the previous request for pagination
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of subscriptions for the topic
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ListSubscriptionsByTopicResponse'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /?Action=GetSubscriptionAttributes:
+    get:
+      tags:
+        - Subscriptions
+      operationId: getSubscriptionAttributes
+      summary: Get attributes of a subscription
+      description: >-
+        Returns all of the properties of a subscription.
+      parameters:
+        - name: SubscriptionArn
+          in: query
+          required: true
+          description: The ARN of the subscription whose properties you want to get
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Subscription attributes retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetSubscriptionAttributesResponse'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /?Action=SetSubscriptionAttributes:
+    post:
+      tags:
+        - Subscriptions
+      operationId: setSubscriptionAttributes
+      summary: Set attributes on a subscription
+      description: >-
+        Allows a subscription owner to set an attribute of the
+        subscription to a new value.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - SubscriptionArn
+                - AttributeName
+              properties:
+                SubscriptionArn:
+                  type: string
+                  description: The ARN of the subscription to modify
+                AttributeName:
+                  type: string
+                  description: >-
+                    The attribute name. Valid values include
+                    DeliveryPolicy, FilterPolicy, FilterPolicyScope,
+                    RawMessageDelivery, and RedrivePolicy.
+                AttributeValue:
+                  type: string
+                  description: The new value for the attribute
+      responses:
+        '200':
+          description: Attribute set successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SetSubscriptionAttributesResponse'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /?Action=Publish:
+    post:
+      tags:
+        - Publishing
+      operationId: publish
+      summary: Publish a message to an SNS topic or endpoint
+      description: >-
+        Sends a message to an Amazon SNS topic, a text message (SMS) directly
+        to a phone number, or a message to a platform application endpoint.
+        When you publish to a topic, SNS delivers the message to each
+        subscribing endpoint. You can send different messages for each
+        transport protocol by using the MessageStructure parameter.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - Message
+              properties:
+                TopicArn:
+                  type: string
+                  description: >-
+                    The ARN of the topic to publish to. Required unless
+                    TargetArn or PhoneNumber is specified.
+                TargetArn:
+                  type: string
+                  description: >-
+                    The ARN of the endpoint to publish to (for direct
+                    publish to a platform application endpoint)
+                PhoneNumber:
+                  type: string
+                  description: >-
+                    The phone number to which you want to deliver an SMS
+                    message in E.164 format
+                Message:
+                  type: string
+                  description: >-
+                    The message to send. When MessageStructure is set to
+                    json, this must be a JSON object with a top-level
+                    key of default and optional keys for each protocol.
+                  maxLength: 262144
+                Subject:
+                  type: string
+                  description: >-
+                    Optional subject line for email endpoints. Not used
+                    for other protocols.
+                MessageStructure:
+                  type: string
+                  description: >-
+                    Set to json to send a different message for each
+                    protocol. The Message parameter must contain a JSON
+                    object with protocol-keyed messages.
+                  enum:
+                    - json
+                MessageAttributes:
+                  type: object
+                  description: >-
+                    Message attributes for publish action. Each attribute
+                    consists of a Name, DataType, and Value. Attributes
+                    are used for message filtering by subscription filter
+                    policies.
+                  additionalProperties:
+                    $ref: '#/components/schemas/MessageAttributeValue'
+                MessageDeduplicationId:
+                  type: string
+                  description: >-
+                    The deduplication identifier for FIFO topics. Required
+                    when ContentBasedDeduplication is not enabled.
+                  maxLength: 128
+                MessageGroupId:
+                  type: string
+                  description: >-
+                    The tag that specifies the message group for FIFO
+                    topics. Messages in the same group are delivered in
+                    order. Required for FIFO topics.
+                  maxLength: 128
+      responses:
+        '200':
+          description: Message published successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PublishResponse'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/Throttled'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /?Action=PublishBatch:
+    post:
+      tags:
+        - Publishing
+      operationId: publishBatch
+      summary: Publish up to 10 messages to an SNS topic in a single request
+      description: >-
+        Publishes up to ten messages to the specified topic in a single
+        API call. This action is useful for reducing the cost of
+        publishing messages. The total aggregate size of all messages in
+        a single PublishBatch call cannot exceed 262,144 bytes.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - TopicArn
+                - PublishBatchRequestEntries
+              properties:
+                TopicArn:
+                  type: string
+                  description: The ARN of the topic to publish messages to
+                PublishBatchRequestEntries:
+                  type: array
+                  description: A list of publish batch request entries (max 10)
+                  maxItems: 10
+                  items:
+                    $ref: '#/components/schemas/PublishBatchRequestEntry'
+      responses:
+        '200':
+          description: Batch publish results
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PublishBatchResponse'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/Throttled'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /?Action=TagResource:
+    post:
+      tags:
+        - Tags
+      operationId: tagResource
+      summary: Add tags to an SNS topic
+      description: >-
+        Add tags to the specified Amazon SNS topic. Tags are key-value
+        pairs that can be used to organize and categorize resources.
+        When a topic is tagged, existing tags with the same key are
+        overwritten with the new value.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - ResourceArn
+                - Tags
+              properties:
+                ResourceArn:
+                  type: string
+                  description: The ARN of the topic to tag
+                Tags:
+                  type: array
+                  description: The tags to add to the topic
+                  items:
+                    $ref: '#/components/schemas/Tag'
+      responses:
+        '200':
+          description: Tags added successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TagResourceResponse'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /?Action=UntagResource:
+    post:
+      tags:
+        - Tags
+      operationId: untagResource
+      summary: Remove tags from an SNS topic
+      description: >-
+        Remove tags from the specified Amazon SNS topic.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - ResourceArn
+                - TagKeys
+              properties:
+                ResourceArn:
+                  type: string
+                  description: The ARN of the topic to remove tags from
+                TagKeys:
+                  type: array
+                  description: The list of tag keys to remove
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Tags removed successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UntagResourceResponse'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /?Action=ListTagsForResource:
+    get:
+      tags:
+        - Tags
+      operationId: listTagsForResource
+      summary: List tags for an SNS topic
+      description: >-
+        List all tags added to the specified Amazon SNS topic. Returns
+        key-value pairs associated with the resource.
+      parameters:
+        - name: ResourceArn
+          in: query
+          required: true
+          description: The ARN of the topic to list tags for
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tags retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ListTagsForResourceResponse'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /?Action=CreatePlatformApplication:
+    post:
+      tags:
+        - Platform Applications
+      operationId: createPlatformApplication
+      summary: Create a platform application for push notifications
+      description: >-
+        Creates a platform application object for one of the supported push
+        notification services, such as APNs and FCM (Firebase Cloud
+        Messaging), to which devices and mobile apps may register.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - Name
+                - Platform
+                - Attributes
+              properties:
+                Name:
+                  type: string
+                  description: Application names must be unique within an AWS account
+                Platform:
+                  type: string
+                  description: The push notification platform
+                  enum:
+                    - ADM
+                    - APNS
+                    - APNS_SANDBOX
+                    - GCM
+                Attributes:
+                  type: object
+                  description: >-
+                    Platform-specific credential attributes. For APNS,
+                    includes PlatformCredential (private key) and
+                    PlatformPrincipal (SSL certificate). For GCM,
+                    includes PlatformCredential (API key or service
+                    account JSON).
+                  additionalProperties:
+                    type: string
+      responses:
+        '200':
+          description: Platform application created
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CreatePlatformApplicationResponse'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /?Action=GetSMSAttributes:
+    get:
+      tags:
+        - SMS
+      operationId: getSMSAttributes
+      summary: Get SMS messaging attributes
+      description: >-
+        Returns the settings for sending SMS messages from your AWS account.
+        These attributes include the default sender ID, monthly spending
+        limit, and delivery status logging settings.
+      parameters:
+        - name: attributes
+          in: query
+          description: >-
+            A list of attribute names to return. If omitted, all
+            attributes are returned.
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: SMS attributes retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetSMSAttributesResponse'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '429':
+          $ref: '#/components/responses/Throttled'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /?Action=CheckIfPhoneNumberIsOptedOut:
+    get:
+      tags:
+        - SMS
+      operationId: checkIfPhoneNumberIsOptedOut
+      summary: Check if a phone number has opted out of SMS
+      description: >-
+        Accepts a phone number and indicates whether the phone holder has
+        opted out of receiving SMS messages from your AWS account. You
+        cannot send SMS messages to a number that is opted out.
+      parameters:
+        - name: phoneNumber
+          in: query
+          required: true
+          description: The phone number to check in E.164 format
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Opt-out status returned
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CheckIfPhoneNumberIsOptedOutResponse'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '429':
+          $ref: '#/components/responses/Throttled'
+        '500':
+          $ref: '#/components/responses/InternalError'
+components:
+  securitySchemes:
+    AWS_IAM:
+      type: http
+      scheme: bearer
+      description: >-
+        AWS Signature Version 4 authentication. Requests must be signed
+        using IAM credentials with appropriate SNS permissions. See
+        https://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html
+  parameters:
+    ContentType:
+      name: Content-Type
+      in: header
+      description: Content type for form-encoded requests
+      schema:
+        type: string
+        default: application/x-www-form-urlencoded
+  schemas:
+    Tag:
+      type: object
+      required:
+        - Key
+        - Value
+      properties:
+        Key:
+          type: string
+          description: The tag key
+          minLength: 1
+          maxLength: 128
+        Value:
+          type: string
+          description: The tag value
+          maxLength: 256
+    MessageAttributeValue:
+      type: object
+      required:
+        - DataType
+      properties:
+        DataType:
+          type: string
+          description: >-
+            The data type of the attribute. Supported types are String,
+            String.Array, Number, and Binary.
+          enum:
+            - String
+            - String.Array
+            - Number
+            - Binary
+        StringValue:
+          type: string
+          description: The string value of the attribute
+        BinaryValue:
+          type: string
+          format: byte
+          description: The binary (base64-encoded) value of the attribute
+    PublishBatchRequestEntry:
+      type: object
+      required:
+        - Id
+        - Message
+      properties:
+        Id:
+          type: string
+          description: >-
+            An identifier for the message in this batch. The Id must be
+            unique within a single PublishBatch request.
+        Message:
+          type: string
+          description: The body of the message
+          maxLength: 262144
+        Subject:
+          type: string
+          description: The subject of the batch message for email endpoints
+        MessageStructure:
+          type: string
+          description: Set to json for per-protocol messages
+          enum:
+            - json
+        MessageAttributes:
+          type: object
+          description: Message attributes for this entry
+          additionalProperties:
+            $ref: '#/components/schemas/MessageAttributeValue'
+        MessageDeduplicationId:
+          type: string
+          description: Deduplication ID for FIFO topics
+          maxLength: 128
+        MessageGroupId:
+          type: string
+          description: Message group ID for FIFO topics
+          maxLength: 128
+    TopicMember:
+      type: object
+      properties:
+        TopicArn:
+          type: string
+          description: The ARN of the topic
+    SubscriptionMember:
+      type: object
+      properties:
+        SubscriptionArn:
+          type: string
+          description: The subscription ARN
+        Owner:
+          type: string
+          description: The subscription owner's AWS account ID
+        Protocol:
+          type: string
+          description: The subscription protocol
+        Endpoint:
+          type: string
+          description: The subscription endpoint
+        TopicArn:
+          type: string
+          description: The topic ARN that this subscription is associated with
+    ResponseMetadata:
+      type: object
+      properties:
+        RequestId:
+          type: string
+          description: The unique request identifier
+    CreateTopicResponse:
+      type: object
+      properties:
+        CreateTopicResult:
+          type: object
+          properties:
+            TopicArn:
+              type: string
+              description: The Amazon Resource Name assigned to the created topic
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    DeleteTopicResponse:
+      type: object
+      properties:
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    ListTopicsResponse:
+      type: object
+      properties:
+        ListTopicsResult:
+          type: object
+          properties:
+            Topics:
+              type: array
+              items:
+                $ref: '#/components/schemas/TopicMember'
+            NextToken:
+              type: string
+              description: Token for paginating results
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    GetTopicAttributesResponse:
+      type: object
+      properties:
+        GetTopicAttributesResult:
+          type: object
+          properties:
+            Attributes:
+              type: object
+              description: A map of the topic attributes
+              additionalProperties:
+                type: string
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    SetTopicAttributesResponse:
+      type: object
+      properties:
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    SubscribeResponse:
+      type: object
+      properties:
+        SubscribeResult:
+          type: object
+          properties:
+            SubscriptionArn:
+              type: string
+              description: >-
+                The ARN of the subscription. For pending subscriptions,
+                this value is 'pending confirmation'.
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    ConfirmSubscriptionResponse:
+      type: object
+      properties:
+        ConfirmSubscriptionResult:
+          type: object
+          properties:
+            SubscriptionArn:
+              type: string
+              description: The ARN of the created subscription
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    UnsubscribeResponse:
+      type: object
+      properties:
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    ListSubscriptionsResponse:
+      type: object
+      properties:
+        ListSubscriptionsResult:
+          type: object
+          properties:
+            Subscriptions:
+              type: array
+              items:
+                $ref: '#/components/schemas/SubscriptionMember'
+            NextToken:
+              type: string
+              description: Token for paginating results
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    ListSubscriptionsByTopicResponse:
+      type: object
+      properties:
+        ListSubscriptionsByTopicResult:
+          type: object
+          properties:
+            Subscriptions:
+              type: array
+              items:
+                $ref: '#/components/schemas/SubscriptionMember'
+            NextToken:
+              type: string
+              description: Token for paginating results
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    GetSubscriptionAttributesResponse:
+      type: object
+      properties:
+        GetSubscriptionAttributesResult:
+          type: object
+          properties:
+            Attributes:
+              type: object
+              description: A map of the subscription attributes
+              additionalProperties:
+                type: string
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    SetSubscriptionAttributesResponse:
+      type: object
+      properties:
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    PublishResponse:
+      type: object
+      properties:
+        PublishResult:
+          type: object
+          properties:
+            MessageId:
+              type: string
+              description: Unique identifier assigned to the published message
+            SequenceNumber:
+              type: string
+              description: >-
+                The sequence number for FIFO topics. This field is only
+                present for messages published to FIFO topics.
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    PublishBatchResponse:
+      type: object
+      properties:
+        PublishBatchResult:
+          type: object
+          properties:
+            Successful:
+              type: array
+              description: List of successfully published entries
+              items:
+                type: object
+                properties:
+                  Id:
+                    type: string
+                    description: The Id from the batch request entry
+                  MessageId:
+                    type: string
+                    description: The MessageId assigned by SNS
+                  SequenceNumber:
+                    type: string
+                    description: Sequence number for FIFO topics
+            Failed:
+              type: array
+              description: List of entries that failed to publish
+              items:
+                type: object
+                properties:
+                  Id:
+                    type: string
+                    description: The Id from the batch request entry
+                  Code:
+                    type: string
+                    description: Error code for the failure
+                  Message:
+                    type: string
+                    description: Error message for the failure
+                  SenderFault:
+                    type: boolean
+                    description: Whether the error was caused by the sender
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    TagResourceResponse:
+      type: object
+      properties:
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    UntagResourceResponse:
+      type: object
+      properties:
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    ListTagsForResourceResponse:
+      type: object
+      properties:
+        ListTagsForResourceResult:
+          type: object
+          properties:
+            Tags:
+              type: array
+              items:
+                $ref: '#/components/schemas/Tag'
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    CreatePlatformApplicationResponse:
+      type: object
+      properties:
+        CreatePlatformApplicationResult:
+          type: object
+          properties:
+            PlatformApplicationArn:
+              type: string
+              description: ARN of the created platform application
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    GetSMSAttributesResponse:
+      type: object
+      properties:
+        GetSMSAttributesResult:
+          type: object
+          properties:
+            attributes:
+              type: object
+              description: SMS attribute name-value pairs
+              additionalProperties:
+                type: string
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    CheckIfPhoneNumberIsOptedOutResponse:
+      type: object
+      properties:
+        CheckIfPhoneNumberIsOptedOutResult:
+          type: object
+          properties:
+            isOptedOut:
+              type: boolean
+              description: Indicates whether the phone number is opted out
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    ErrorResponse:
+      type: object
+      properties:
+        Error:
+          type: object
+          properties:
+            Type:
+              type: string
+              description: The error type (Sender or Receiver)
+            Code:
+              type: string
+              description: The specific error code
+            Message:
+              type: string
+              description: A human-readable description of the error
+        RequestId:
+          type: string
+          description: The unique request identifier
+  responses:
+    InvalidParameter:
+      description: Invalid parameter in the request
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    AuthorizationError:
+      description: Authorization error - insufficient permissions
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource does not exist
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Throttled:
+      description: Request rate exceeded - throttled
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalError:
+      description: Internal service error
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

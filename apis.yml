@@ -10,7 +10,7 @@ tags:
 - email
 - AWS
 created: '2024-01-01'
-modified: '2024-01-01'
+modified: '2026-03-03'
 url: https://aws.amazon.com/sns/
 specificationVersion: '0.16'
 apis:
@@ -26,6 +26,14 @@ apis:
   properties:
   - type: Documentation
     url: https://docs.aws.amazon.com/sns/
+  - type: OpenAPI
+    url: openapi/amazon-sns-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/amazon-sns-notifications-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-sns-notification-schema.json
+  - type: JSON-LD
+    url: json-ld/amazon-sns-context.jsonld
   - type: OpenAPI
     url: https://api.apis.guru/v2/specs/amazonaws.com/sns/2010-03-31/openapi.yaml
   - type: API Reference
@@ -54,10 +62,36 @@ apis:
     url: https://aws.amazon.com/sns/use-cases/
   - type: Best Practices
     url: https://docs.aws.amazon.com/sns/latest/dg/sns-best-practices.html
+  - type: API Actions Reference
+    url: https://docs.aws.amazon.com/sns/latest/api/API_Operations.html
+  - type: Developer Guide
+    url: https://docs.aws.amazon.com/sns/latest/dg/welcome.html
+  - type: SDK - Go
+    url: https://docs.aws.amazon.com/sdk-for-go/api/service/sns/
+  - type: SDK - Ruby
+    url: https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/SNS/Client.html
+  - type: SDK - PHP
+    url: https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-Aws.Sns.SnsClient.html
+  - type: FIFO Topics
+    url: https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html
+  - type: Message Filtering
+    url: https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html
+  - type: Dead-Letter Queues
+    url: https://docs.aws.amazon.com/sns/latest/dg/sns-dead-letter-queues.html
+  - type: Logging and Monitoring
+    url: https://docs.aws.amazon.com/sns/latest/dg/sns-logging-monitoring.html
+  - type: CloudWatch Monitoring
+    url: https://docs.aws.amazon.com/sns/latest/dg/sns-monitoring-using-cloudwatch.html
+  - type: CloudFormation
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-sns-topic.html
+  - type: Terraform
+    url: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic
+  - type: Code Examples
+    url: https://github.com/awsdocs/aws-doc-sdk-examples
 maintainers:
-- FN: Amazon Web Services
-  email: aws-support@amazon.com
-  url: https://aws.amazon.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
+  url: https://apievangelist.com
 common:
 - type: Blog
   url: https://aws.amazon.com/blogs/messaging-and-targeting/
@@ -79,3 +113,19 @@ common:
   url: https://aws.amazon.com/compliance/services-in-scope/
 - type: Security
   url: https://docs.aws.amazon.com/sns/latest/dg/sns-security.html
+- type: Knowledge Center
+  url: https://aws.amazon.com/premiumsupport/knowledge-center/#Amazon_Simple_Notification_Service
+- type: Partners
+  url: https://aws.amazon.com/sns/partners/
+- type: Support
+  url: https://console.aws.amazon.com/support/home
+- type: Documentation Overview
+  url: https://aws.amazon.com/documentation-overview/sns/
+- type: API Reference PDF
+  url: https://docs.aws.amazon.com/pdfs/sns/latest/api/sns-api.pdf
+- type: Developer Guide PDF
+  url: https://docs.aws.amazon.com/pdfs/sns/latest/dg/sns-dg.pdf
+- type: Developer Guide Source
+  url: https://github.com/awsdocs/amazon-sns-developer-guide
+- type: Sample Code
+  url: https://github.com/aws-samples/aws-sns-samples
