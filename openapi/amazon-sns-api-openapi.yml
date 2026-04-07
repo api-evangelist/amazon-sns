@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Amazon Simple Notification Service (SNS) API
+  title: Amazon SNS Amazon Simple Notification Service (SNS) API
   version: '2010-03-31'
   description: >-
     Amazon Simple Notification Service (SNS) is a fully managed pub/sub
@@ -81,7 +81,7 @@ paths:
       tags:
         - Topics
       operationId: createTopic
-      summary: Create a new SNS topic
+      summary: Amazon SNS Create a new SNS topic
       description: >-
         Creates a new SNS topic to which notifications can be published.
         Topics can be standard or FIFO. Returns the TopicArn of the
@@ -184,7 +184,7 @@ paths:
       tags:
         - Topics
       operationId: deleteTopic
-      summary: Delete an SNS topic
+      summary: Amazon SNS Delete an SNS topic
       description: >-
         Deletes a topic and all its subscriptions. Deleting a topic might
         prevent some messages previously sent to the topic from being
@@ -220,7 +220,7 @@ paths:
       tags:
         - Topics
       operationId: listTopics
-      summary: List all SNS topics
+      summary: Amazon SNS List all SNS topics
       description: >-
         Returns a list of the requester's topics. Each call returns a
         limited list of topics, up to 100. If there are more topics, a
@@ -248,7 +248,7 @@ paths:
       tags:
         - Topics
       operationId: getTopicAttributes
-      summary: Get attributes of an SNS topic
+      summary: Amazon SNS Get attributes of an SNS topic
       description: >-
         Returns all of the properties of a topic. Topic properties returned
         might differ based on the authorization of the user.
@@ -277,7 +277,7 @@ paths:
       tags:
         - Topics
       operationId: setTopicAttributes
-      summary: Set attributes on an SNS topic
+      summary: Amazon SNS Set attributes on an SNS topic
       description: >-
         Allows a topic owner to set an attribute of the topic to a new value.
         Only one attribute can be changed per call.
@@ -323,7 +323,7 @@ paths:
       tags:
         - Subscriptions
       operationId: subscribe
-      summary: Subscribe an endpoint to an SNS topic
+      summary: Amazon SNS Subscribe an endpoint to an SNS topic
       description: >-
         Subscribes an endpoint to an Amazon SNS topic. If the endpoint type
         is HTTP/S or email, or if the endpoint and the topic are not in the
@@ -427,7 +427,7 @@ paths:
       tags:
         - Subscriptions
       operationId: confirmSubscription
-      summary: Confirm a pending subscription
+      summary: Amazon SNS Confirm a pending subscription
       description: >-
         Verifies an endpoint owner's intent to receive messages by
         validating the token sent to the endpoint by an earlier Subscribe
@@ -479,7 +479,7 @@ paths:
       tags:
         - Subscriptions
       operationId: unsubscribe
-      summary: Unsubscribe from an SNS topic
+      summary: Amazon SNS Unsubscribe from an SNS topic
       description: >-
         Deletes a subscription. If the subscription requires
         authentication for deletion, only the owner of the subscription
@@ -517,7 +517,7 @@ paths:
       tags:
         - Subscriptions
       operationId: listSubscriptions
-      summary: List all subscriptions
+      summary: Amazon SNS List all subscriptions
       description: >-
         Returns a list of the requester's subscriptions. Each call returns
         a limited list of subscriptions, up to 100. If there are more
@@ -545,7 +545,7 @@ paths:
       tags:
         - Subscriptions
       operationId: listSubscriptionsByTopic
-      summary: List subscriptions for a specific topic
+      summary: Amazon SNS List subscriptions for a specific topic
       description: >-
         Returns a list of the subscriptions to a specific topic. Each call
         returns a limited list of subscriptions, up to 100. If there are
@@ -580,7 +580,7 @@ paths:
       tags:
         - Subscriptions
       operationId: getSubscriptionAttributes
-      summary: Get attributes of a subscription
+      summary: Amazon SNS Get attributes of a subscription
       description: >-
         Returns all of the properties of a subscription.
       parameters:
@@ -608,7 +608,7 @@ paths:
       tags:
         - Subscriptions
       operationId: setSubscriptionAttributes
-      summary: Set attributes on a subscription
+      summary: Amazon SNS Set attributes on a subscription
       description: >-
         Allows a subscription owner to set an attribute of the
         subscription to a new value.
@@ -654,7 +654,7 @@ paths:
       tags:
         - Publishing
       operationId: publish
-      summary: Publish a message to an SNS topic or endpoint
+      summary: Amazon SNS Publish a message to an SNS topic or endpoint
       description: >-
         Sends a message to an Amazon SNS topic, a text message (SMS) directly
         to a phone number, or a message to a platform application endpoint.
@@ -749,7 +749,7 @@ paths:
       tags:
         - Publishing
       operationId: publishBatch
-      summary: Publish up to 10 messages to an SNS topic in a single request
+      summary: Amazon SNS Publish up to 10 messages to an SNS topic in a single request
       description: >-
         Publishes up to ten messages to the specified topic in a single
         API call. This action is useful for reducing the cost of
@@ -796,7 +796,7 @@ paths:
       tags:
         - Tags
       operationId: tagResource
-      summary: Add tags to an SNS topic
+      summary: Amazon SNS Add tags to an SNS topic
       description: >-
         Add tags to the specified Amazon SNS topic. Tags are key-value
         pairs that can be used to organize and categorize resources.
@@ -840,7 +840,7 @@ paths:
       tags:
         - Tags
       operationId: untagResource
-      summary: Remove tags from an SNS topic
+      summary: Amazon SNS Remove tags from an SNS topic
       description: >-
         Remove tags from the specified Amazon SNS topic.
       requestBody:
@@ -881,7 +881,7 @@ paths:
       tags:
         - Tags
       operationId: listTagsForResource
-      summary: List tags for an SNS topic
+      summary: Amazon SNS List tags for an SNS topic
       description: >-
         List all tags added to the specified Amazon SNS topic. Returns
         key-value pairs associated with the resource.
@@ -910,7 +910,7 @@ paths:
       tags:
         - Platform Applications
       operationId: createPlatformApplication
-      summary: Create a platform application for push notifications
+      summary: Amazon SNS Create a platform application for push notifications
       description: >-
         Creates a platform application object for one of the supported push
         notification services, such as APNs and FCM (Firebase Cloud
@@ -965,7 +965,7 @@ paths:
       tags:
         - SMS
       operationId: getSMSAttributes
-      summary: Get SMS messaging attributes
+      summary: Amazon SNS Get SMS messaging attributes
       description: >-
         Returns the settings for sending SMS messages from your AWS account.
         These attributes include the default sender ID, monthly spending
@@ -998,7 +998,7 @@ paths:
       tags:
         - SMS
       operationId: checkIfPhoneNumberIsOptedOut
-      summary: Check if a phone number has opted out of SMS
+      summary: Amazon SNS Check if a phone number has opted out of SMS
       description: >-
         Accepts a phone number and indicates whether the phone holder has
         opted out of receiving SMS messages from your AWS account. You
