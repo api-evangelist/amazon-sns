@@ -48,33 +48,29 @@ servers:
 security:
   - AWS_IAM: []
 tags:
-  - name: Topics
+  - name: Platform Applications
     description: >-
-      Operations for creating, listing, configuring, and deleting SNS topics.
-      Topics are communication channels to which messages are published and
-      from which notifications are delivered to subscribers.
-  - name: Subscriptions
-    description: >-
-      Operations for subscribing endpoints to topics, confirming subscriptions,
-      listing subscriptions, and unsubscribing. Subscriptions define which
-      endpoints receive messages published to a topic.
+      Operations for managing platform applications used for mobile push
+      notifications via APNs, FCM, and other push services.
   - name: Publishing
     description: >-
       Operations for publishing messages to SNS topics or directly to
       endpoints. Messages can be plain text or structured JSON for
       per-protocol delivery.
-  - name: Tags
-    description: >-
-      Operations for tagging and untagging SNS topics for resource
-      organization and access control.
-  - name: Platform Applications
-    description: >-
-      Operations for managing platform applications used for mobile push
-      notifications via APNs, FCM, and other push services.
   - name: SMS
     description: >-
       Operations for managing SMS messaging attributes and phone number
       opt-out lists.
+  - name: Subscriptions
+    description: >-
+      Operations for subscribing endpoints to topics, confirming subscriptions,
+      listing subscriptions, and unsubscribing. Subscriptions define which
+      endpoints receive messages published to a topic.
+  - name: Topics
+    description: >-
+      Operations for creating, listing, configuring, and deleting SNS topics.
+      Topics are communication channels to which messages are published and
+      from which notifications are delivered to subscribers.
 paths:
   /?Action=CreateTopic:
     post:
@@ -793,8 +789,7 @@ paths:
           $ref: '#/components/responses/InternalError'
   /?Action=TagResource:
     post:
-      tags:
-        - Tags
+      tags: []
       operationId: tagResource
       summary: Amazon SNS Add tags to an SNS topic
       description: >-
@@ -837,8 +832,7 @@ paths:
           $ref: '#/components/responses/InternalError'
   /?Action=UntagResource:
     post:
-      tags:
-        - Tags
+      tags: []
       operationId: untagResource
       summary: Amazon SNS Remove tags from an SNS topic
       description: >-
@@ -878,8 +872,7 @@ paths:
           $ref: '#/components/responses/InternalError'
   /?Action=ListTagsForResource:
     get:
-      tags:
-        - Tags
+      tags: []
       operationId: listTagsForResource
       summary: Amazon SNS List tags for an SNS topic
       description: >-
