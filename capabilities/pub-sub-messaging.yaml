@@ -1,0 +1,224 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Amazon SNS Pub/Sub Messaging"
+  description: "Pub/sub messaging workflow combining topic management, subscription lifecycle, message publishing, mobile push, and SMS operations. Used by developers and platform engineers for event-driven architectures and notification systems."
+  tags:
+    - Amazon
+    - AWS
+    - Messaging
+    - Notifications
+    - Pub/Sub
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY: AWS_SECRET_ACCESS_KEY
+      AWS_REGION: AWS_REGION
+
+capability:
+  consumes:
+    - import: amazon-sns
+      location: ./shared/sns.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: sns-pubsub-api
+      description: "Unified REST API for Amazon SNS pub/sub messaging."
+      resources:
+        - path: /v1/topics
+          name: topics
+          description: "Topic management"
+          operations:
+            - method: GET
+              name: list-topics
+              description: "List all SNS topics"
+              call: "amazon-sns.list-topics"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-topic
+              description: "Create a new SNS topic"
+              call: "amazon-sns.create-topic"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/subscriptions
+          name: subscriptions
+          description: "Subscription management"
+          operations:
+            - method: GET
+              name: list-subscriptions
+              description: "List all subscriptions"
+              call: "amazon-sns.list-subscriptions"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: subscribe
+              description: "Create a subscription"
+              call: "amazon-sns.subscribe"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/messages
+          name: messages
+          description: "Message publishing"
+          operations:
+            - method: POST
+              name: publish
+              description: "Publish a message to a topic"
+              call: "amazon-sns.publish"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: sns-pubsub-mcp
+      transport: http
+      description: "MCP server for AI-assisted Amazon SNS pub/sub messaging."
+      tools:
+        - name: list-topics
+          description: "List all SNS topics"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "amazon-sns.list-topics"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-topic
+          description: "Create a new SNS topic"
+          hints:
+            readOnly: false
+          call: "amazon-sns.create-topic"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-topic
+          description: "Delete an SNS topic"
+          hints:
+            destructive: true
+          call: "amazon-sns.delete-topic"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-topic-attributes
+          description: "Get attributes of an SNS topic"
+          hints:
+            readOnly: true
+          call: "amazon-sns.get-topic-attributes"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: set-topic-attributes
+          description: "Set attributes on an SNS topic"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "amazon-sns.set-topic-attributes"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: subscribe
+          description: "Create a subscription to a topic"
+          hints:
+            readOnly: false
+          call: "amazon-sns.subscribe"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: unsubscribe
+          description: "Unsubscribe from a topic"
+          hints:
+            destructive: true
+          call: "amazon-sns.unsubscribe"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-subscriptions
+          description: "List all subscriptions"
+          hints:
+            readOnly: true
+          call: "amazon-sns.list-subscriptions"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-subscriptions-by-topic
+          description: "List subscriptions for a specific topic"
+          hints:
+            readOnly: true
+          call: "amazon-sns.list-subscriptions-by-topic"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-subscription-attributes
+          description: "Get attributes of a subscription"
+          hints:
+            readOnly: true
+          call: "amazon-sns.get-subscription-attributes"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: publish
+          description: "Publish a message to a topic or endpoint"
+          hints:
+            readOnly: false
+          call: "amazon-sns.publish"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: publish-batch
+          description: "Publish up to 10 messages in a batch"
+          hints:
+            readOnly: false
+          call: "amazon-sns.publish-batch"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-platform-application
+          description: "Create a platform application for mobile push"
+          hints:
+            readOnly: false
+          call: "amazon-sns.create-platform-application"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-sms-attributes
+          description: "Get SMS messaging attributes"
+          hints:
+            readOnly: true
+          call: "amazon-sns.get-sms-attributes"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: check-phone-opted-out
+          description: "Check if a phone number has opted out of SMS"
+          hints:
+            readOnly: true
+          call: "amazon-sns.check-if-phone-number-is-opted-out"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-tags
+          description: "List tags for an SNS resource"
+          hints:
+            readOnly: true
+          call: "amazon-sns.list-tags-for-resource"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: tag-resource
+          description: "Add tags to an SNS resource"
+          hints:
+            readOnly: false
+          call: "amazon-sns.tag-resource"
+          outputParameters:
+            - type: object
+              mapping: "$."

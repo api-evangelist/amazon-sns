@@ -1,0 +1,12 @@
+name: amazon-sns API Vocabulary
+provider: amazon-sns
+created: '2026-04-18'
+modified: '2026-04-18'
+operations: 20
+schemas: 27
+tags:
+- Platform Applications
+- Publishing
+- SMS
+- Subscriptions
+- Topics

@@ -22,69 +22,69 @@ externalDocs:
   description: Amazon SNS API Reference
   url: https://docs.aws.amazon.com/sns/latest/api/welcome.html
 servers:
-  - url: https://sns.{region}.amazonaws.com
-    description: Amazon SNS regional endpoint
-    variables:
-      region:
-        default: us-east-1
-        description: AWS region
-        enum:
-          - us-east-1
-          - us-east-2
-          - us-west-1
-          - us-west-2
-          - eu-west-1
-          - eu-west-2
-          - eu-west-3
-          - eu-central-1
-          - eu-north-1
-          - ap-southeast-1
-          - ap-southeast-2
-          - ap-northeast-1
-          - ap-northeast-2
-          - ap-south-1
-          - sa-east-1
-          - ca-central-1
+- url: https://sns.{region}.amazonaws.com
+  description: Amazon SNS regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+      enum:
+      - us-east-1
+      - us-east-2
+      - us-west-1
+      - us-west-2
+      - eu-west-1
+      - eu-west-2
+      - eu-west-3
+      - eu-central-1
+      - eu-north-1
+      - ap-southeast-1
+      - ap-southeast-2
+      - ap-northeast-1
+      - ap-northeast-2
+      - ap-south-1
+      - sa-east-1
+      - ca-central-1
 security:
-  - AWS_IAM: []
+- AWS_IAM: []
 tags:
-  - name: Platform Applications
-    description: >-
-      Operations for managing platform applications used for mobile push
-      notifications via APNs, FCM, and other push services.
-  - name: Publishing
-    description: >-
-      Operations for publishing messages to SNS topics or directly to
-      endpoints. Messages can be plain text or structured JSON for
-      per-protocol delivery.
-  - name: SMS
-    description: >-
-      Operations for managing SMS messaging attributes and phone number
-      opt-out lists.
-  - name: Subscriptions
-    description: >-
-      Operations for subscribing endpoints to topics, confirming subscriptions,
-      listing subscriptions, and unsubscribing. Subscriptions define which
-      endpoints receive messages published to a topic.
-  - name: Topics
-    description: >-
-      Operations for creating, listing, configuring, and deleting SNS topics.
-      Topics are communication channels to which messages are published and
-      from which notifications are delivered to subscribers.
+- name: Platform Applications
+  description: >-
+    Operations for managing platform applications used for mobile push
+    notifications via APNs, FCM, and other push services.
+- name: Publishing
+  description: >-
+    Operations for publishing messages to SNS topics or directly to
+    endpoints. Messages can be plain text or structured JSON for
+    per-protocol delivery.
+- name: SMS
+  description: >-
+    Operations for managing SMS messaging attributes and phone number
+    opt-out lists.
+- name: Subscriptions
+  description: >-
+    Operations for subscribing endpoints to topics, confirming subscriptions,
+    listing subscriptions, and unsubscribing. Subscriptions define which
+    endpoints receive messages published to a topic.
+- name: Topics
+  description: >-
+    Operations for creating, listing, configuring, and deleting SNS topics.
+    Topics are communication channels to which messages are published and
+    from which notifications are delivered to subscribers.
 paths:
   /?Action=CreateTopic:
     post:
       tags:
-        - Topics
+      - Topics
       operationId: createTopic
-      summary: Amazon SNS Create a new SNS topic
+      summary: Amazon Sns Create a New Sns Topic
       description: >-
         Creates a new SNS topic to which notifications can be published.
         Topics can be standard or FIFO. Returns the TopicArn of the
         newly created topic. If a topic with the same name already exists,
         this action returns the TopicArn of the existing topic.
       parameters:
-        - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/ContentType'
       requestBody:
         required: true
         content:
@@ -92,7 +92,7 @@ paths:
             schema:
               type: object
               required:
-                - Name
+              - Name
               properties:
                 Name:
                   type: string
@@ -125,8 +125,8 @@ paths:
                       type: string
                       description: Set to true to create a FIFO topic
                       enum:
-                        - 'true'
-                        - 'false'
+                      - 'true'
+                      - 'false'
                     ContentBasedDeduplication:
                       type: string
                       description: >-
@@ -134,22 +134,22 @@ paths:
                         Messages with identical content are treated as
                         duplicates within the deduplication interval.
                       enum:
-                        - 'true'
-                        - 'false'
+                      - 'true'
+                      - 'false'
                     SignatureVersion:
                       type: string
                       description: >-
                         The signature version for SNS message signing.
                         Version 1 uses SHA1, version 2 uses SHA256.
                       enum:
-                        - '1'
-                        - '2'
+                      - '1'
+                      - '2'
                     TracingConfig:
                       type: string
                       description: Tracing mode for the topic
                       enum:
-                        - Active
-                        - PassThrough
+                      - Active
+                      - PassThrough
                 Tags:
                   type: array
                   description: Tags to add to the new topic
@@ -175,12 +175,15 @@ paths:
           $ref: '#/components/responses/Throttled'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=DeleteTopic:
     post:
       tags:
-        - Topics
+      - Topics
       operationId: deleteTopic
-      summary: Amazon SNS Delete an SNS topic
+      summary: Amazon Sns Delete an Sns Topic
       description: >-
         Deletes a topic and all its subscriptions. Deleting a topic might
         prevent some messages previously sent to the topic from being
@@ -193,7 +196,7 @@ paths:
             schema:
               type: object
               required:
-                - TopicArn
+              - TopicArn
               properties:
                 TopicArn:
                   type: string
@@ -211,23 +214,26 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=ListTopics:
     get:
       tags:
-        - Topics
+      - Topics
       operationId: listTopics
-      summary: Amazon SNS List all SNS topics
+      summary: Amazon Sns List All Sns Topics
       description: >-
         Returns a list of the requester's topics. Each call returns a
         limited list of topics, up to 100. If there are more topics, a
         NextToken is also returned. Use the NextToken parameter in a new
         ListTopics call to get further results.
       parameters:
-        - name: NextToken
-          in: query
-          description: Token returned by the previous ListTopics request for pagination
-          schema:
-            type: string
+      - name: NextToken
+        in: query
+        description: Token returned by the previous ListTopics request for pagination
+        schema:
+          type: string
       responses:
         '200':
           description: List of topics
@@ -239,22 +245,25 @@ paths:
           $ref: '#/components/responses/AuthorizationError'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=GetTopicAttributes:
     get:
       tags:
-        - Topics
+      - Topics
       operationId: getTopicAttributes
-      summary: Amazon SNS Get attributes of an SNS topic
+      summary: Amazon Sns Get Attributes of an Sns Topic
       description: >-
         Returns all of the properties of a topic. Topic properties returned
         might differ based on the authorization of the user.
       parameters:
-        - name: TopicArn
-          in: query
-          required: true
-          description: The ARN of the topic whose properties you want to get
-          schema:
-            type: string
+      - name: TopicArn
+        in: query
+        required: true
+        description: The ARN of the topic whose properties you want to get
+        schema:
+          type: string
       responses:
         '200':
           description: Topic attributes retrieved
@@ -268,12 +277,15 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=SetTopicAttributes:
     post:
       tags:
-        - Topics
+      - Topics
       operationId: setTopicAttributes
-      summary: Amazon SNS Set attributes on an SNS topic
+      summary: Amazon Sns Set Attributes on an Sns Topic
       description: >-
         Allows a topic owner to set an attribute of the topic to a new value.
         Only one attribute can be changed per call.
@@ -284,8 +296,8 @@ paths:
             schema:
               type: object
               required:
-                - TopicArn
-                - AttributeName
+              - TopicArn
+              - AttributeName
               properties:
                 TopicArn:
                   type: string
@@ -314,12 +326,15 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=Subscribe:
     post:
       tags:
-        - Subscriptions
+      - Subscriptions
       operationId: subscribe
-      summary: Amazon SNS Subscribe an endpoint to an SNS topic
+      summary: Amazon Sns Subscribe an Endpoint to an Sns Topic
       description: >-
         Subscribes an endpoint to an Amazon SNS topic. If the endpoint type
         is HTTP/S or email, or if the endpoint and the topic are not in the
@@ -333,8 +348,8 @@ paths:
             schema:
               type: object
               required:
-                - TopicArn
-                - Protocol
+              - TopicArn
+              - Protocol
               properties:
                 TopicArn:
                   type: string
@@ -343,15 +358,15 @@ paths:
                   type: string
                   description: The protocol to use for delivery
                   enum:
-                    - http
-                    - https
-                    - email
-                    - email-json
-                    - sms
-                    - sqs
-                    - application
-                    - lambda
-                    - firehose
+                  - http
+                  - https
+                  - email
+                  - email-json
+                  - sms
+                  - sqs
+                  - application
+                  - lambda
+                  - firehose
                 Endpoint:
                   type: string
                   description: >-
@@ -375,8 +390,8 @@ paths:
                         Specifies whether the filter policy applies to
                         message attributes or the message body
                       enum:
-                        - MessageAttributes
-                        - MessageBody
+                      - MessageAttributes
+                      - MessageBody
                     DeliveryPolicy:
                       type: string
                       description: The delivery retry policy (JSON) for HTTP/S endpoints
@@ -386,8 +401,8 @@ paths:
                         When set to true, the message is delivered as a raw
                         message without SNS metadata wrapping
                       enum:
-                        - 'true'
-                        - 'false'
+                      - 'true'
+                      - 'false'
                     RedrivePolicy:
                       type: string
                       description: >-
@@ -418,12 +433,15 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=ConfirmSubscription:
     post:
       tags:
-        - Subscriptions
+      - Subscriptions
       operationId: confirmSubscription
-      summary: Amazon SNS Confirm a pending subscription
+      summary: Amazon Sns Confirm a Pending Subscription
       description: >-
         Verifies an endpoint owner's intent to receive messages by
         validating the token sent to the endpoint by an earlier Subscribe
@@ -436,8 +454,8 @@ paths:
             schema:
               type: object
               required:
-                - TopicArn
-                - Token
+              - TopicArn
+              - Token
               properties:
                 TopicArn:
                   type: string
@@ -453,8 +471,8 @@ paths:
                     If set to true, disallows unauthenticated unsubscribes.
                     Only the topic owner and subscription owner can unsubscribe.
                   enum:
-                    - 'true'
-                    - 'false'
+                  - 'true'
+                  - 'false'
       responses:
         '200':
           description: Subscription confirmed
@@ -470,12 +488,15 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=Unsubscribe:
     post:
       tags:
-        - Subscriptions
+      - Subscriptions
       operationId: unsubscribe
-      summary: Amazon SNS Unsubscribe from an SNS topic
+      summary: Amazon Sns Unsubscribe From an Sns Topic
       description: >-
         Deletes a subscription. If the subscription requires
         authentication for deletion, only the owner of the subscription
@@ -490,7 +511,7 @@ paths:
             schema:
               type: object
               required:
-                - SubscriptionArn
+              - SubscriptionArn
               properties:
                 SubscriptionArn:
                   type: string
@@ -508,23 +529,26 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=ListSubscriptions:
     get:
       tags:
-        - Subscriptions
+      - Subscriptions
       operationId: listSubscriptions
-      summary: Amazon SNS List all subscriptions
+      summary: Amazon Sns List All Subscriptions
       description: >-
         Returns a list of the requester's subscriptions. Each call returns
         a limited list of subscriptions, up to 100. If there are more
         subscriptions, a NextToken is also returned. Use the NextToken
         parameter in a new ListSubscriptions call to get further results.
       parameters:
-        - name: NextToken
-          in: query
-          description: Token returned by the previous request for pagination
-          schema:
-            type: string
+      - name: NextToken
+        in: query
+        description: Token returned by the previous request for pagination
+        schema:
+          type: string
       responses:
         '200':
           description: List of subscriptions
@@ -536,28 +560,31 @@ paths:
           $ref: '#/components/responses/AuthorizationError'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=ListSubscriptionsByTopic:
     get:
       tags:
-        - Subscriptions
+      - Subscriptions
       operationId: listSubscriptionsByTopic
-      summary: Amazon SNS List subscriptions for a specific topic
+      summary: Amazon Sns List Subscriptions for a Specific Topic
       description: >-
         Returns a list of the subscriptions to a specific topic. Each call
         returns a limited list of subscriptions, up to 100. If there are
         more subscriptions, a NextToken is also returned.
       parameters:
-        - name: TopicArn
-          in: query
-          required: true
-          description: The ARN of the topic for which you wish to list subscriptions
-          schema:
-            type: string
-        - name: NextToken
-          in: query
-          description: Token returned by the previous request for pagination
-          schema:
-            type: string
+      - name: TopicArn
+        in: query
+        required: true
+        description: The ARN of the topic for which you wish to list subscriptions
+        schema:
+          type: string
+      - name: NextToken
+        in: query
+        description: Token returned by the previous request for pagination
+        schema:
+          type: string
       responses:
         '200':
           description: List of subscriptions for the topic
@@ -571,21 +598,24 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=GetSubscriptionAttributes:
     get:
       tags:
-        - Subscriptions
+      - Subscriptions
       operationId: getSubscriptionAttributes
-      summary: Amazon SNS Get attributes of a subscription
+      summary: Amazon Sns Get Attributes of a Subscription
       description: >-
         Returns all of the properties of a subscription.
       parameters:
-        - name: SubscriptionArn
-          in: query
-          required: true
-          description: The ARN of the subscription whose properties you want to get
-          schema:
-            type: string
+      - name: SubscriptionArn
+        in: query
+        required: true
+        description: The ARN of the subscription whose properties you want to get
+        schema:
+          type: string
       responses:
         '200':
           description: Subscription attributes retrieved
@@ -599,12 +629,15 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=SetSubscriptionAttributes:
     post:
       tags:
-        - Subscriptions
+      - Subscriptions
       operationId: setSubscriptionAttributes
-      summary: Amazon SNS Set attributes on a subscription
+      summary: Amazon Sns Set Attributes on a Subscription
       description: >-
         Allows a subscription owner to set an attribute of the
         subscription to a new value.
@@ -615,8 +648,8 @@ paths:
             schema:
               type: object
               required:
-                - SubscriptionArn
-                - AttributeName
+              - SubscriptionArn
+              - AttributeName
               properties:
                 SubscriptionArn:
                   type: string
@@ -645,12 +678,15 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=Publish:
     post:
       tags:
-        - Publishing
+      - Publishing
       operationId: publish
-      summary: Amazon SNS Publish a message to an SNS topic or endpoint
+      summary: Amazon Sns Publish a Message to an Sns Topic or Endpoint
       description: >-
         Sends a message to an Amazon SNS topic, a text message (SMS) directly
         to a phone number, or a message to a platform application endpoint.
@@ -664,7 +700,7 @@ paths:
             schema:
               type: object
               required:
-                - Message
+              - Message
               properties:
                 TopicArn:
                   type: string
@@ -700,7 +736,7 @@ paths:
                     protocol. The Message parameter must contain a JSON
                     object with protocol-keyed messages.
                   enum:
-                    - json
+                  - json
                 MessageAttributes:
                   type: object
                   description: >-
@@ -740,12 +776,15 @@ paths:
           $ref: '#/components/responses/Throttled'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=PublishBatch:
     post:
       tags:
-        - Publishing
+      - Publishing
       operationId: publishBatch
-      summary: Amazon SNS Publish up to 10 messages to an SNS topic in a single request
+      summary: Amazon Sns Publish up to 10 Messages to an Sns Topic in a Single Request
       description: >-
         Publishes up to ten messages to the specified topic in a single
         API call. This action is useful for reducing the cost of
@@ -758,8 +797,8 @@ paths:
             schema:
               type: object
               required:
-                - TopicArn
-                - PublishBatchRequestEntries
+              - TopicArn
+              - PublishBatchRequestEntries
               properties:
                 TopicArn:
                   type: string
@@ -787,11 +826,14 @@ paths:
           $ref: '#/components/responses/Throttled'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=TagResource:
     post:
       tags: []
       operationId: tagResource
-      summary: Amazon SNS Add tags to an SNS topic
+      summary: Amazon Sns Add Tags to an Sns Topic
       description: >-
         Add tags to the specified Amazon SNS topic. Tags are key-value
         pairs that can be used to organize and categorize resources.
@@ -804,8 +846,8 @@ paths:
             schema:
               type: object
               required:
-                - ResourceArn
-                - Tags
+              - ResourceArn
+              - Tags
               properties:
                 ResourceArn:
                   type: string
@@ -830,11 +872,14 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=UntagResource:
     post:
       tags: []
       operationId: untagResource
-      summary: Amazon SNS Remove tags from an SNS topic
+      summary: Amazon Sns Remove Tags From an Sns Topic
       description: >-
         Remove tags from the specified Amazon SNS topic.
       requestBody:
@@ -844,8 +889,8 @@ paths:
             schema:
               type: object
               required:
-                - ResourceArn
-                - TagKeys
+              - ResourceArn
+              - TagKeys
               properties:
                 ResourceArn:
                   type: string
@@ -870,21 +915,24 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=ListTagsForResource:
     get:
       tags: []
       operationId: listTagsForResource
-      summary: Amazon SNS List tags for an SNS topic
+      summary: Amazon Sns List Tags for an Sns Topic
       description: >-
         List all tags added to the specified Amazon SNS topic. Returns
         key-value pairs associated with the resource.
       parameters:
-        - name: ResourceArn
-          in: query
-          required: true
-          description: The ARN of the topic to list tags for
-          schema:
-            type: string
+      - name: ResourceArn
+        in: query
+        required: true
+        description: The ARN of the topic to list tags for
+        schema:
+          type: string
       responses:
         '200':
           description: Tags retrieved
@@ -898,12 +946,15 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=CreatePlatformApplication:
     post:
       tags:
-        - Platform Applications
+      - Platform Applications
       operationId: createPlatformApplication
-      summary: Amazon SNS Create a platform application for push notifications
+      summary: Amazon Sns Create a Platform Application for Push Notifications
       description: >-
         Creates a platform application object for one of the supported push
         notification services, such as APNs and FCM (Firebase Cloud
@@ -915,9 +966,9 @@ paths:
             schema:
               type: object
               required:
-                - Name
-                - Platform
-                - Attributes
+              - Name
+              - Platform
+              - Attributes
               properties:
                 Name:
                   type: string
@@ -926,10 +977,10 @@ paths:
                   type: string
                   description: The push notification platform
                   enum:
-                    - ADM
-                    - APNS
-                    - APNS_SANDBOX
-                    - GCM
+                  - ADM
+                  - APNS
+                  - APNS_SANDBOX
+                  - GCM
                 Attributes:
                   type: object
                   description: >-
@@ -953,26 +1004,29 @@ paths:
           $ref: '#/components/responses/AuthorizationError'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=GetSMSAttributes:
     get:
       tags:
-        - SMS
+      - SMS
       operationId: getSMSAttributes
-      summary: Amazon SNS Get SMS messaging attributes
+      summary: Amazon Sns Get Sms Messaging Attributes
       description: >-
         Returns the settings for sending SMS messages from your AWS account.
         These attributes include the default sender ID, monthly spending
         limit, and delivery status logging settings.
       parameters:
-        - name: attributes
-          in: query
-          description: >-
-            A list of attribute names to return. If omitted, all
-            attributes are returned.
-          schema:
-            type: array
-            items:
-              type: string
+      - name: attributes
+        in: query
+        description: >-
+          A list of attribute names to return. If omitted, all
+          attributes are returned.
+        schema:
+          type: array
+          items:
+            type: string
       responses:
         '200':
           description: SMS attributes retrieved
@@ -986,23 +1040,26 @@ paths:
           $ref: '#/components/responses/Throttled'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=CheckIfPhoneNumberIsOptedOut:
     get:
       tags:
-        - SMS
+      - SMS
       operationId: checkIfPhoneNumberIsOptedOut
-      summary: Amazon SNS Check if a phone number has opted out of SMS
+      summary: Amazon Sns Check if a Phone Number Has Opted Out of Sms
       description: >-
         Accepts a phone number and indicates whether the phone holder has
         opted out of receiving SMS messages from your AWS account. You
         cannot send SMS messages to a number that is opted out.
       parameters:
-        - name: phoneNumber
-          in: query
-          required: true
-          description: The phone number to check in E.164 format
-          schema:
-            type: string
+      - name: phoneNumber
+        in: query
+        required: true
+        description: The phone number to check in E.164 format
+        schema:
+          type: string
       responses:
         '200':
           description: Opt-out status returned
@@ -1018,6 +1075,9 @@ paths:
           $ref: '#/components/responses/Throttled'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     AWS_IAM:
@@ -1039,22 +1099,24 @@ components:
     Tag:
       type: object
       required:
-        - Key
-        - Value
+      - Key
+      - Value
       properties:
         Key:
           type: string
           description: The tag key
           minLength: 1
           maxLength: 128
+          example: example_value
         Value:
           type: string
           description: The tag value
           maxLength: 256
+          example: example_value
     MessageAttributeValue:
       type: object
       required:
-        - DataType
+      - DataType
       properties:
         DataType:
           type: string
@@ -1062,83 +1124,100 @@ components:
             The data type of the attribute. Supported types are String,
             String.Array, Number, and Binary.
           enum:
-            - String
-            - String.Array
-            - Number
-            - Binary
+          - String
+          - String.Array
+          - Number
+          - Binary
+          example: String
         StringValue:
           type: string
           description: The string value of the attribute
+          example: example_value
         BinaryValue:
           type: string
           format: byte
           description: The binary (base64-encoded) value of the attribute
+          example: example_value
     PublishBatchRequestEntry:
       type: object
       required:
-        - Id
-        - Message
+      - Id
+      - Message
       properties:
         Id:
           type: string
           description: >-
             An identifier for the message in this batch. The Id must be
             unique within a single PublishBatch request.
+          example: abc123
         Message:
           type: string
           description: The body of the message
           maxLength: 262144
+          example: example_value
         Subject:
           type: string
           description: The subject of the batch message for email endpoints
+          example: example_value
         MessageStructure:
           type: string
           description: Set to json for per-protocol messages
           enum:
-            - json
+          - json
+          example: json
         MessageAttributes:
           type: object
           description: Message attributes for this entry
           additionalProperties:
             $ref: '#/components/schemas/MessageAttributeValue'
+          example: example_value
         MessageDeduplicationId:
           type: string
           description: Deduplication ID for FIFO topics
           maxLength: 128
+          example: '500123'
         MessageGroupId:
           type: string
           description: Message group ID for FIFO topics
           maxLength: 128
+          example: '500123'
     TopicMember:
       type: object
       properties:
         TopicArn:
           type: string
           description: The ARN of the topic
+          example: example_value
     SubscriptionMember:
       type: object
       properties:
         SubscriptionArn:
           type: string
           description: The subscription ARN
+          example: example_value
         Owner:
           type: string
           description: The subscription owner's AWS account ID
+          example: example_value
         Protocol:
           type: string
           description: The subscription protocol
+          example: example_value
         Endpoint:
           type: string
           description: The subscription endpoint
+          example: example_value
         TopicArn:
           type: string
           description: The topic ARN that this subscription is associated with
+          example: example_value
     ResponseMetadata:
       type: object
       properties:
         RequestId:
           type: string
           description: The unique request identifier
+          example: '500123'
     CreateTopicResponse:
       type: object
       properties:
@@ -1148,6 +1227,7 @@ components:
             TopicArn:
               type: string
               description: The Amazon Resource Name assigned to the created topic
+          example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
     DeleteTopicResponse:
@@ -1168,6 +1248,7 @@ components:
             NextToken:
               type: string
               description: Token for paginating results
+          example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
     GetTopicAttributesResponse:
@@ -1181,6 +1262,7 @@ components:
               description: A map of the topic attributes
               additionalProperties:
                 type: string
+          example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
     SetTopicAttributesResponse:
@@ -1199,6 +1281,7 @@ components:
               description: >-
                 The ARN of the subscription. For pending subscriptions,
                 this value is 'pending confirmation'.
+          example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
     ConfirmSubscriptionResponse:
@@ -1210,6 +1293,7 @@ components:
             SubscriptionArn:
               type: string
               description: The ARN of the created subscription
+          example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
     UnsubscribeResponse:
@@ -1230,6 +1314,7 @@ components:
             NextToken:
               type: string
               description: Token for paginating results
+          example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
     ListSubscriptionsByTopicResponse:
@@ -1245,6 +1330,7 @@ components:
             NextToken:
               type: string
               description: Token for paginating results
+          example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
     GetSubscriptionAttributesResponse:
@@ -1258,6 +1344,7 @@ components:
               description: A map of the subscription attributes
               additionalProperties:
                 type: string
+          example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
     SetSubscriptionAttributesResponse:
@@ -1279,6 +1366,7 @@ components:
               description: >-
                 The sequence number for FIFO topics. This field is only
                 present for messages published to FIFO topics.
+          example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
     PublishBatchResponse:
@@ -1320,6 +1408,7 @@ components:
                   SenderFault:
                     type: boolean
                     description: Whether the error was caused by the sender
+          example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
     TagResourceResponse:
@@ -1342,6 +1431,7 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Tag'
+          example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
     CreatePlatformApplicationResponse:
@@ -1353,6 +1443,7 @@ components:
             PlatformApplicationArn:
               type: string
               description: ARN of the created platform application
+          example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
     GetSMSAttributesResponse:
@@ -1366,6 +1457,7 @@ components:
               description: SMS attribute name-value pairs
               additionalProperties:
                 type: string
+          example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
     CheckIfPhoneNumberIsOptedOutResponse:
@@ -1377,6 +1469,7 @@ components:
             isOptedOut:
               type: boolean
               description: Indicates whether the phone number is opted out
+          example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
     ErrorResponse:
@@ -1394,9 +1487,11 @@ components:
             Message:
               type: string
               description: A human-readable description of the error
+          example: example_value
         RequestId:
           type: string
           description: The unique request identifier
+          example: '500123'
   responses:
     InvalidParameter:
       description: Invalid parameter in the request

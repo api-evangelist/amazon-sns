@@ -1,0 +1,279 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Amazon SNS"
+  description: "Amazon Simple Notification Service API for topic management, subscription lifecycle, message publishing, platform applications for mobile push, and SMS operations."
+  tags:
+    - Amazon
+    - AWS
+    - Messaging
+    - Notifications
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY: AWS_SECRET_ACCESS_KEY
+      AWS_REGION: AWS_REGION
+
+capability:
+  consumes:
+    - type: http
+      namespace: amazon-sns
+      baseUri: https://sns.us-east-1.amazonaws.com
+      description: "Amazon SNS pub/sub messaging service"
+      authentication:
+        type: apikey
+        key: Authorization
+        value: "{{AWS_ACCESS_KEY_ID}}"
+        placement: header
+      resources:
+        - name: topics
+          path: /
+          description: "Topic management operations"
+          operations:
+            - name: create-topic
+              method: POST
+              description: "Create a new SNS topic"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-topic
+              method: POST
+              description: "Delete an SNS topic"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: list-topics
+              method: POST
+              description: "List all SNS topics"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-topic-attributes
+              method: POST
+              description: "Get attributes of an SNS topic"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: set-topic-attributes
+              method: POST
+              description: "Set attributes on an SNS topic"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: subscriptions
+          path: /
+          description: "Subscription lifecycle operations"
+          operations:
+            - name: subscribe
+              method: POST
+              description: "Create a subscription to a topic"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: confirm-subscription
+              method: POST
+              description: "Confirm a pending subscription"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: unsubscribe
+              method: POST
+              description: "Unsubscribe from a topic"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: list-subscriptions
+              method: POST
+              description: "List all subscriptions"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: list-subscriptions-by-topic
+              method: POST
+              description: "List subscriptions for a specific topic"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-subscription-attributes
+              method: POST
+              description: "Get attributes of a subscription"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: set-subscription-attributes
+              method: POST
+              description: "Set attributes on a subscription"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: publishing
+          path: /
+          description: "Message publishing operations"
+          operations:
+            - name: publish
+              method: POST
+              description: "Publish a message to a topic or directly to an endpoint"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: publish-batch
+              method: POST
+              description: "Publish up to 10 messages in a single batch"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: tags
+          path: /
+          description: "Resource tagging operations"
+          operations:
+            - name: tag-resource
+              method: POST
+              description: "Add tags to an SNS resource"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: untag-resource
+              method: POST
+              description: "Remove tags from an SNS resource"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: list-tags-for-resource
+              method: POST
+              description: "List tags for an SNS resource"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: platform-applications
+          path: /
+          description: "Mobile push platform application operations"
+          operations:
+            - name: create-platform-application
+              method: POST
+              description: "Create a platform application for mobile push"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: sms
+          path: /
+          description: "SMS operations"
+          operations:
+            - name: get-sms-attributes
+              method: POST
+              description: "Get SMS messaging attributes"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: check-if-phone-number-is-opted-out
+              method: POST
+              description: "Check if a phone number has opted out of SMS"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: sns-api
+      resources:
+        - path: /v1/topics
+          name: topics
+          description: "Topic management"
+          operations:
+            - method: GET
+              name: list-topics
+              description: "List all SNS topics"
+              call: "amazon-sns.list-topics"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: sns-mcp
+      transport: http
+      tools:
+        - name: list-topics
+          description: "List all SNS topics"
+          hints:
+            readOnly: true
+          call: "amazon-sns.list-topics"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-topic
+          description: "Create a new SNS topic"
+          hints:
+            readOnly: false
+          call: "amazon-sns.create-topic"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: publish
+          description: "Publish a message to a topic"
+          hints:
+            readOnly: false
+          call: "amazon-sns.publish"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-subscriptions
+          description: "List all subscriptions"
+          hints:
+            readOnly: true
+          call: "amazon-sns.list-subscriptions"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: subscribe
+          description: "Subscribe to a topic"
+          hints:
+            readOnly: false
+          call: "amazon-sns.subscribe"
+          outputParameters:
+            - type: object
+              mapping: "$."

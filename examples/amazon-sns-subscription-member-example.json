@@ -1,0 +1,7 @@
+{
+  "SubscriptionArn": "example_value",
+  "Owner": "example_value",
+  "Protocol": "example_value",
+  "Endpoint": "example_value",
+  "TopicArn": "example_value"
+}

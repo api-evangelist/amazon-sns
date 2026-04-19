@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SubscriptionMember",
+  "type": "object",
+  "properties": {
+    "SubscriptionArn": {
+      "type": "string",
+      "description": "The subscription ARN"
+    },
+    "Owner": {
+      "type": "string",
+      "description": "The subscription owner's AWS account ID"
+    },
+    "Protocol": {
+      "type": "string",
+      "description": "The subscription protocol"
+    },
+    "Endpoint": {
+      "type": "string",
+      "description": "The subscription endpoint"
+    },
+    "TopicArn": {
+      "type": "string",
+      "description": "The topic ARN that this subscription is associated with"
+    }
+  }
+}

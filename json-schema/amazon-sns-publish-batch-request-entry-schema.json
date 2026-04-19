@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PublishBatchRequestEntry",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "type": "string",
+      "description": "An identifier for the message in this batch. The Id must be unique within a single PublishBatch request."
+    },
+    "Message": {
+      "type": "string",
+      "description": "The body of the message"
+    },
+    "Subject": {
+      "type": "string",
+      "description": "The subject of the batch message for email endpoints"
+    },
+    "MessageStructure": {
+      "type": "string",
+      "description": "Set to json for per-protocol messages"
+    },
+    "MessageAttributes": {
+      "type": "object",
+      "description": "Message attributes for this entry"
+    },
+    "MessageDeduplicationId": {
+      "type": "string",
+      "description": "Deduplication ID for FIFO topics"
+    },
+    "MessageGroupId": {
+      "type": "string",
+      "description": "Message group ID for FIFO topics"
+    }
+  }
+}

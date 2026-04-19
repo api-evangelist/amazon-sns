@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "PublishBatchRequestEntry",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "type": "string"
+    },
+    "Message": {
+      "type": "string"
+    },
+    "Subject": {
+      "type": "string"
+    },
+    "MessageStructure": {
+      "type": "string"
+    },
+    "MessageAttributes": {
+      "type": "object"
+    },
+    "MessageDeduplicationId": {
+      "type": "string"
+    },
+    "MessageGroupId": {
+      "type": "string"
+    }
+  }
+}

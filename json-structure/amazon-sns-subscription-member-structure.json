@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "SubscriptionMember",
+  "type": "object",
+  "properties": {
+    "SubscriptionArn": {
+      "type": "string"
+    },
+    "Owner": {
+      "type": "string"
+    },
+    "Protocol": {
+      "type": "string"
+    },
+    "Endpoint": {
+      "type": "string"
+    },
+    "TopicArn": {
+      "type": "string"
+    }
+  }
+}

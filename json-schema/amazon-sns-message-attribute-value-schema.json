@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MessageAttributeValue",
+  "type": "object",
+  "properties": {
+    "DataType": {
+      "type": "string",
+      "description": "The data type of the attribute. Supported types are String, String.Array, Number, and Binary."
+    },
+    "StringValue": {
+      "type": "string",
+      "description": "The string value of the attribute"
+    },
+    "BinaryValue": {
+      "type": "string",
+      "description": "The binary (base64-encoded) value of the attribute"
+    }
+  }
+}

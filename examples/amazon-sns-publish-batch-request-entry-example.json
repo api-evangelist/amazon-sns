@@ -1,0 +1,9 @@
+{
+  "Id": "abc123",
+  "Message": "example_value",
+  "Subject": "example_value",
+  "MessageStructure": "example_value",
+  "MessageAttributes": "example_value",
+  "MessageDeduplicationId": "500123",
+  "MessageGroupId": "500123"
+}
