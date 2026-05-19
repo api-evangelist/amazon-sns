@@ -1,0 +1,122 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon SNS Amazon Simple Notification Service (SNS) API — SMS
+  description: 'Amazon SNS Amazon Simple Notification Service (SNS) API — SMS. 2 operations. Lead operation: Amazon Sns Check
+    if a Phone Number Has Opted Out of Sms. Self-contained Naftiko capability covering one Amazon Sns business surface.'
+  tags:
+  - Amazon Sns
+  - SMS
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_SNS_API_KEY: AMAZON_SNS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-sns-sms
+    baseUri: https://sns.{region}.amazonaws.com
+    description: Amazon SNS Amazon Simple Notification Service (SNS) API — SMS business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: ?Action=CheckIfPhoneNumberIsOptedOut
+      path: /?Action=CheckIfPhoneNumberIsOptedOut
+      operations:
+      - name: checkifphonenumberisoptedout
+        method: GET
+        description: Amazon Sns Check if a Phone Number Has Opted Out of Sms
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: phoneNumber
+          in: query
+          type: string
+          description: The phone number to check in E.164 format
+          required: true
+    - name: ?Action=GetSMSAttributes
+      path: /?Action=GetSMSAttributes
+      operations:
+      - name: getsmsattributes
+        method: GET
+        description: Amazon Sns Get Sms Messaging Attributes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: attributes
+          in: query
+          type: array
+          description: A list of attribute names to return. If omitted, all attributes are returned.
+    authentication:
+      type: bearer
+      token: '{{env.AMAZON_SNS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: amazon-sns-sms-rest
+    port: 8080
+    description: REST adapter for Amazon SNS Amazon Simple Notification Service (SNS) API — SMS. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/action-checkifphonenumberisoptedout
+      name: action-checkifphonenumberisoptedout
+      description: REST surface for ?Action=CheckIfPhoneNumberIsOptedOut.
+      operations:
+      - method: GET
+        name: checkifphonenumberisoptedout
+        description: Amazon Sns Check if a Phone Number Has Opted Out of Sms
+        call: amazon-sns-sms.checkifphonenumberisoptedout
+        with:
+          phoneNumber: rest.phoneNumber
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/action-getsmsattributes
+      name: action-getsmsattributes
+      description: REST surface for ?Action=GetSMSAttributes.
+      operations:
+      - method: GET
+        name: getsmsattributes
+        description: Amazon Sns Get Sms Messaging Attributes
+        call: amazon-sns-sms.getsmsattributes
+        with:
+          attributes: rest.attributes
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-sns-sms-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon SNS Amazon Simple Notification Service (SNS) API — SMS. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: amazon-sns-check-if-phone
+      description: Amazon Sns Check if a Phone Number Has Opted Out of Sms
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-sns-sms.checkifphonenumberisoptedout
+      with:
+        phoneNumber: tools.phoneNumber
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-sns-get-sms-messaging
+      description: Amazon Sns Get Sms Messaging Attributes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-sns-sms.getsmsattributes
+      with:
+        attributes: tools.attributes
+      outputParameters:
+      - type: object
+        mapping: $.
