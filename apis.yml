@@ -51,7 +51,7 @@ apis:
         url: https://docs.aws.amazon.com/sns/latest/dg/sns-quotas.html
       - type: CodeExamples
         url: https://github.com/awsdocs/aws-doc-sdk-examples
-      - type: SDK
+      - type: SDKs
         url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sns.html
         title: Python SDK
       - type: CLI
