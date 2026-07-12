@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/amazon-sns-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: AWS_IAM
+  type: http
+  scheme: bearer
+  description: AWS Signature Version 4 authentication. Requests must be signed using IAM credentials
+    with appropriate SNS permissions. See https://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html
+  sources:
+  - openapi/amazon-sns-api-openapi.yml
