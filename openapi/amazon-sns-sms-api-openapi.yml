@@ -1,0 +1,193 @@
+openapi: 3.1.0
+info:
+  title: Amazon SNS Amazon Simple Notification Service (SNS) ?Action=ListTagsForResource ?Action=ListTagsForResource SMS API
+  version: '2010-03-31'
+  description: Amazon Simple Notification Service (SNS) is a fully managed pub/sub messaging service that enables application-to-application (A2A) and application-to-person (A2P) communication. SNS allows you to create topics, manage subscriptions, and publish messages to subscribers via multiple protocols including HTTP/S, email, SMS, SQS, Lambda, and mobile push. This specification models the SNS query API actions as RESTful paths for topic management, subscription lifecycle, and message publishing operations.
+  contact:
+    name: Amazon Web Services
+    url: https://aws.amazon.com/sns/
+  termsOfService: https://aws.amazon.com/service-terms/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://sns.{region}.amazonaws.com
+  description: Amazon SNS regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+      enum:
+      - us-east-1
+      - us-east-2
+      - us-west-1
+      - us-west-2
+      - eu-west-1
+      - eu-west-2
+      - eu-west-3
+      - eu-central-1
+      - eu-north-1
+      - ap-southeast-1
+      - ap-southeast-2
+      - ap-northeast-1
+      - ap-northeast-2
+      - ap-south-1
+      - sa-east-1
+      - ca-central-1
+security:
+- AWS_IAM: []
+tags:
+- name: SMS
+  description: Operations for managing SMS messaging attributes and phone number opt-out lists.
+paths:
+  /?Action=GetSMSAttributes:
+    get:
+      tags:
+      - SMS
+      operationId: getSMSAttributes
+      summary: Amazon Sns Get Sms Messaging Attributes
+      description: Returns the settings for sending SMS messages from your AWS account. These attributes include the default sender ID, monthly spending limit, and delivery status logging settings.
+      parameters:
+      - name: attributes
+        in: query
+        description: A list of attribute names to return. If omitted, all attributes are returned.
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: SMS attributes retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetSMSAttributesResponse'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '429':
+          $ref: '#/components/responses/Throttled'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /?Action=CheckIfPhoneNumberIsOptedOut:
+    get:
+      tags:
+      - SMS
+      operationId: checkIfPhoneNumberIsOptedOut
+      summary: Amazon Sns Check if a Phone Number Has Opted Out of Sms
+      description: Accepts a phone number and indicates whether the phone holder has opted out of receiving SMS messages from your AWS account. You cannot send SMS messages to a number that is opted out.
+      parameters:
+      - name: phoneNumber
+        in: query
+        required: true
+        description: The phone number to check in E.164 format
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Opt-out status returned
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CheckIfPhoneNumberIsOptedOutResponse'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '429':
+          $ref: '#/components/responses/Throttled'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    GetSMSAttributesResponse:
+      type: object
+      properties:
+        GetSMSAttributesResult:
+          type: object
+          properties:
+            attributes:
+              type: object
+              description: SMS attribute name-value pairs
+              additionalProperties:
+                type: string
+          example: example_value
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    ResponseMetadata:
+      type: object
+      properties:
+        RequestId:
+          type: string
+          description: The unique request identifier
+          example: '500123'
+    CheckIfPhoneNumberIsOptedOutResponse:
+      type: object
+      properties:
+        CheckIfPhoneNumberIsOptedOutResult:
+          type: object
+          properties:
+            isOptedOut:
+              type: boolean
+              description: Indicates whether the phone number is opted out
+          example: example_value
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    ErrorResponse:
+      type: object
+      properties:
+        Error:
+          type: object
+          properties:
+            Type:
+              type: string
+              description: The error type (Sender or Receiver)
+            Code:
+              type: string
+              description: The specific error code
+            Message:
+              type: string
+              description: A human-readable description of the error
+          example: example_value
+        RequestId:
+          type: string
+          description: The unique request identifier
+          example: '500123'
+  responses:
+    InternalError:
+      description: Internal service error
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    AuthorizationError:
+      description: Authorization error - insufficient permissions
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InvalidParameter:
+      description: Invalid parameter in the request
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Throttled:
+      description: Request rate exceeded - throttled
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    AWS_IAM:
+      type: http
+      scheme: bearer
+      description: AWS Signature Version 4 authentication. Requests must be signed using IAM credentials with appropriate SNS permissions. See https://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html
+externalDocs:
+  description: Amazon SNS API Reference
+  url: https://docs.aws.amazon.com/sns/latest/api/welcome.html

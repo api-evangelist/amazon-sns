@@ -1,0 +1,160 @@
+openapi: 3.1.0
+info:
+  title: Amazon SNS Amazon Simple Notification Service (SNS) ?Action=ListTagsForResource ?Action=ListTagsForResource Platform Applications API
+  version: '2010-03-31'
+  description: Amazon Simple Notification Service (SNS) is a fully managed pub/sub messaging service that enables application-to-application (A2A) and application-to-person (A2P) communication. SNS allows you to create topics, manage subscriptions, and publish messages to subscribers via multiple protocols including HTTP/S, email, SMS, SQS, Lambda, and mobile push. This specification models the SNS query API actions as RESTful paths for topic management, subscription lifecycle, and message publishing operations.
+  contact:
+    name: Amazon Web Services
+    url: https://aws.amazon.com/sns/
+  termsOfService: https://aws.amazon.com/service-terms/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://sns.{region}.amazonaws.com
+  description: Amazon SNS regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+      enum:
+      - us-east-1
+      - us-east-2
+      - us-west-1
+      - us-west-2
+      - eu-west-1
+      - eu-west-2
+      - eu-west-3
+      - eu-central-1
+      - eu-north-1
+      - ap-southeast-1
+      - ap-southeast-2
+      - ap-northeast-1
+      - ap-northeast-2
+      - ap-south-1
+      - sa-east-1
+      - ca-central-1
+security:
+- AWS_IAM: []
+tags:
+- name: Platform Applications
+  description: Operations for managing platform applications used for mobile push notifications via APNs, FCM, and other push services.
+paths:
+  /?Action=CreatePlatformApplication:
+    post:
+      tags:
+      - Platform Applications
+      operationId: createPlatformApplication
+      summary: Amazon Sns Create a Platform Application for Push Notifications
+      description: Creates a platform application object for one of the supported push notification services, such as APNs and FCM (Firebase Cloud Messaging), to which devices and mobile apps may register.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - Name
+              - Platform
+              - Attributes
+              properties:
+                Name:
+                  type: string
+                  description: Application names must be unique within an AWS account
+                Platform:
+                  type: string
+                  description: The push notification platform
+                  enum:
+                  - ADM
+                  - APNS
+                  - APNS_SANDBOX
+                  - GCM
+                Attributes:
+                  type: object
+                  description: Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).
+                  additionalProperties:
+                    type: string
+      responses:
+        '200':
+          description: Platform application created
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CreatePlatformApplicationResponse'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    InternalError:
+      description: Internal service error
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    AuthorizationError:
+      description: Authorization error - insufficient permissions
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InvalidParameter:
+      description: Invalid parameter in the request
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    CreatePlatformApplicationResponse:
+      type: object
+      properties:
+        CreatePlatformApplicationResult:
+          type: object
+          properties:
+            PlatformApplicationArn:
+              type: string
+              description: ARN of the created platform application
+          example: example_value
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    ErrorResponse:
+      type: object
+      properties:
+        Error:
+          type: object
+          properties:
+            Type:
+              type: string
+              description: The error type (Sender or Receiver)
+            Code:
+              type: string
+              description: The specific error code
+            Message:
+              type: string
+              description: A human-readable description of the error
+          example: example_value
+        RequestId:
+          type: string
+          description: The unique request identifier
+          example: '500123'
+    ResponseMetadata:
+      type: object
+      properties:
+        RequestId:
+          type: string
+          description: The unique request identifier
+          example: '500123'
+  securitySchemes:
+    AWS_IAM:
+      type: http
+      scheme: bearer
+      description: AWS Signature Version 4 authentication. Requests must be signed using IAM credentials with appropriate SNS permissions. See https://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html
+externalDocs:
+  description: Amazon SNS API Reference
+  url: https://docs.aws.amazon.com/sns/latest/api/welcome.html
