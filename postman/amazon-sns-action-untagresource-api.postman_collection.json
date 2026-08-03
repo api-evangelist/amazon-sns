@@ -1,0 +1,434 @@
+{
+  "info": {
+    "_postman_id": "b78b7dc5-e593-4126-906e-bdf382e0239e",
+    "name": "Amazon SNS Amazon Simple Notification Service (SNS) ?Action=ListTagsForResource ?Action=ListTagsForResource ?Action=UntagResource API",
+    "description": "Amazon Simple Notification Service (SNS) is a fully managed pub/sub messaging service that enables application-to-application (A2A) and application-to-person (A2P) communication. SNS allows you to create topics, manage subscriptions, and publish messages to subscribers via multiple protocols including HTTP/S, email, SMS, SQS, Lambda, and mobile push. This specification models the SNS query API actions as RESTful paths for topic management, subscription lifecycle, and message publishing operations.\n\nContact Support:\n Name: Amazon Web Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:54:37.000Z",
+    "updatedAt": "2026-07-28T00:54:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b78b7dc5-e593-4126-906e-bdf382e0239e"
+  },
+  "item": [
+    {
+      "name": "?Action=UntagResource",
+      "item": [
+        {
+          "name": "Amazon Sns Remove Tags From an Sns Topic",
+          "id": "d2e37703-2e44-4d95-9bc0-931e806d0c17",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "(Required) The ARN of the topic to remove tags from",
+                  "key": "ResourceArn",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) The list of tag keys to remove",
+                  "key": "TagKeys",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) The list of tag keys to remove",
+                  "key": "TagKeys",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=UntagResource",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "UntagResource"
+                }
+              ]
+            },
+            "description": "Remove tags from the specified Amazon SNS topic."
+          },
+          "response": [
+            {
+              "id": "c817dbcd-9bf8-436b-b475-4dc655f7579b",
+              "name": "Tags removed successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to remove tags from",
+                      "key": "ResourceArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The list of tag keys to remove",
+                      "key": "TagKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The list of tag keys to remove",
+                      "key": "TagKeys",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <ResponseMetadata>\n    <RequestId>(string)</RequestId>\n  </ResponseMetadata>\n</element>",
+              "createdAt": "2026-07-28T00:54:37.000Z",
+              "updatedAt": "2026-07-28T00:54:37.000Z",
+              "uid": "35240-c817dbcd-9bf8-436b-b475-4dc655f7579b"
+            },
+            {
+              "id": "e8a677d2-f35e-4757-937f-fbb70fcce4a9",
+              "name": "Invalid parameter in the request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to remove tags from",
+                      "key": "ResourceArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The list of tag keys to remove",
+                      "key": "TagKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The list of tag keys to remove",
+                      "key": "TagKeys",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:37.000Z",
+              "updatedAt": "2026-07-28T00:54:37.000Z",
+              "uid": "35240-e8a677d2-f35e-4757-937f-fbb70fcce4a9"
+            },
+            {
+              "id": "2b016b01-f40d-42cb-8b02-ca25e4add04f",
+              "name": "Authorization error - insufficient permissions",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to remove tags from",
+                      "key": "ResourceArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The list of tag keys to remove",
+                      "key": "TagKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The list of tag keys to remove",
+                      "key": "TagKeys",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:37.000Z",
+              "updatedAt": "2026-07-28T00:54:37.000Z",
+              "uid": "35240-2b016b01-f40d-42cb-8b02-ca25e4add04f"
+            },
+            {
+              "id": "48e040a4-0c26-45ff-8eb4-fa4609cac1ae",
+              "name": "The requested resource does not exist",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to remove tags from",
+                      "key": "ResourceArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The list of tag keys to remove",
+                      "key": "TagKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The list of tag keys to remove",
+                      "key": "TagKeys",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:37.000Z",
+              "updatedAt": "2026-07-28T00:54:37.000Z",
+              "uid": "35240-48e040a4-0c26-45ff-8eb4-fa4609cac1ae"
+            },
+            {
+              "id": "1eb928c4-fb57-4775-8e58-262f36e8a0a9",
+              "name": "Internal service error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to remove tags from",
+                      "key": "ResourceArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The list of tag keys to remove",
+                      "key": "TagKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The list of tag keys to remove",
+                      "key": "TagKeys",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:37.000Z",
+              "updatedAt": "2026-07-28T00:54:37.000Z",
+              "uid": "35240-1eb928c4-fb57-4775-8e58-262f36e8a0a9"
+            }
+          ],
+          "createdAt": "2026-07-28T00:54:37.000Z",
+          "updatedAt": "2026-07-28T00:54:37.000Z",
+          "uid": "35240-d2e37703-2e44-4d95-9bc0-931e806d0c17"
+        }
+      ],
+      "id": "b85d3766-fab7-4dfc-8648-6b671722f3e9",
+      "createdAt": "2026-07-28T00:54:37.000Z",
+      "updatedAt": "2026-07-28T00:54:37.000Z",
+      "uid": "35240-b85d3766-fab7-4dfc-8648-6b671722f3e9"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-east-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://sns.{{region}}.amazonaws.com"
+    }
+  ]
+}

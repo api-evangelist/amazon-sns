@@ -1,0 +1,28 @@
+{
+  "provider": "amazon-sns",
+  "sources": [
+    "amazon-sns-action-listtagsforresource-api-openapi.yml",
+    "amazon-sns-action-tagresource-api-openapi.yml",
+    "amazon-sns-action-untagresource-api-openapi.yml",
+    "amazon-sns-platform-applications-api-openapi.yml",
+    "amazon-sns-publishing-api-openapi.yml",
+    "amazon-sns-sms-api-openapi.yml",
+    "amazon-sns-subscriptions-api-openapi.yml",
+    "amazon-sns-topics-api-openapi.yml"
+  ],
+  "outputs": [
+    "amazon-sns-action-listtagsforresource-api-openapi.yml",
+    "amazon-sns-action-tagresource-api-openapi.yml",
+    "amazon-sns-action-untagresource-api-openapi.yml",
+    "amazon-sns-platform-applications-api-openapi.yml",
+    "amazon-sns-publishing-api-openapi.yml",
+    "amazon-sns-sms-api-openapi.yml",
+    "amazon-sns-subscriptions-api-openapi.yml",
+    "amazon-sns-topics-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

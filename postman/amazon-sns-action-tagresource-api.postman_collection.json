@@ -1,0 +1,434 @@
+{
+  "info": {
+    "_postman_id": "bc6a5f31-3476-419f-85f9-0943fd367970",
+    "name": "Amazon SNS Amazon Simple Notification Service (SNS) ?Action=ListTagsForResource ?Action=ListTagsForResource ?Action=TagResource API",
+    "description": "Amazon Simple Notification Service (SNS) is a fully managed pub/sub messaging service that enables application-to-application (A2A) and application-to-person (A2P) communication. SNS allows you to create topics, manage subscriptions, and publish messages to subscribers via multiple protocols including HTTP/S, email, SMS, SQS, Lambda, and mobile push. This specification models the SNS query API actions as RESTful paths for topic management, subscription lifecycle, and message publishing operations.\n\nContact Support:\n Name: Amazon Web Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:54:34.000Z",
+    "updatedAt": "2026-07-28T00:54:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bc6a5f31-3476-419f-85f9-0943fd367970"
+  },
+  "item": [
+    {
+      "name": "?Action=TagResource",
+      "item": [
+        {
+          "name": "Amazon Sns Add Tags to an Sns Topic",
+          "id": "7c2f181d-ef29-4dcf-b4af-9430b6f6d152",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "(Required) The ARN of the topic to tag",
+                  "key": "ResourceArn",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) The tags to add to the topic",
+                  "key": "Tags",
+                  "value": "[object Object]"
+                },
+                {
+                  "description": "(Required) The tags to add to the topic",
+                  "key": "Tags",
+                  "value": "[object Object]"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=TagResource",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "TagResource"
+                }
+              ]
+            },
+            "description": "Add tags to the specified Amazon SNS topic. Tags are key-value pairs that can be used to organize and categorize resources. When a topic is tagged, existing tags with the same key are overwritten with the new value."
+          },
+          "response": [
+            {
+              "id": "f9d88812-cccb-4fe1-a2f0-2a65bff582d2",
+              "name": "Tags added successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to tag",
+                      "key": "ResourceArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The tags to add to the topic",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "(Required) The tags to add to the topic",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <ResponseMetadata>\n    <RequestId>(string)</RequestId>\n  </ResponseMetadata>\n</element>",
+              "createdAt": "2026-07-28T00:54:35.000Z",
+              "updatedAt": "2026-07-28T00:54:35.000Z",
+              "uid": "35240-f9d88812-cccb-4fe1-a2f0-2a65bff582d2"
+            },
+            {
+              "id": "8b199dfb-103f-4a0d-8716-1e259e7c3bf2",
+              "name": "Invalid parameter in the request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to tag",
+                      "key": "ResourceArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The tags to add to the topic",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "(Required) The tags to add to the topic",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:35.000Z",
+              "updatedAt": "2026-07-28T00:54:35.000Z",
+              "uid": "35240-8b199dfb-103f-4a0d-8716-1e259e7c3bf2"
+            },
+            {
+              "id": "dfba9239-58f8-4fc9-bd7b-ec403531b839",
+              "name": "Authorization error - insufficient permissions",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to tag",
+                      "key": "ResourceArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The tags to add to the topic",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "(Required) The tags to add to the topic",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:35.000Z",
+              "updatedAt": "2026-07-28T00:54:35.000Z",
+              "uid": "35240-dfba9239-58f8-4fc9-bd7b-ec403531b839"
+            },
+            {
+              "id": "39c0aa0c-80d0-440d-8edf-39be8c75b79f",
+              "name": "The requested resource does not exist",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to tag",
+                      "key": "ResourceArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The tags to add to the topic",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "(Required) The tags to add to the topic",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:35.000Z",
+              "updatedAt": "2026-07-28T00:54:35.000Z",
+              "uid": "35240-39c0aa0c-80d0-440d-8edf-39be8c75b79f"
+            },
+            {
+              "id": "77abf260-bcd5-467a-81d6-373ac85633e3",
+              "name": "Internal service error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to tag",
+                      "key": "ResourceArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The tags to add to the topic",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "(Required) The tags to add to the topic",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:35.000Z",
+              "updatedAt": "2026-07-28T00:54:35.000Z",
+              "uid": "35240-77abf260-bcd5-467a-81d6-373ac85633e3"
+            }
+          ],
+          "createdAt": "2026-07-28T00:54:35.000Z",
+          "updatedAt": "2026-07-28T00:54:35.000Z",
+          "uid": "35240-7c2f181d-ef29-4dcf-b4af-9430b6f6d152"
+        }
+      ],
+      "id": "97635469-5790-497c-9b0a-374a531e66b9",
+      "createdAt": "2026-07-28T00:54:35.000Z",
+      "updatedAt": "2026-07-28T00:54:35.000Z",
+      "uid": "35240-97635469-5790-497c-9b0a-374a531e66b9"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-east-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://sns.{{region}}.amazonaws.com"
+    }
+  ]
+}

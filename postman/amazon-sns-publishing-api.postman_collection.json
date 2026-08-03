@@ -1,0 +1,1211 @@
+{
+  "info": {
+    "_postman_id": "fe360d14-67ea-4ba1-b6a3-7c5e3fda58ad",
+    "name": "Amazon SNS Amazon Simple Notification Service (SNS) ?Action=ListTagsForResource ?Action=ListTagsForResource Publishing API",
+    "description": "Amazon Simple Notification Service (SNS) is a fully managed pub/sub messaging service that enables application-to-application (A2A) and application-to-person (A2P) communication. SNS allows you to create topics, manage subscriptions, and publish messages to subscribers via multiple protocols including HTTP/S, email, SMS, SQS, Lambda, and mobile push. This specification models the SNS query API actions as RESTful paths for topic management, subscription lifecycle, and message publishing operations.\n\nContact Support:\n Name: Amazon Web Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:54:38.000Z",
+    "updatedAt": "2026-07-28T00:54:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fe360d14-67ea-4ba1-b6a3-7c5e3fda58ad"
+  },
+  "item": [
+    {
+      "name": "?Action=Publish",
+      "item": [
+        {
+          "name": "Amazon Sns Publish a Message to an Sns Topic or Endpoint",
+          "id": "83c34cbe-ddaa-4fac-a240-2a307966b0b1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "(Required) The message to send. When MessageStructure is set to json, this must be a JSON object with a top-level key of default and optional keys for each protocol.",
+                  "key": "Message",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The ARN of the topic to publish to. Required unless TargetArn or PhoneNumber is specified.",
+                  "key": "TopicArn",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The ARN of the endpoint to publish to (for direct publish to a platform application endpoint)",
+                  "key": "TargetArn",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The phone number to which you want to deliver an SMS message in E.164 format",
+                  "key": "PhoneNumber",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Optional subject line for email endpoints. Not used for other protocols.",
+                  "key": "Subject",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Set to json to send a different message for each protocol. The Message parameter must contain a JSON object with protocol-keyed messages.",
+                  "key": "MessageStructure",
+                  "value": "json"
+                },
+                {
+                  "description": "Message attributes for publish action. Each attribute consists of a Name, DataType, and Value. Attributes are used for message filtering by subscription filter policies.",
+                  "key": "nostrud2",
+                  "value": "[object Object]"
+                },
+                {
+                  "description": "Message attributes for publish action. Each attribute consists of a Name, DataType, and Value. Attributes are used for message filtering by subscription filter policies.",
+                  "key": "exercitationb",
+                  "value": "[object Object]"
+                },
+                {
+                  "description": "The deduplication identifier for FIFO topics. Required when ContentBasedDeduplication is not enabled.",
+                  "key": "MessageDeduplicationId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The tag that specifies the message group for FIFO topics. Messages in the same group are delivered in order. Required for FIFO topics.",
+                  "key": "MessageGroupId",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=Publish",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "Publish"
+                }
+              ]
+            },
+            "description": "Sends a message to an Amazon SNS topic, a text message (SMS) directly to a phone number, or a message to a platform application endpoint. When you publish to a topic, SNS delivers the message to each subscribing endpoint. You can send different messages for each transport protocol by using the MessageStructure parameter."
+          },
+          "response": [
+            {
+              "id": "ca972bfe-a152-429e-8f15-c9ab53e39801",
+              "name": "Message published successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The message to send. When MessageStructure is set to json, this must be a JSON object with a top-level key of default and optional keys for each protocol.",
+                      "key": "Message",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The ARN of the topic to publish to. Required unless TargetArn or PhoneNumber is specified.",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The ARN of the endpoint to publish to (for direct publish to a platform application endpoint)",
+                      "key": "TargetArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The phone number to which you want to deliver an SMS message in E.164 format",
+                      "key": "PhoneNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Optional subject line for email endpoints. Not used for other protocols.",
+                      "key": "Subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Set to json to send a different message for each protocol. The Message parameter must contain a JSON object with protocol-keyed messages.",
+                      "key": "MessageStructure",
+                      "value": "json"
+                    },
+                    {
+                      "description": "Message attributes for publish action. Each attribute consists of a Name, DataType, and Value. Attributes are used for message filtering by subscription filter policies.",
+                      "key": "nostrud2",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Message attributes for publish action. Each attribute consists of a Name, DataType, and Value. Attributes are used for message filtering by subscription filter policies.",
+                      "key": "exercitationb",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "The deduplication identifier for FIFO topics. Required when ContentBasedDeduplication is not enabled.",
+                      "key": "MessageDeduplicationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The tag that specifies the message group for FIFO topics. Messages in the same group are delivered in order. Required for FIFO topics.",
+                      "key": "MessageGroupId",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <PublishResult>\n    <MessageId>(string)</MessageId>\n    <SequenceNumber>(string)</SequenceNumber>\n  </PublishResult>\n  <ResponseMetadata>\n    <RequestId>(string)</RequestId>\n  </ResponseMetadata>\n</element>",
+              "createdAt": "2026-07-28T00:54:39.000Z",
+              "updatedAt": "2026-07-28T00:54:39.000Z",
+              "uid": "35240-ca972bfe-a152-429e-8f15-c9ab53e39801"
+            },
+            {
+              "id": "820efb52-7cd8-40e5-978d-d88cb9804b22",
+              "name": "Invalid parameter in the request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The message to send. When MessageStructure is set to json, this must be a JSON object with a top-level key of default and optional keys for each protocol.",
+                      "key": "Message",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The ARN of the topic to publish to. Required unless TargetArn or PhoneNumber is specified.",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The ARN of the endpoint to publish to (for direct publish to a platform application endpoint)",
+                      "key": "TargetArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The phone number to which you want to deliver an SMS message in E.164 format",
+                      "key": "PhoneNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Optional subject line for email endpoints. Not used for other protocols.",
+                      "key": "Subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Set to json to send a different message for each protocol. The Message parameter must contain a JSON object with protocol-keyed messages.",
+                      "key": "MessageStructure",
+                      "value": "json"
+                    },
+                    {
+                      "description": "Message attributes for publish action. Each attribute consists of a Name, DataType, and Value. Attributes are used for message filtering by subscription filter policies.",
+                      "key": "nostrud2",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Message attributes for publish action. Each attribute consists of a Name, DataType, and Value. Attributes are used for message filtering by subscription filter policies.",
+                      "key": "exercitationb",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "The deduplication identifier for FIFO topics. Required when ContentBasedDeduplication is not enabled.",
+                      "key": "MessageDeduplicationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The tag that specifies the message group for FIFO topics. Messages in the same group are delivered in order. Required for FIFO topics.",
+                      "key": "MessageGroupId",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:39.000Z",
+              "updatedAt": "2026-07-28T00:54:39.000Z",
+              "uid": "35240-820efb52-7cd8-40e5-978d-d88cb9804b22"
+            },
+            {
+              "id": "4fe10480-ae71-4a8d-8b7f-a38b9001b325",
+              "name": "Authorization error - insufficient permissions",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The message to send. When MessageStructure is set to json, this must be a JSON object with a top-level key of default and optional keys for each protocol.",
+                      "key": "Message",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The ARN of the topic to publish to. Required unless TargetArn or PhoneNumber is specified.",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The ARN of the endpoint to publish to (for direct publish to a platform application endpoint)",
+                      "key": "TargetArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The phone number to which you want to deliver an SMS message in E.164 format",
+                      "key": "PhoneNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Optional subject line for email endpoints. Not used for other protocols.",
+                      "key": "Subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Set to json to send a different message for each protocol. The Message parameter must contain a JSON object with protocol-keyed messages.",
+                      "key": "MessageStructure",
+                      "value": "json"
+                    },
+                    {
+                      "description": "Message attributes for publish action. Each attribute consists of a Name, DataType, and Value. Attributes are used for message filtering by subscription filter policies.",
+                      "key": "nostrud2",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Message attributes for publish action. Each attribute consists of a Name, DataType, and Value. Attributes are used for message filtering by subscription filter policies.",
+                      "key": "exercitationb",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "The deduplication identifier for FIFO topics. Required when ContentBasedDeduplication is not enabled.",
+                      "key": "MessageDeduplicationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The tag that specifies the message group for FIFO topics. Messages in the same group are delivered in order. Required for FIFO topics.",
+                      "key": "MessageGroupId",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:39.000Z",
+              "updatedAt": "2026-07-28T00:54:39.000Z",
+              "uid": "35240-4fe10480-ae71-4a8d-8b7f-a38b9001b325"
+            },
+            {
+              "id": "a69611a1-3659-41fc-81cb-a7636feb5d33",
+              "name": "The requested resource does not exist",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The message to send. When MessageStructure is set to json, this must be a JSON object with a top-level key of default and optional keys for each protocol.",
+                      "key": "Message",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The ARN of the topic to publish to. Required unless TargetArn or PhoneNumber is specified.",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The ARN of the endpoint to publish to (for direct publish to a platform application endpoint)",
+                      "key": "TargetArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The phone number to which you want to deliver an SMS message in E.164 format",
+                      "key": "PhoneNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Optional subject line for email endpoints. Not used for other protocols.",
+                      "key": "Subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Set to json to send a different message for each protocol. The Message parameter must contain a JSON object with protocol-keyed messages.",
+                      "key": "MessageStructure",
+                      "value": "json"
+                    },
+                    {
+                      "description": "Message attributes for publish action. Each attribute consists of a Name, DataType, and Value. Attributes are used for message filtering by subscription filter policies.",
+                      "key": "nostrud2",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Message attributes for publish action. Each attribute consists of a Name, DataType, and Value. Attributes are used for message filtering by subscription filter policies.",
+                      "key": "exercitationb",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "The deduplication identifier for FIFO topics. Required when ContentBasedDeduplication is not enabled.",
+                      "key": "MessageDeduplicationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The tag that specifies the message group for FIFO topics. Messages in the same group are delivered in order. Required for FIFO topics.",
+                      "key": "MessageGroupId",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:39.000Z",
+              "updatedAt": "2026-07-28T00:54:39.000Z",
+              "uid": "35240-a69611a1-3659-41fc-81cb-a7636feb5d33"
+            },
+            {
+              "id": "6adf511c-1ff4-4f2e-8ea6-6160e3363a7e",
+              "name": "Request rate exceeded - throttled",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The message to send. When MessageStructure is set to json, this must be a JSON object with a top-level key of default and optional keys for each protocol.",
+                      "key": "Message",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The ARN of the topic to publish to. Required unless TargetArn or PhoneNumber is specified.",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The ARN of the endpoint to publish to (for direct publish to a platform application endpoint)",
+                      "key": "TargetArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The phone number to which you want to deliver an SMS message in E.164 format",
+                      "key": "PhoneNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Optional subject line for email endpoints. Not used for other protocols.",
+                      "key": "Subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Set to json to send a different message for each protocol. The Message parameter must contain a JSON object with protocol-keyed messages.",
+                      "key": "MessageStructure",
+                      "value": "json"
+                    },
+                    {
+                      "description": "Message attributes for publish action. Each attribute consists of a Name, DataType, and Value. Attributes are used for message filtering by subscription filter policies.",
+                      "key": "nostrud2",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Message attributes for publish action. Each attribute consists of a Name, DataType, and Value. Attributes are used for message filtering by subscription filter policies.",
+                      "key": "exercitationb",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "The deduplication identifier for FIFO topics. Required when ContentBasedDeduplication is not enabled.",
+                      "key": "MessageDeduplicationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The tag that specifies the message group for FIFO topics. Messages in the same group are delivered in order. Required for FIFO topics.",
+                      "key": "MessageGroupId",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:39.000Z",
+              "updatedAt": "2026-07-28T00:54:39.000Z",
+              "uid": "35240-6adf511c-1ff4-4f2e-8ea6-6160e3363a7e"
+            },
+            {
+              "id": "b5365045-7e2b-4ea7-8155-ff39222f3e4e",
+              "name": "Internal service error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The message to send. When MessageStructure is set to json, this must be a JSON object with a top-level key of default and optional keys for each protocol.",
+                      "key": "Message",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The ARN of the topic to publish to. Required unless TargetArn or PhoneNumber is specified.",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The ARN of the endpoint to publish to (for direct publish to a platform application endpoint)",
+                      "key": "TargetArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The phone number to which you want to deliver an SMS message in E.164 format",
+                      "key": "PhoneNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Optional subject line for email endpoints. Not used for other protocols.",
+                      "key": "Subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Set to json to send a different message for each protocol. The Message parameter must contain a JSON object with protocol-keyed messages.",
+                      "key": "MessageStructure",
+                      "value": "json"
+                    },
+                    {
+                      "description": "Message attributes for publish action. Each attribute consists of a Name, DataType, and Value. Attributes are used for message filtering by subscription filter policies.",
+                      "key": "nostrud2",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Message attributes for publish action. Each attribute consists of a Name, DataType, and Value. Attributes are used for message filtering by subscription filter policies.",
+                      "key": "exercitationb",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "The deduplication identifier for FIFO topics. Required when ContentBasedDeduplication is not enabled.",
+                      "key": "MessageDeduplicationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The tag that specifies the message group for FIFO topics. Messages in the same group are delivered in order. Required for FIFO topics.",
+                      "key": "MessageGroupId",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:39.000Z",
+              "updatedAt": "2026-07-28T00:54:39.000Z",
+              "uid": "35240-b5365045-7e2b-4ea7-8155-ff39222f3e4e"
+            }
+          ],
+          "createdAt": "2026-07-28T00:54:39.000Z",
+          "updatedAt": "2026-07-28T00:54:39.000Z",
+          "uid": "35240-83c34cbe-ddaa-4fac-a240-2a307966b0b1"
+        }
+      ],
+      "id": "899560f8-7648-4266-9b1b-3a088f28786d",
+      "createdAt": "2026-07-28T00:54:39.000Z",
+      "updatedAt": "2026-07-28T00:54:39.000Z",
+      "uid": "35240-899560f8-7648-4266-9b1b-3a088f28786d"
+    },
+    {
+      "name": "?Action=PublishBatch",
+      "item": [
+        {
+          "name": "Amazon Sns Publish up to 10 Messages to an Sns Topic in a Single Request",
+          "id": "f9ad78b1-cdee-44ce-aa51-2d1d9ed85469",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "(Required) The ARN of the topic to publish messages to",
+                  "key": "TopicArn",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) A list of publish batch request entries (max 10)",
+                  "key": "PublishBatchRequestEntries",
+                  "value": "[object Object]"
+                },
+                {
+                  "description": "(Required) A list of publish batch request entries (max 10)",
+                  "key": "PublishBatchRequestEntries",
+                  "value": "[object Object]"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=PublishBatch",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "PublishBatch"
+                }
+              ]
+            },
+            "description": "Publishes up to ten messages to the specified topic in a single API call. This action is useful for reducing the cost of publishing messages. The total aggregate size of all messages in a single PublishBatch call cannot exceed 262,144 bytes."
+          },
+          "response": [
+            {
+              "id": "aedaea3a-e00d-4347-9173-ab8f4a270ee9",
+              "name": "Batch publish results",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to publish messages to",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) A list of publish batch request entries (max 10)",
+                      "key": "PublishBatchRequestEntries",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "(Required) A list of publish batch request entries (max 10)",
+                      "key": "PublishBatchRequestEntries",
+                      "value": "[object Object]"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <PublishBatchResult>\n    <Successful>\n      <Id>(string)</Id>\n      <MessageId>(string)</MessageId>\n      <SequenceNumber>(string)</SequenceNumber>\n    </Successful>\n    <Successful>\n      <Id>(string)</Id>\n      <MessageId>(string)</MessageId>\n      <SequenceNumber>(string)</SequenceNumber>\n    </Successful>\n    <Failed>\n      <Id>(string)</Id>\n      <Code>(string)</Code>\n      <Message>(string)</Message>\n      <SenderFault>(boolean)</SenderFault>\n    </Failed>\n    <Failed>\n      <Id>(string)</Id>\n      <Code>(string)</Code>\n      <Message>(string)</Message>\n      <SenderFault>(boolean)</SenderFault>\n    </Failed>\n  </PublishBatchResult>\n  <ResponseMetadata>\n    <RequestId>(string)</RequestId>\n  </ResponseMetadata>\n</element>",
+              "createdAt": "2026-07-28T00:54:39.000Z",
+              "updatedAt": "2026-07-28T00:54:39.000Z",
+              "uid": "35240-aedaea3a-e00d-4347-9173-ab8f4a270ee9"
+            },
+            {
+              "id": "55b5a889-9367-42ec-b396-c26376364916",
+              "name": "Invalid parameter in the request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to publish messages to",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) A list of publish batch request entries (max 10)",
+                      "key": "PublishBatchRequestEntries",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "(Required) A list of publish batch request entries (max 10)",
+                      "key": "PublishBatchRequestEntries",
+                      "value": "[object Object]"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:39.000Z",
+              "updatedAt": "2026-07-28T00:54:39.000Z",
+              "uid": "35240-55b5a889-9367-42ec-b396-c26376364916"
+            },
+            {
+              "id": "3e97062b-71a4-45d3-9a3c-8ac80875f7eb",
+              "name": "Authorization error - insufficient permissions",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to publish messages to",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) A list of publish batch request entries (max 10)",
+                      "key": "PublishBatchRequestEntries",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "(Required) A list of publish batch request entries (max 10)",
+                      "key": "PublishBatchRequestEntries",
+                      "value": "[object Object]"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:39.000Z",
+              "updatedAt": "2026-07-28T00:54:39.000Z",
+              "uid": "35240-3e97062b-71a4-45d3-9a3c-8ac80875f7eb"
+            },
+            {
+              "id": "2c769f82-78bb-417c-bb7a-fabb1b1497f5",
+              "name": "The requested resource does not exist",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to publish messages to",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) A list of publish batch request entries (max 10)",
+                      "key": "PublishBatchRequestEntries",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "(Required) A list of publish batch request entries (max 10)",
+                      "key": "PublishBatchRequestEntries",
+                      "value": "[object Object]"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:39.000Z",
+              "updatedAt": "2026-07-28T00:54:39.000Z",
+              "uid": "35240-2c769f82-78bb-417c-bb7a-fabb1b1497f5"
+            },
+            {
+              "id": "6e939805-7dd7-4d8a-8806-f6d22d85f875",
+              "name": "Request rate exceeded - throttled",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to publish messages to",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) A list of publish batch request entries (max 10)",
+                      "key": "PublishBatchRequestEntries",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "(Required) A list of publish batch request entries (max 10)",
+                      "key": "PublishBatchRequestEntries",
+                      "value": "[object Object]"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:39.000Z",
+              "updatedAt": "2026-07-28T00:54:39.000Z",
+              "uid": "35240-6e939805-7dd7-4d8a-8806-f6d22d85f875"
+            },
+            {
+              "id": "ce9302c8-612a-43df-b234-a2861a0b2b6b",
+              "name": "Internal service error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to publish messages to",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) A list of publish batch request entries (max 10)",
+                      "key": "PublishBatchRequestEntries",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "(Required) A list of publish batch request entries (max 10)",
+                      "key": "PublishBatchRequestEntries",
+                      "value": "[object Object]"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:39.000Z",
+              "updatedAt": "2026-07-28T00:54:39.000Z",
+              "uid": "35240-ce9302c8-612a-43df-b234-a2861a0b2b6b"
+            }
+          ],
+          "createdAt": "2026-07-28T00:54:39.000Z",
+          "updatedAt": "2026-07-28T00:54:39.000Z",
+          "uid": "35240-f9ad78b1-cdee-44ce-aa51-2d1d9ed85469"
+        }
+      ],
+      "id": "8ed3246a-a9d2-470d-a8e6-4a78b174ddc2",
+      "createdAt": "2026-07-28T00:54:39.000Z",
+      "updatedAt": "2026-07-28T00:54:39.000Z",
+      "uid": "35240-8ed3246a-a9d2-470d-a8e6-4a78b174ddc2"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-east-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://sns.{{region}}.amazonaws.com"
+    }
+  ]
+}

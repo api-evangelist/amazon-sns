@@ -1,0 +1,1833 @@
+{
+  "info": {
+    "_postman_id": "df427262-a330-4dae-94b0-3a4f1979ab83",
+    "name": "Amazon SNS Amazon Simple Notification Service (SNS) ?Action=ListTagsForResource ?Action=ListTagsForResource Topics API",
+    "description": "Amazon Simple Notification Service (SNS) is a fully managed pub/sub messaging service that enables application-to-application (A2A) and application-to-person (A2P) communication. SNS allows you to create topics, manage subscriptions, and publish messages to subscribers via multiple protocols including HTTP/S, email, SMS, SQS, Lambda, and mobile push. This specification models the SNS query API actions as RESTful paths for topic management, subscription lifecycle, and message publishing operations.\n\nContact Support:\n Name: Amazon Web Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:54:47.000Z",
+    "updatedAt": "2026-07-28T00:54:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-df427262-a330-4dae-94b0-3a4f1979ab83"
+  },
+  "item": [
+    {
+      "name": "?Action=CreateTopic",
+      "item": [
+        {
+          "name": "Amazon Sns Create a New Sns Topic",
+          "id": "85860a2a-4766-40a4-b22d-927686b95f0c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "(Required) The name of the topic to create. Topic names must be unique within an AWS account. For FIFO topics, the name must end with the .fifo suffix.",
+                  "key": "Name",
+                  "value": "qti6bu6D"
+                },
+                {
+                  "description": "A map of topic attributes to set on creation.",
+                  "key": "DisplayName",
+                  "value": "<string>"
+                },
+                {
+                  "description": "A map of topic attributes to set on creation.",
+                  "key": "Policy",
+                  "value": "<string>"
+                },
+                {
+                  "description": "A map of topic attributes to set on creation.",
+                  "key": "DeliveryPolicy",
+                  "value": "<string>"
+                },
+                {
+                  "description": "A map of topic attributes to set on creation.",
+                  "key": "KmsMasterKeyId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "A map of topic attributes to set on creation.",
+                  "key": "FifoTopic",
+                  "value": "true"
+                },
+                {
+                  "description": "A map of topic attributes to set on creation.",
+                  "key": "ContentBasedDeduplication",
+                  "value": "true"
+                },
+                {
+                  "description": "A map of topic attributes to set on creation.",
+                  "key": "SignatureVersion",
+                  "value": "1"
+                },
+                {
+                  "description": "A map of topic attributes to set on creation.",
+                  "key": "TracingConfig",
+                  "value": "PassThrough"
+                },
+                {
+                  "description": "Tags to add to the new topic",
+                  "key": "Tags",
+                  "value": "[object Object]"
+                },
+                {
+                  "description": "Tags to add to the new topic",
+                  "key": "Tags",
+                  "value": "[object Object]"
+                },
+                {
+                  "description": "The data protection policy (JSON) that defines sensitive data auditing, de-identification, and masking operations",
+                  "key": "DataProtectionPolicy",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=CreateTopic",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "CreateTopic"
+                }
+              ]
+            },
+            "description": "Creates a new SNS topic to which notifications can be published. Topics can be standard or FIFO. Returns the TopicArn of the newly created topic. If a topic with the same name already exists, this action returns the TopicArn of the existing topic."
+          },
+          "response": [
+            {
+              "id": "9e973951-69b0-4a31-8a5e-9fe5395f34d9",
+              "name": "Topic created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The name of the topic to create. Topic names must be unique within an AWS account. For FIFO topics, the name must end with the .fifo suffix.",
+                      "key": "Name",
+                      "value": "qti6bu6D"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "DisplayName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "Policy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "DeliveryPolicy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "KmsMasterKeyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "FifoTopic",
+                      "value": "true"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "ContentBasedDeduplication",
+                      "value": "true"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "SignatureVersion",
+                      "value": "1"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "TracingConfig",
+                      "value": "PassThrough"
+                    },
+                    {
+                      "description": "Tags to add to the new topic",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Tags to add to the new topic",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "The data protection policy (JSON) that defines sensitive data auditing, de-identification, and masking operations",
+                      "key": "DataProtectionPolicy",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <CreateTopicResult>\n    <TopicArn>(string)</TopicArn>\n  </CreateTopicResult>\n  <ResponseMetadata>\n    <RequestId>(string)</RequestId>\n  </ResponseMetadata>\n</element>",
+              "createdAt": "2026-07-28T00:54:48.000Z",
+              "updatedAt": "2026-07-28T00:54:48.000Z",
+              "uid": "35240-9e973951-69b0-4a31-8a5e-9fe5395f34d9"
+            },
+            {
+              "id": "7be3878a-fdb2-46cf-99d6-535cbc18274b",
+              "name": "Invalid parameter in the request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The name of the topic to create. Topic names must be unique within an AWS account. For FIFO topics, the name must end with the .fifo suffix.",
+                      "key": "Name",
+                      "value": "qti6bu6D"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "DisplayName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "Policy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "DeliveryPolicy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "KmsMasterKeyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "FifoTopic",
+                      "value": "true"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "ContentBasedDeduplication",
+                      "value": "true"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "SignatureVersion",
+                      "value": "1"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "TracingConfig",
+                      "value": "PassThrough"
+                    },
+                    {
+                      "description": "Tags to add to the new topic",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Tags to add to the new topic",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "The data protection policy (JSON) that defines sensitive data auditing, de-identification, and masking operations",
+                      "key": "DataProtectionPolicy",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:48.000Z",
+              "updatedAt": "2026-07-28T00:54:48.000Z",
+              "uid": "35240-7be3878a-fdb2-46cf-99d6-535cbc18274b"
+            },
+            {
+              "id": "e3926d55-9acf-400c-86d5-cede767278db",
+              "name": "Authorization error - insufficient permissions",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The name of the topic to create. Topic names must be unique within an AWS account. For FIFO topics, the name must end with the .fifo suffix.",
+                      "key": "Name",
+                      "value": "qti6bu6D"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "DisplayName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "Policy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "DeliveryPolicy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "KmsMasterKeyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "FifoTopic",
+                      "value": "true"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "ContentBasedDeduplication",
+                      "value": "true"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "SignatureVersion",
+                      "value": "1"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "TracingConfig",
+                      "value": "PassThrough"
+                    },
+                    {
+                      "description": "Tags to add to the new topic",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Tags to add to the new topic",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "The data protection policy (JSON) that defines sensitive data auditing, de-identification, and masking operations",
+                      "key": "DataProtectionPolicy",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:48.000Z",
+              "updatedAt": "2026-07-28T00:54:48.000Z",
+              "uid": "35240-e3926d55-9acf-400c-86d5-cede767278db"
+            },
+            {
+              "id": "a54a22f0-0f86-41d5-afea-b1362fe27d41",
+              "name": "Request rate exceeded - throttled",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The name of the topic to create. Topic names must be unique within an AWS account. For FIFO topics, the name must end with the .fifo suffix.",
+                      "key": "Name",
+                      "value": "qti6bu6D"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "DisplayName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "Policy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "DeliveryPolicy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "KmsMasterKeyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "FifoTopic",
+                      "value": "true"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "ContentBasedDeduplication",
+                      "value": "true"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "SignatureVersion",
+                      "value": "1"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "TracingConfig",
+                      "value": "PassThrough"
+                    },
+                    {
+                      "description": "Tags to add to the new topic",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Tags to add to the new topic",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "The data protection policy (JSON) that defines sensitive data auditing, de-identification, and masking operations",
+                      "key": "DataProtectionPolicy",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:48.000Z",
+              "updatedAt": "2026-07-28T00:54:48.000Z",
+              "uid": "35240-a54a22f0-0f86-41d5-afea-b1362fe27d41"
+            },
+            {
+              "id": "3faba793-2999-469d-9b5c-cfbe3610726e",
+              "name": "Internal service error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The name of the topic to create. Topic names must be unique within an AWS account. For FIFO topics, the name must end with the .fifo suffix.",
+                      "key": "Name",
+                      "value": "qti6bu6D"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "DisplayName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "Policy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "DeliveryPolicy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "KmsMasterKeyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "FifoTopic",
+                      "value": "true"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "ContentBasedDeduplication",
+                      "value": "true"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "SignatureVersion",
+                      "value": "1"
+                    },
+                    {
+                      "description": "A map of topic attributes to set on creation.",
+                      "key": "TracingConfig",
+                      "value": "PassThrough"
+                    },
+                    {
+                      "description": "Tags to add to the new topic",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "Tags to add to the new topic",
+                      "key": "Tags",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "description": "The data protection policy (JSON) that defines sensitive data auditing, de-identification, and masking operations",
+                      "key": "DataProtectionPolicy",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:48.000Z",
+              "updatedAt": "2026-07-28T00:54:48.000Z",
+              "uid": "35240-3faba793-2999-469d-9b5c-cfbe3610726e"
+            }
+          ],
+          "createdAt": "2026-07-28T00:54:48.000Z",
+          "updatedAt": "2026-07-28T00:54:48.000Z",
+          "uid": "35240-85860a2a-4766-40a4-b22d-927686b95f0c"
+        }
+      ],
+      "id": "4d9eec9c-7ce8-4b69-8a45-25d901b24108",
+      "createdAt": "2026-07-28T00:54:47.000Z",
+      "updatedAt": "2026-07-28T00:54:47.000Z",
+      "uid": "35240-4d9eec9c-7ce8-4b69-8a45-25d901b24108"
+    },
+    {
+      "name": "?Action=DeleteTopic",
+      "item": [
+        {
+          "name": "Amazon Sns Delete an Sns Topic",
+          "id": "75e30607-17c4-4d5c-ac30-81b0745598cd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "(Required) The ARN of the topic to delete",
+                  "key": "TopicArn",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=DeleteTopic",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "DeleteTopic"
+                }
+              ]
+            },
+            "description": "Deletes a topic and all its subscriptions. Deleting a topic might prevent some messages previously sent to the topic from being delivered to subscribers. This action is idempotent, so deleting a topic that does not exist does not result in an error."
+          },
+          "response": [
+            {
+              "id": "fe64b888-eca7-4a34-beed-0f9c4c20015b",
+              "name": "Topic deleted successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to delete",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <ResponseMetadata>\n    <RequestId>(string)</RequestId>\n  </ResponseMetadata>\n</element>",
+              "createdAt": "2026-07-28T00:54:48.000Z",
+              "updatedAt": "2026-07-28T00:54:48.000Z",
+              "uid": "35240-fe64b888-eca7-4a34-beed-0f9c4c20015b"
+            },
+            {
+              "id": "a83034a1-121e-40ef-9c9b-4929dff93dde",
+              "name": "Authorization error - insufficient permissions",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to delete",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:48.000Z",
+              "updatedAt": "2026-07-28T00:54:48.000Z",
+              "uid": "35240-a83034a1-121e-40ef-9c9b-4929dff93dde"
+            },
+            {
+              "id": "10315494-396a-418b-8264-3fe33c0fc0c5",
+              "name": "The requested resource does not exist",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to delete",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:48.000Z",
+              "updatedAt": "2026-07-28T00:54:48.000Z",
+              "uid": "35240-10315494-396a-418b-8264-3fe33c0fc0c5"
+            },
+            {
+              "id": "ce1df067-30d8-4022-9301-e0287eda1020",
+              "name": "Internal service error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to delete",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:48.000Z",
+              "updatedAt": "2026-07-28T00:54:48.000Z",
+              "uid": "35240-ce1df067-30d8-4022-9301-e0287eda1020"
+            }
+          ],
+          "createdAt": "2026-07-28T00:54:48.000Z",
+          "updatedAt": "2026-07-28T00:54:48.000Z",
+          "uid": "35240-75e30607-17c4-4d5c-ac30-81b0745598cd"
+        }
+      ],
+      "id": "bf0356a6-7a0e-4fe7-aed5-646163c4a325",
+      "createdAt": "2026-07-28T00:54:47.000Z",
+      "updatedAt": "2026-07-28T00:54:47.000Z",
+      "uid": "35240-bf0356a6-7a0e-4fe7-aed5-646163c4a325"
+    },
+    {
+      "name": "?Action=ListTopics",
+      "item": [
+        {
+          "name": "Amazon Sns List All Sns Topics",
+          "id": "f1bdb2ca-4e40-4b12-b2da-56c8215a9cae",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/?Action=ListTopics&NextToken=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "ListTopics"
+                },
+                {
+                  "description": "Token returned by the previous ListTopics request for pagination",
+                  "key": "NextToken",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a list of the requester's topics. Each call returns a limited list of topics, up to 100. If there are more topics, a NextToken is also returned. Use the NextToken parameter in a new ListTopics call to get further results."
+          },
+          "response": [
+            {
+              "id": "cf3ba99c-bc38-4ba2-958d-7abbe30e904f",
+              "name": "List of topics",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Token returned by the previous ListTopics request for pagination",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <ListTopicsResult>\n    <Topics>\n      <TopicArn>(string)</TopicArn>\n    </Topics>\n    <Topics>\n      <TopicArn>(string)</TopicArn>\n    </Topics>\n    <NextToken>(string)</NextToken>\n  </ListTopicsResult>\n  <ResponseMetadata>\n    <RequestId>(string)</RequestId>\n  </ResponseMetadata>\n</element>",
+              "createdAt": "2026-07-28T00:54:48.000Z",
+              "updatedAt": "2026-07-28T00:54:48.000Z",
+              "uid": "35240-cf3ba99c-bc38-4ba2-958d-7abbe30e904f"
+            },
+            {
+              "id": "8cc1cdb6-75ea-45a0-a772-9b03f2506bbb",
+              "name": "Authorization error - insufficient permissions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Token returned by the previous ListTopics request for pagination",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:48.000Z",
+              "updatedAt": "2026-07-28T00:54:48.000Z",
+              "uid": "35240-8cc1cdb6-75ea-45a0-a772-9b03f2506bbb"
+            },
+            {
+              "id": "b0981696-1a32-4e85-8085-6b2741def1b0",
+              "name": "Internal service error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Token returned by the previous ListTopics request for pagination",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:48.000Z",
+              "updatedAt": "2026-07-28T00:54:48.000Z",
+              "uid": "35240-b0981696-1a32-4e85-8085-6b2741def1b0"
+            }
+          ],
+          "createdAt": "2026-07-28T00:54:48.000Z",
+          "updatedAt": "2026-07-28T00:54:48.000Z",
+          "uid": "35240-f1bdb2ca-4e40-4b12-b2da-56c8215a9cae"
+        }
+      ],
+      "id": "0b080bbc-4cd0-4e6b-9c80-4dfcaf268e44",
+      "createdAt": "2026-07-28T00:54:47.000Z",
+      "updatedAt": "2026-07-28T00:54:47.000Z",
+      "uid": "35240-0b080bbc-4cd0-4e6b-9c80-4dfcaf268e44"
+    },
+    {
+      "name": "?Action=GetTopicAttributes",
+      "item": [
+        {
+          "name": "Amazon Sns Get Attributes of an Sns Topic",
+          "id": "f5bc4dc4-26dd-4007-99a6-9cc70acd9370",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/?Action=GetTopicAttributes&TopicArn=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "GetTopicAttributes"
+                },
+                {
+                  "description": "(Required) The ARN of the topic whose properties you want to get",
+                  "key": "TopicArn",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns all of the properties of a topic. Topic properties returned might differ based on the authorization of the user."
+          },
+          "response": [
+            {
+              "id": "2c8466b3-1afc-4fa9-a7cf-711c94e6c25d",
+              "name": "Topic attributes retrieved",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?TopicArn=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ARN of the topic whose properties you want to get",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <GetTopicAttributesResult>\n    <Attributes>\n    </Attributes>\n  </GetTopicAttributesResult>\n  <ResponseMetadata>\n    <RequestId>(string)</RequestId>\n  </ResponseMetadata>\n</element>",
+              "createdAt": "2026-07-28T00:54:48.000Z",
+              "updatedAt": "2026-07-28T00:54:48.000Z",
+              "uid": "35240-2c8466b3-1afc-4fa9-a7cf-711c94e6c25d"
+            },
+            {
+              "id": "eabd6d83-c077-42db-866c-204b355e257e",
+              "name": "Authorization error - insufficient permissions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?TopicArn=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ARN of the topic whose properties you want to get",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:48.000Z",
+              "updatedAt": "2026-07-28T00:54:48.000Z",
+              "uid": "35240-eabd6d83-c077-42db-866c-204b355e257e"
+            },
+            {
+              "id": "4c556c95-35ee-46d2-9de2-e080707a11a7",
+              "name": "The requested resource does not exist",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?TopicArn=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ARN of the topic whose properties you want to get",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:48.000Z",
+              "updatedAt": "2026-07-28T00:54:48.000Z",
+              "uid": "35240-4c556c95-35ee-46d2-9de2-e080707a11a7"
+            },
+            {
+              "id": "cbe7b907-752e-45d9-bc05-d293fd90e496",
+              "name": "Internal service error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?TopicArn=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ARN of the topic whose properties you want to get",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:48.000Z",
+              "updatedAt": "2026-07-28T00:54:48.000Z",
+              "uid": "35240-cbe7b907-752e-45d9-bc05-d293fd90e496"
+            }
+          ],
+          "createdAt": "2026-07-28T00:54:48.000Z",
+          "updatedAt": "2026-07-28T00:54:48.000Z",
+          "uid": "35240-f5bc4dc4-26dd-4007-99a6-9cc70acd9370"
+        }
+      ],
+      "id": "c64b6b73-b858-4a6d-8377-3e9ea7c19a4f",
+      "createdAt": "2026-07-28T00:54:47.000Z",
+      "updatedAt": "2026-07-28T00:54:47.000Z",
+      "uid": "35240-c64b6b73-b858-4a6d-8377-3e9ea7c19a4f"
+    },
+    {
+      "name": "?Action=SetTopicAttributes",
+      "item": [
+        {
+          "name": "Amazon Sns Set Attributes on an Sns Topic",
+          "id": "6adf3ef8-7881-4c74-90f2-687c5d98316e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "(Required) The ARN of the topic to modify",
+                  "key": "TopicArn",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) The name of the attribute to set. Valid values include Policy, DisplayName, DeliveryPolicy, KmsMasterKeyId, SignatureVersion, TracingConfig, and others.",
+                  "key": "AttributeName",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The new value for the attribute",
+                  "key": "AttributeValue",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=SetTopicAttributes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "SetTopicAttributes"
+                }
+              ]
+            },
+            "description": "Allows a topic owner to set an attribute of the topic to a new value. Only one attribute can be changed per call."
+          },
+          "response": [
+            {
+              "id": "16bf5377-1272-4bc9-88c2-36e9fc072414",
+              "name": "Attribute set successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to modify",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The name of the attribute to set. Valid values include Policy, DisplayName, DeliveryPolicy, KmsMasterKeyId, SignatureVersion, TracingConfig, and others.",
+                      "key": "AttributeName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The new value for the attribute",
+                      "key": "AttributeValue",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <ResponseMetadata>\n    <RequestId>(string)</RequestId>\n  </ResponseMetadata>\n</element>",
+              "createdAt": "2026-07-28T00:54:48.000Z",
+              "updatedAt": "2026-07-28T00:54:48.000Z",
+              "uid": "35240-16bf5377-1272-4bc9-88c2-36e9fc072414"
+            },
+            {
+              "id": "4abde0d8-adfb-4a0e-b811-2f73e3ec3c89",
+              "name": "Invalid parameter in the request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to modify",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The name of the attribute to set. Valid values include Policy, DisplayName, DeliveryPolicy, KmsMasterKeyId, SignatureVersion, TracingConfig, and others.",
+                      "key": "AttributeName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The new value for the attribute",
+                      "key": "AttributeValue",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:48.000Z",
+              "updatedAt": "2026-07-28T00:54:48.000Z",
+              "uid": "35240-4abde0d8-adfb-4a0e-b811-2f73e3ec3c89"
+            },
+            {
+              "id": "9eb8e4d6-2104-4604-adf1-727a2152f625",
+              "name": "Authorization error - insufficient permissions",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to modify",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The name of the attribute to set. Valid values include Policy, DisplayName, DeliveryPolicy, KmsMasterKeyId, SignatureVersion, TracingConfig, and others.",
+                      "key": "AttributeName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The new value for the attribute",
+                      "key": "AttributeValue",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:48.000Z",
+              "updatedAt": "2026-07-28T00:54:48.000Z",
+              "uid": "35240-9eb8e4d6-2104-4604-adf1-727a2152f625"
+            },
+            {
+              "id": "e878ddfd-0ef1-43cb-9c66-061061edc225",
+              "name": "The requested resource does not exist",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to modify",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The name of the attribute to set. Valid values include Policy, DisplayName, DeliveryPolicy, KmsMasterKeyId, SignatureVersion, TracingConfig, and others.",
+                      "key": "AttributeName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The new value for the attribute",
+                      "key": "AttributeValue",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:48.000Z",
+              "updatedAt": "2026-07-28T00:54:48.000Z",
+              "uid": "35240-e878ddfd-0ef1-43cb-9c66-061061edc225"
+            },
+            {
+              "id": "8deed4be-2bb6-44f0-94d8-32a2eb997888",
+              "name": "Internal service error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to modify",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The name of the attribute to set. Valid values include Policy, DisplayName, DeliveryPolicy, KmsMasterKeyId, SignatureVersion, TracingConfig, and others.",
+                      "key": "AttributeName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The new value for the attribute",
+                      "key": "AttributeValue",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:48.000Z",
+              "updatedAt": "2026-07-28T00:54:48.000Z",
+              "uid": "35240-8deed4be-2bb6-44f0-94d8-32a2eb997888"
+            }
+          ],
+          "createdAt": "2026-07-28T00:54:48.000Z",
+          "updatedAt": "2026-07-28T00:54:48.000Z",
+          "uid": "35240-6adf3ef8-7881-4c74-90f2-687c5d98316e"
+        }
+      ],
+      "id": "5c15333e-4904-4039-a78f-c091a143d195",
+      "createdAt": "2026-07-28T00:54:47.000Z",
+      "updatedAt": "2026-07-28T00:54:47.000Z",
+      "uid": "35240-5c15333e-4904-4039-a78f-c091a143d195"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-east-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://sns.{{region}}.amazonaws.com"
+    }
+  ]
+}

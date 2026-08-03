@@ -1,0 +1,443 @@
+{
+  "info": {
+    "_postman_id": "37fa00a9-5e79-4921-94f6-72c253849e30",
+    "name": "Amazon SNS Amazon Simple Notification Service (SNS) ?Action=ListTagsForResource ?Action=ListTagsForResource Platform Applications API",
+    "description": "Amazon Simple Notification Service (SNS) is a fully managed pub/sub messaging service that enables application-to-application (A2A) and application-to-person (A2P) communication. SNS allows you to create topics, manage subscriptions, and publish messages to subscribers via multiple protocols including HTTP/S, email, SMS, SQS, Lambda, and mobile push. This specification models the SNS query API actions as RESTful paths for topic management, subscription lifecycle, and message publishing operations.\n\nContact Support:\n Name: Amazon Web Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:54:38.000Z",
+    "updatedAt": "2026-07-28T00:54:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-37fa00a9-5e79-4921-94f6-72c253849e30"
+  },
+  "item": [
+    {
+      "name": "?Action=CreatePlatformApplication",
+      "item": [
+        {
+          "name": "Amazon Sns Create a Platform Application for Push Notifications",
+          "id": "2f9ac42a-24a0-4991-bf0b-0df13e3f1c18",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "(Required) Application names must be unique within an AWS account",
+                  "key": "Name",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) The push notification platform",
+                  "key": "Platform",
+                  "value": "APNS"
+                },
+                {
+                  "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                  "key": "reprehenderit17a",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                  "key": "pariaturb7a",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                  "key": "commodoe",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                  "key": "fugiat_700",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=CreatePlatformApplication",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "CreatePlatformApplication"
+                }
+              ]
+            },
+            "description": "Creates a platform application object for one of the supported push notification services, such as APNs and FCM (Firebase Cloud Messaging), to which devices and mobile apps may register."
+          },
+          "response": [
+            {
+              "id": "5bcf8449-d884-40fd-8f40-907714a830ab",
+              "name": "Platform application created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) Application names must be unique within an AWS account",
+                      "key": "Name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The push notification platform",
+                      "key": "Platform",
+                      "value": "APNS"
+                    },
+                    {
+                      "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                      "key": "reprehenderit17a",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                      "key": "pariaturb7a",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                      "key": "commodoe",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                      "key": "fugiat_700",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <CreatePlatformApplicationResult>\n    <PlatformApplicationArn>(string)</PlatformApplicationArn>\n  </CreatePlatformApplicationResult>\n  <ResponseMetadata>\n    <RequestId>(string)</RequestId>\n  </ResponseMetadata>\n</element>",
+              "createdAt": "2026-07-28T00:54:38.000Z",
+              "updatedAt": "2026-07-28T00:54:38.000Z",
+              "uid": "35240-5bcf8449-d884-40fd-8f40-907714a830ab"
+            },
+            {
+              "id": "7125d44d-41dc-4b03-8da4-7a208058d092",
+              "name": "Invalid parameter in the request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) Application names must be unique within an AWS account",
+                      "key": "Name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The push notification platform",
+                      "key": "Platform",
+                      "value": "APNS"
+                    },
+                    {
+                      "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                      "key": "reprehenderit17a",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                      "key": "pariaturb7a",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                      "key": "commodoe",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                      "key": "fugiat_700",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:38.000Z",
+              "updatedAt": "2026-07-28T00:54:38.000Z",
+              "uid": "35240-7125d44d-41dc-4b03-8da4-7a208058d092"
+            },
+            {
+              "id": "4c54d62a-46f6-4a78-9e6f-ec3757b38fa8",
+              "name": "Authorization error - insufficient permissions",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) Application names must be unique within an AWS account",
+                      "key": "Name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The push notification platform",
+                      "key": "Platform",
+                      "value": "APNS"
+                    },
+                    {
+                      "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                      "key": "reprehenderit17a",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                      "key": "pariaturb7a",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                      "key": "commodoe",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                      "key": "fugiat_700",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:38.000Z",
+              "updatedAt": "2026-07-28T00:54:38.000Z",
+              "uid": "35240-4c54d62a-46f6-4a78-9e6f-ec3757b38fa8"
+            },
+            {
+              "id": "fde57e87-0bba-479a-bf9b-a1b6da8e00d7",
+              "name": "Internal service error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) Application names must be unique within an AWS account",
+                      "key": "Name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The push notification platform",
+                      "key": "Platform",
+                      "value": "APNS"
+                    },
+                    {
+                      "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                      "key": "reprehenderit17a",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                      "key": "pariaturb7a",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                      "key": "commodoe",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                      "key": "fugiat_700",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:38.000Z",
+              "updatedAt": "2026-07-28T00:54:38.000Z",
+              "uid": "35240-fde57e87-0bba-479a-bf9b-a1b6da8e00d7"
+            }
+          ],
+          "createdAt": "2026-07-28T00:54:38.000Z",
+          "updatedAt": "2026-07-28T00:54:38.000Z",
+          "uid": "35240-2f9ac42a-24a0-4991-bf0b-0df13e3f1c18"
+        }
+      ],
+      "id": "a62dd6d3-2be1-4fe4-af4b-deba4c7b2e55",
+      "createdAt": "2026-07-28T00:54:38.000Z",
+      "updatedAt": "2026-07-28T00:54:38.000Z",
+      "uid": "35240-a62dd6d3-2be1-4fe4-af4b-deba4c7b2e55"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-east-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://sns.{{region}}.amazonaws.com"
+    }
+  ]
+}

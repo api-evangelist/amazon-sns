@@ -1,0 +1,2445 @@
+{
+  "info": {
+    "_postman_id": "c5b8fb0c-a7aa-49c7-abbd-66cb727f8eee",
+    "name": "Amazon SNS Amazon Simple Notification Service (SNS) ?Action=ListTagsForResource ?Action=ListTagsForResource Subscriptions API",
+    "description": "Amazon Simple Notification Service (SNS) is a fully managed pub/sub messaging service that enables application-to-application (A2A) and application-to-person (A2P) communication. SNS allows you to create topics, manage subscriptions, and publish messages to subscribers via multiple protocols including HTTP/S, email, SMS, SQS, Lambda, and mobile push. This specification models the SNS query API actions as RESTful paths for topic management, subscription lifecycle, and message publishing operations.\n\nContact Support:\n Name: Amazon Web Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:54:46.000Z",
+    "updatedAt": "2026-07-28T00:54:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c5b8fb0c-a7aa-49c7-abbd-66cb727f8eee"
+  },
+  "item": [
+    {
+      "name": "?Action=Subscribe",
+      "item": [
+        {
+          "name": "Amazon Sns Subscribe an Endpoint to an Sns Topic",
+          "id": "12ae18d1-724e-4496-8b1c-4b21e968b746",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "(Required) The ARN of the topic to subscribe to",
+                  "key": "TopicArn",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) The protocol to use for delivery",
+                  "key": "Protocol",
+                  "value": "sqs"
+                },
+                {
+                  "description": "The endpoint that you want to receive notifications. Endpoints vary by protocol: an email address for email, a URL for HTTP/S, an ARN for SQS/Lambda/Firehose, a phone number for SMS, or a device token ARN for application.",
+                  "key": "Endpoint",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Subscription attributes",
+                  "key": "FilterPolicy",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Subscription attributes",
+                  "key": "FilterPolicyScope",
+                  "value": "MessageBody"
+                },
+                {
+                  "description": "Subscription attributes",
+                  "key": "DeliveryPolicy",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Subscription attributes",
+                  "key": "RawMessageDelivery",
+                  "value": "true"
+                },
+                {
+                  "description": "Subscription attributes",
+                  "key": "RedrivePolicy",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Subscription attributes",
+                  "key": "SubscriptionRoleArn",
+                  "value": "<string>"
+                },
+                {
+                  "description": "When set to true, the response includes the subscription ARN even if the subscription is not yet confirmed",
+                  "key": "ReturnSubscriptionArn",
+                  "value": "<boolean>"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=Subscribe",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "Subscribe"
+                }
+              ]
+            },
+            "description": "Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is HTTP/S or email, or if the endpoint and the topic are not in the same AWS account, the endpoint owner must run the ConfirmSubscription action to confirm the subscription. The subscription request is returned with a pending confirmation status."
+          },
+          "response": [
+            {
+              "id": "6c72ede9-a887-4332-bc56-022fcf457753",
+              "name": "Subscription created or pending confirmation",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to subscribe to",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The protocol to use for delivery",
+                      "key": "Protocol",
+                      "value": "sqs"
+                    },
+                    {
+                      "description": "The endpoint that you want to receive notifications. Endpoints vary by protocol: an email address for email, a URL for HTTP/S, an ARN for SQS/Lambda/Firehose, a phone number for SMS, or a device token ARN for application.",
+                      "key": "Endpoint",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "FilterPolicy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "FilterPolicyScope",
+                      "value": "MessageBody"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "DeliveryPolicy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "RawMessageDelivery",
+                      "value": "true"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "RedrivePolicy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "SubscriptionRoleArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "When set to true, the response includes the subscription ARN even if the subscription is not yet confirmed",
+                      "key": "ReturnSubscriptionArn",
+                      "value": "<boolean>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <SubscribeResult>\n    <SubscriptionArn>(string)</SubscriptionArn>\n  </SubscribeResult>\n  <ResponseMetadata>\n    <RequestId>(string)</RequestId>\n  </ResponseMetadata>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-6c72ede9-a887-4332-bc56-022fcf457753"
+            },
+            {
+              "id": "57db940d-b430-4f3c-896f-b818f8aa16d7",
+              "name": "Invalid parameter in the request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to subscribe to",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The protocol to use for delivery",
+                      "key": "Protocol",
+                      "value": "sqs"
+                    },
+                    {
+                      "description": "The endpoint that you want to receive notifications. Endpoints vary by protocol: an email address for email, a URL for HTTP/S, an ARN for SQS/Lambda/Firehose, a phone number for SMS, or a device token ARN for application.",
+                      "key": "Endpoint",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "FilterPolicy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "FilterPolicyScope",
+                      "value": "MessageBody"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "DeliveryPolicy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "RawMessageDelivery",
+                      "value": "true"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "RedrivePolicy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "SubscriptionRoleArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "When set to true, the response includes the subscription ARN even if the subscription is not yet confirmed",
+                      "key": "ReturnSubscriptionArn",
+                      "value": "<boolean>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-57db940d-b430-4f3c-896f-b818f8aa16d7"
+            },
+            {
+              "id": "fd8cb574-5fc5-4bca-bac8-649cbf6bbe56",
+              "name": "Authorization error - insufficient permissions",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to subscribe to",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The protocol to use for delivery",
+                      "key": "Protocol",
+                      "value": "sqs"
+                    },
+                    {
+                      "description": "The endpoint that you want to receive notifications. Endpoints vary by protocol: an email address for email, a URL for HTTP/S, an ARN for SQS/Lambda/Firehose, a phone number for SMS, or a device token ARN for application.",
+                      "key": "Endpoint",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "FilterPolicy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "FilterPolicyScope",
+                      "value": "MessageBody"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "DeliveryPolicy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "RawMessageDelivery",
+                      "value": "true"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "RedrivePolicy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "SubscriptionRoleArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "When set to true, the response includes the subscription ARN even if the subscription is not yet confirmed",
+                      "key": "ReturnSubscriptionArn",
+                      "value": "<boolean>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-fd8cb574-5fc5-4bca-bac8-649cbf6bbe56"
+            },
+            {
+              "id": "8f2ba637-dad6-471e-b510-69d3b1d097de",
+              "name": "The requested resource does not exist",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to subscribe to",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The protocol to use for delivery",
+                      "key": "Protocol",
+                      "value": "sqs"
+                    },
+                    {
+                      "description": "The endpoint that you want to receive notifications. Endpoints vary by protocol: an email address for email, a URL for HTTP/S, an ARN for SQS/Lambda/Firehose, a phone number for SMS, or a device token ARN for application.",
+                      "key": "Endpoint",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "FilterPolicy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "FilterPolicyScope",
+                      "value": "MessageBody"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "DeliveryPolicy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "RawMessageDelivery",
+                      "value": "true"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "RedrivePolicy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "SubscriptionRoleArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "When set to true, the response includes the subscription ARN even if the subscription is not yet confirmed",
+                      "key": "ReturnSubscriptionArn",
+                      "value": "<boolean>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-8f2ba637-dad6-471e-b510-69d3b1d097de"
+            },
+            {
+              "id": "77a693d3-f11b-428c-a026-d21fb9def496",
+              "name": "Internal service error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic to subscribe to",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The protocol to use for delivery",
+                      "key": "Protocol",
+                      "value": "sqs"
+                    },
+                    {
+                      "description": "The endpoint that you want to receive notifications. Endpoints vary by protocol: an email address for email, a URL for HTTP/S, an ARN for SQS/Lambda/Firehose, a phone number for SMS, or a device token ARN for application.",
+                      "key": "Endpoint",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "FilterPolicy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "FilterPolicyScope",
+                      "value": "MessageBody"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "DeliveryPolicy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "RawMessageDelivery",
+                      "value": "true"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "RedrivePolicy",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Subscription attributes",
+                      "key": "SubscriptionRoleArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "When set to true, the response includes the subscription ARN even if the subscription is not yet confirmed",
+                      "key": "ReturnSubscriptionArn",
+                      "value": "<boolean>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-77a693d3-f11b-428c-a026-d21fb9def496"
+            }
+          ],
+          "createdAt": "2026-07-28T00:54:46.000Z",
+          "updatedAt": "2026-07-28T00:54:46.000Z",
+          "uid": "35240-12ae18d1-724e-4496-8b1c-4b21e968b746"
+        }
+      ],
+      "id": "2f248b2f-24fa-4f05-b095-ba8fc28f5fec",
+      "createdAt": "2026-07-28T00:54:46.000Z",
+      "updatedAt": "2026-07-28T00:54:46.000Z",
+      "uid": "35240-2f248b2f-24fa-4f05-b095-ba8fc28f5fec"
+    },
+    {
+      "name": "?Action=ConfirmSubscription",
+      "item": [
+        {
+          "name": "Amazon Sns Confirm a Pending Subscription",
+          "id": "d57d3aa7-5b43-4da8-938e-af00365832d8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "(Required) The ARN of the topic for which you wish to confirm a subscription",
+                  "key": "TopicArn",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) Short-lived token sent to an endpoint during the Subscribe action",
+                  "key": "Token",
+                  "value": "<string>"
+                },
+                {
+                  "description": "If set to true, disallows unauthenticated unsubscribes. Only the topic owner and subscription owner can unsubscribe.",
+                  "key": "AuthenticateOnUnsubscribe",
+                  "value": "false"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=ConfirmSubscription",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "ConfirmSubscription"
+                }
+              ]
+            },
+            "description": "Verifies an endpoint owner's intent to receive messages by validating the token sent to the endpoint by an earlier Subscribe action. If the token is valid, the action creates a new subscription and returns its Amazon Resource Name (ARN)."
+          },
+          "response": [
+            {
+              "id": "ae64c10b-cf10-46df-ad3f-e1ae6cc186e2",
+              "name": "Subscription confirmed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic for which you wish to confirm a subscription",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Short-lived token sent to an endpoint during the Subscribe action",
+                      "key": "Token",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "If set to true, disallows unauthenticated unsubscribes. Only the topic owner and subscription owner can unsubscribe.",
+                      "key": "AuthenticateOnUnsubscribe",
+                      "value": "false"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <ConfirmSubscriptionResult>\n    <SubscriptionArn>(string)</SubscriptionArn>\n  </ConfirmSubscriptionResult>\n  <ResponseMetadata>\n    <RequestId>(string)</RequestId>\n  </ResponseMetadata>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-ae64c10b-cf10-46df-ad3f-e1ae6cc186e2"
+            },
+            {
+              "id": "afdaf583-d7dc-4e65-9b5f-6eb1053a8ac5",
+              "name": "Invalid parameter in the request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic for which you wish to confirm a subscription",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Short-lived token sent to an endpoint during the Subscribe action",
+                      "key": "Token",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "If set to true, disallows unauthenticated unsubscribes. Only the topic owner and subscription owner can unsubscribe.",
+                      "key": "AuthenticateOnUnsubscribe",
+                      "value": "false"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-afdaf583-d7dc-4e65-9b5f-6eb1053a8ac5"
+            },
+            {
+              "id": "fa417c57-a2b3-4884-b633-f5d02f4baa26",
+              "name": "Authorization error - insufficient permissions",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic for which you wish to confirm a subscription",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Short-lived token sent to an endpoint during the Subscribe action",
+                      "key": "Token",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "If set to true, disallows unauthenticated unsubscribes. Only the topic owner and subscription owner can unsubscribe.",
+                      "key": "AuthenticateOnUnsubscribe",
+                      "value": "false"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-fa417c57-a2b3-4884-b633-f5d02f4baa26"
+            },
+            {
+              "id": "7d9af917-4822-44d0-9647-328159a9a81e",
+              "name": "The requested resource does not exist",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic for which you wish to confirm a subscription",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Short-lived token sent to an endpoint during the Subscribe action",
+                      "key": "Token",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "If set to true, disallows unauthenticated unsubscribes. Only the topic owner and subscription owner can unsubscribe.",
+                      "key": "AuthenticateOnUnsubscribe",
+                      "value": "false"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-7d9af917-4822-44d0-9647-328159a9a81e"
+            },
+            {
+              "id": "c7fe7b20-114a-40f7-ac5c-84429c071ee4",
+              "name": "Internal service error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the topic for which you wish to confirm a subscription",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Short-lived token sent to an endpoint during the Subscribe action",
+                      "key": "Token",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "If set to true, disallows unauthenticated unsubscribes. Only the topic owner and subscription owner can unsubscribe.",
+                      "key": "AuthenticateOnUnsubscribe",
+                      "value": "false"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-c7fe7b20-114a-40f7-ac5c-84429c071ee4"
+            }
+          ],
+          "createdAt": "2026-07-28T00:54:46.000Z",
+          "updatedAt": "2026-07-28T00:54:46.000Z",
+          "uid": "35240-d57d3aa7-5b43-4da8-938e-af00365832d8"
+        }
+      ],
+      "id": "5f0dc844-64a6-4d1b-8369-4917220adb34",
+      "createdAt": "2026-07-28T00:54:46.000Z",
+      "updatedAt": "2026-07-28T00:54:46.000Z",
+      "uid": "35240-5f0dc844-64a6-4d1b-8369-4917220adb34"
+    },
+    {
+      "name": "?Action=Unsubscribe",
+      "item": [
+        {
+          "name": "Amazon Sns Unsubscribe From an Sns Topic",
+          "id": "7ccda22b-acce-4d15-9fb1-97b3af4b43ec",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "(Required) The ARN of the subscription to be deleted",
+                  "key": "SubscriptionArn",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=Unsubscribe",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "Unsubscribe"
+                }
+              ]
+            },
+            "description": "Deletes a subscription. If the subscription requires authentication for deletion, only the owner of the subscription or the topic's owner can unsubscribe, and an AWS signature is required. If the Unsubscribe call does not require authentication and the requester is not the subscription owner, a final cancellation message is delivered to the endpoint."
+          },
+          "response": [
+            {
+              "id": "fe3a3e01-73a2-4a38-b364-4db80bd26234",
+              "name": "Unsubscribed successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the subscription to be deleted",
+                      "key": "SubscriptionArn",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <ResponseMetadata>\n    <RequestId>(string)</RequestId>\n  </ResponseMetadata>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-fe3a3e01-73a2-4a38-b364-4db80bd26234"
+            },
+            {
+              "id": "a03ce47d-20ab-411c-8d83-b8c8edeb11db",
+              "name": "Authorization error - insufficient permissions",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the subscription to be deleted",
+                      "key": "SubscriptionArn",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-a03ce47d-20ab-411c-8d83-b8c8edeb11db"
+            },
+            {
+              "id": "6d24de69-3832-453d-8171-f910f71888ff",
+              "name": "The requested resource does not exist",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the subscription to be deleted",
+                      "key": "SubscriptionArn",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-6d24de69-3832-453d-8171-f910f71888ff"
+            },
+            {
+              "id": "0d6cd5df-ec86-45e4-a6de-69ea5d5dfdd3",
+              "name": "Internal service error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the subscription to be deleted",
+                      "key": "SubscriptionArn",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-0d6cd5df-ec86-45e4-a6de-69ea5d5dfdd3"
+            }
+          ],
+          "createdAt": "2026-07-28T00:54:46.000Z",
+          "updatedAt": "2026-07-28T00:54:46.000Z",
+          "uid": "35240-7ccda22b-acce-4d15-9fb1-97b3af4b43ec"
+        }
+      ],
+      "id": "f44f903d-0a19-4153-ac75-ad8ce2de3e05",
+      "createdAt": "2026-07-28T00:54:46.000Z",
+      "updatedAt": "2026-07-28T00:54:46.000Z",
+      "uid": "35240-f44f903d-0a19-4153-ac75-ad8ce2de3e05"
+    },
+    {
+      "name": "?Action=ListSubscriptions",
+      "item": [
+        {
+          "name": "Amazon Sns List All Subscriptions",
+          "id": "3914c6b6-9d68-46be-ac13-0dd9776c8079",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/?Action=ListSubscriptions&NextToken=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "ListSubscriptions"
+                },
+                {
+                  "description": "Token returned by the previous request for pagination",
+                  "key": "NextToken",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a list of the requester's subscriptions. Each call returns a limited list of subscriptions, up to 100. If there are more subscriptions, a NextToken is also returned. Use the NextToken parameter in a new ListSubscriptions call to get further results."
+          },
+          "response": [
+            {
+              "id": "1ef29ea4-745b-497a-a4e8-9c6c6e1d09f3",
+              "name": "List of subscriptions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Token returned by the previous request for pagination",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <ListSubscriptionsResult>\n    <Subscriptions>\n      <SubscriptionArn>(string)</SubscriptionArn>\n      <Owner>(string)</Owner>\n      <Protocol>(string)</Protocol>\n      <Endpoint>(string)</Endpoint>\n      <TopicArn>(string)</TopicArn>\n    </Subscriptions>\n    <Subscriptions>\n      <SubscriptionArn>(string)</SubscriptionArn>\n      <Owner>(string)</Owner>\n      <Protocol>(string)</Protocol>\n      <Endpoint>(string)</Endpoint>\n      <TopicArn>(string)</TopicArn>\n    </Subscriptions>\n    <NextToken>(string)</NextToken>\n  </ListSubscriptionsResult>\n  <ResponseMetadata>\n    <RequestId>(string)</RequestId>\n  </ResponseMetadata>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-1ef29ea4-745b-497a-a4e8-9c6c6e1d09f3"
+            },
+            {
+              "id": "bac568ed-11a5-46dd-a2dc-d5c2481f078f",
+              "name": "Authorization error - insufficient permissions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Token returned by the previous request for pagination",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-bac568ed-11a5-46dd-a2dc-d5c2481f078f"
+            },
+            {
+              "id": "38410e7d-24b2-483e-bfdb-ce148fb7bd34",
+              "name": "Internal service error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Token returned by the previous request for pagination",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-38410e7d-24b2-483e-bfdb-ce148fb7bd34"
+            }
+          ],
+          "createdAt": "2026-07-28T00:54:46.000Z",
+          "updatedAt": "2026-07-28T00:54:46.000Z",
+          "uid": "35240-3914c6b6-9d68-46be-ac13-0dd9776c8079"
+        }
+      ],
+      "id": "488c6069-f903-4df6-8c70-5a1175eeab9a",
+      "createdAt": "2026-07-28T00:54:46.000Z",
+      "updatedAt": "2026-07-28T00:54:46.000Z",
+      "uid": "35240-488c6069-f903-4df6-8c70-5a1175eeab9a"
+    },
+    {
+      "name": "?Action=ListSubscriptionsByTopic",
+      "item": [
+        {
+          "name": "Amazon Sns List Subscriptions for a Specific Topic",
+          "id": "b7797383-f6e1-407e-bbe0-8b47a42fa63e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/?Action=ListSubscriptionsByTopic&TopicArn=<string>&NextToken=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "ListSubscriptionsByTopic"
+                },
+                {
+                  "description": "(Required) The ARN of the topic for which you wish to list subscriptions",
+                  "key": "TopicArn",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Token returned by the previous request for pagination",
+                  "key": "NextToken",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a list of the subscriptions to a specific topic. Each call returns a limited list of subscriptions, up to 100. If there are more subscriptions, a NextToken is also returned."
+          },
+          "response": [
+            {
+              "id": "4222817b-1436-4162-83dd-e8cfbb609cff",
+              "name": "List of subscriptions for the topic",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?TopicArn=<string>&NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ARN of the topic for which you wish to list subscriptions",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Token returned by the previous request for pagination",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <ListSubscriptionsByTopicResult>\n    <Subscriptions>\n      <SubscriptionArn>(string)</SubscriptionArn>\n      <Owner>(string)</Owner>\n      <Protocol>(string)</Protocol>\n      <Endpoint>(string)</Endpoint>\n      <TopicArn>(string)</TopicArn>\n    </Subscriptions>\n    <Subscriptions>\n      <SubscriptionArn>(string)</SubscriptionArn>\n      <Owner>(string)</Owner>\n      <Protocol>(string)</Protocol>\n      <Endpoint>(string)</Endpoint>\n      <TopicArn>(string)</TopicArn>\n    </Subscriptions>\n    <NextToken>(string)</NextToken>\n  </ListSubscriptionsByTopicResult>\n  <ResponseMetadata>\n    <RequestId>(string)</RequestId>\n  </ResponseMetadata>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-4222817b-1436-4162-83dd-e8cfbb609cff"
+            },
+            {
+              "id": "82da84bf-8ed5-4734-83ca-5c223f2d9114",
+              "name": "Authorization error - insufficient permissions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?TopicArn=<string>&NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ARN of the topic for which you wish to list subscriptions",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Token returned by the previous request for pagination",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-82da84bf-8ed5-4734-83ca-5c223f2d9114"
+            },
+            {
+              "id": "b2a6a400-a102-4f1c-b042-0ce8826ac004",
+              "name": "The requested resource does not exist",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?TopicArn=<string>&NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ARN of the topic for which you wish to list subscriptions",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Token returned by the previous request for pagination",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-b2a6a400-a102-4f1c-b042-0ce8826ac004"
+            },
+            {
+              "id": "823f4686-f677-4997-8c11-5c091a542938",
+              "name": "Internal service error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?TopicArn=<string>&NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ARN of the topic for which you wish to list subscriptions",
+                      "key": "TopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Token returned by the previous request for pagination",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-823f4686-f677-4997-8c11-5c091a542938"
+            }
+          ],
+          "createdAt": "2026-07-28T00:54:46.000Z",
+          "updatedAt": "2026-07-28T00:54:46.000Z",
+          "uid": "35240-b7797383-f6e1-407e-bbe0-8b47a42fa63e"
+        }
+      ],
+      "id": "ce547033-8e80-46c4-bf5e-54950614010c",
+      "createdAt": "2026-07-28T00:54:46.000Z",
+      "updatedAt": "2026-07-28T00:54:46.000Z",
+      "uid": "35240-ce547033-8e80-46c4-bf5e-54950614010c"
+    },
+    {
+      "name": "?Action=GetSubscriptionAttributes",
+      "item": [
+        {
+          "name": "Amazon Sns Get Attributes of a Subscription",
+          "id": "70df9dd5-268f-48e8-957a-cf6e42b93bfc",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/?Action=GetSubscriptionAttributes&SubscriptionArn=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "GetSubscriptionAttributes"
+                },
+                {
+                  "description": "(Required) The ARN of the subscription whose properties you want to get",
+                  "key": "SubscriptionArn",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns all of the properties of a subscription."
+          },
+          "response": [
+            {
+              "id": "02345b1b-2940-4a3f-aed3-403804373ad3",
+              "name": "Subscription attributes retrieved",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?SubscriptionArn=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ARN of the subscription whose properties you want to get",
+                      "key": "SubscriptionArn",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <GetSubscriptionAttributesResult>\n    <Attributes>\n    </Attributes>\n  </GetSubscriptionAttributesResult>\n  <ResponseMetadata>\n    <RequestId>(string)</RequestId>\n  </ResponseMetadata>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-02345b1b-2940-4a3f-aed3-403804373ad3"
+            },
+            {
+              "id": "ad8aceab-ada5-44c6-ae75-03641589f711",
+              "name": "Authorization error - insufficient permissions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?SubscriptionArn=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ARN of the subscription whose properties you want to get",
+                      "key": "SubscriptionArn",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-ad8aceab-ada5-44c6-ae75-03641589f711"
+            },
+            {
+              "id": "f13a9384-1b92-463f-aba1-fd83e4bc9b0e",
+              "name": "The requested resource does not exist",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?SubscriptionArn=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ARN of the subscription whose properties you want to get",
+                      "key": "SubscriptionArn",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-f13a9384-1b92-463f-aba1-fd83e4bc9b0e"
+            },
+            {
+              "id": "2705cbad-fc87-4745-8b64-97d6d27db184",
+              "name": "Internal service error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?SubscriptionArn=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ARN of the subscription whose properties you want to get",
+                      "key": "SubscriptionArn",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-2705cbad-fc87-4745-8b64-97d6d27db184"
+            }
+          ],
+          "createdAt": "2026-07-28T00:54:46.000Z",
+          "updatedAt": "2026-07-28T00:54:46.000Z",
+          "uid": "35240-70df9dd5-268f-48e8-957a-cf6e42b93bfc"
+        }
+      ],
+      "id": "cfa53ce9-84cb-455d-bde8-8fb8ad01ddc6",
+      "createdAt": "2026-07-28T00:54:46.000Z",
+      "updatedAt": "2026-07-28T00:54:46.000Z",
+      "uid": "35240-cfa53ce9-84cb-455d-bde8-8fb8ad01ddc6"
+    },
+    {
+      "name": "?Action=SetSubscriptionAttributes",
+      "item": [
+        {
+          "name": "Amazon Sns Set Attributes on a Subscription",
+          "id": "c2b10e15-44b7-4e07-8b0d-31a6bd5b38f7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "(Required) The ARN of the subscription to modify",
+                  "key": "SubscriptionArn",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) The attribute name. Valid values include DeliveryPolicy, FilterPolicy, FilterPolicyScope, RawMessageDelivery, and RedrivePolicy.",
+                  "key": "AttributeName",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The new value for the attribute",
+                  "key": "AttributeValue",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=SetSubscriptionAttributes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "SetSubscriptionAttributes"
+                }
+              ]
+            },
+            "description": "Allows a subscription owner to set an attribute of the subscription to a new value."
+          },
+          "response": [
+            {
+              "id": "d2cfbe71-7cbc-4721-9e61-2711819d524f",
+              "name": "Attribute set successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the subscription to modify",
+                      "key": "SubscriptionArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The attribute name. Valid values include DeliveryPolicy, FilterPolicy, FilterPolicyScope, RawMessageDelivery, and RedrivePolicy.",
+                      "key": "AttributeName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The new value for the attribute",
+                      "key": "AttributeValue",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <ResponseMetadata>\n    <RequestId>(string)</RequestId>\n  </ResponseMetadata>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-d2cfbe71-7cbc-4721-9e61-2711819d524f"
+            },
+            {
+              "id": "da4c6461-a2fa-4760-b407-8b604bc9c010",
+              "name": "Invalid parameter in the request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the subscription to modify",
+                      "key": "SubscriptionArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The attribute name. Valid values include DeliveryPolicy, FilterPolicy, FilterPolicyScope, RawMessageDelivery, and RedrivePolicy.",
+                      "key": "AttributeName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The new value for the attribute",
+                      "key": "AttributeValue",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-da4c6461-a2fa-4760-b407-8b604bc9c010"
+            },
+            {
+              "id": "e8e0bf1c-3605-4161-8da1-c08940d74f8d",
+              "name": "Authorization error - insufficient permissions",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the subscription to modify",
+                      "key": "SubscriptionArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The attribute name. Valid values include DeliveryPolicy, FilterPolicy, FilterPolicyScope, RawMessageDelivery, and RedrivePolicy.",
+                      "key": "AttributeName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The new value for the attribute",
+                      "key": "AttributeValue",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-e8e0bf1c-3605-4161-8da1-c08940d74f8d"
+            },
+            {
+              "id": "c779c816-44bd-457c-a7e2-3068502375a1",
+              "name": "The requested resource does not exist",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the subscription to modify",
+                      "key": "SubscriptionArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The attribute name. Valid values include DeliveryPolicy, FilterPolicy, FilterPolicyScope, RawMessageDelivery, and RedrivePolicy.",
+                      "key": "AttributeName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The new value for the attribute",
+                      "key": "AttributeValue",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-c779c816-44bd-457c-a7e2-3068502375a1"
+            },
+            {
+              "id": "f06f6b1a-3535-41b9-934f-3c1a44559e28",
+              "name": "Internal service error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The ARN of the subscription to modify",
+                      "key": "SubscriptionArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The attribute name. Valid values include DeliveryPolicy, FilterPolicy, FilterPolicyScope, RawMessageDelivery, and RedrivePolicy.",
+                      "key": "AttributeName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The new value for the attribute",
+                      "key": "AttributeValue",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:47.000Z",
+              "updatedAt": "2026-07-28T00:54:47.000Z",
+              "uid": "35240-f06f6b1a-3535-41b9-934f-3c1a44559e28"
+            }
+          ],
+          "createdAt": "2026-07-28T00:54:46.000Z",
+          "updatedAt": "2026-07-28T00:54:46.000Z",
+          "uid": "35240-c2b10e15-44b7-4e07-8b0d-31a6bd5b38f7"
+        }
+      ],
+      "id": "3b8596d0-1dad-4778-a9ad-4d3504c94703",
+      "createdAt": "2026-07-28T00:54:46.000Z",
+      "updatedAt": "2026-07-28T00:54:46.000Z",
+      "uid": "35240-3b8596d0-1dad-4778-a9ad-4d3504c94703"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-east-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://sns.{{region}}.amazonaws.com"
+    }
+  ]
+}

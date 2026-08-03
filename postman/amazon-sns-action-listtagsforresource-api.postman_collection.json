@@ -1,0 +1,281 @@
+{
+  "info": {
+    "_postman_id": "03b87819-d311-404f-8c21-abd6c041c8da",
+    "name": "Amazon SNS Amazon Simple Notification Service (SNS) ?Action=ListTagsForResource ?Action=ListTagsForResource ?Action=ListTagsForResource API",
+    "description": "Amazon Simple Notification Service (SNS) is a fully managed pub/sub messaging service that enables application-to-application (A2A) and application-to-person (A2P) communication. SNS allows you to create topics, manage subscriptions, and publish messages to subscribers via multiple protocols including HTTP/S, email, SMS, SQS, Lambda, and mobile push. This specification models the SNS query API actions as RESTful paths for topic management, subscription lifecycle, and message publishing operations.\n\nContact Support:\n Name: Amazon Web Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:54:34.000Z",
+    "updatedAt": "2026-07-28T00:54:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-03b87819-d311-404f-8c21-abd6c041c8da"
+  },
+  "item": [
+    {
+      "name": "?Action=ListTagsForResource",
+      "item": [
+        {
+          "name": "Amazon Sns List Tags for an Sns Topic",
+          "id": "b21cd7f4-a471-497b-8fe9-b16925970c57",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/?Action=ListTagsForResource&ResourceArn=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "ListTagsForResource"
+                },
+                {
+                  "description": "(Required) The ARN of the topic to list tags for",
+                  "key": "ResourceArn",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "List all tags added to the specified Amazon SNS topic. Returns key-value pairs associated with the resource."
+          },
+          "response": [
+            {
+              "id": "127a00eb-f7ab-4f22-b3d0-1cf49defa8c0",
+              "name": "Tags retrieved",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?ResourceArn=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ARN of the topic to list tags for",
+                      "key": "ResourceArn",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <ListTagsForResourceResult>\n    <Tags>\n      <Key>(string)</Key>\n      <Value>(string)</Value>\n    </Tags>\n    <Tags>\n      <Key>(string)</Key>\n      <Value>(string)</Value>\n    </Tags>\n  </ListTagsForResourceResult>\n  <ResponseMetadata>\n    <RequestId>(string)</RequestId>\n  </ResponseMetadata>\n</element>",
+              "createdAt": "2026-07-28T00:54:34.000Z",
+              "updatedAt": "2026-07-28T00:54:34.000Z",
+              "uid": "35240-127a00eb-f7ab-4f22-b3d0-1cf49defa8c0"
+            },
+            {
+              "id": "197462e7-ae03-4081-ba23-619ec2c92655",
+              "name": "Authorization error - insufficient permissions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?ResourceArn=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ARN of the topic to list tags for",
+                      "key": "ResourceArn",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:34.000Z",
+              "updatedAt": "2026-07-28T00:54:34.000Z",
+              "uid": "35240-197462e7-ae03-4081-ba23-619ec2c92655"
+            },
+            {
+              "id": "f3828a60-93be-4793-a9e8-55d8744c7061",
+              "name": "The requested resource does not exist",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?ResourceArn=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ARN of the topic to list tags for",
+                      "key": "ResourceArn",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:34.000Z",
+              "updatedAt": "2026-07-28T00:54:34.000Z",
+              "uid": "35240-f3828a60-93be-4793-a9e8-55d8744c7061"
+            },
+            {
+              "id": "41aa0175-57af-4aa3-966d-375ba8d402a6",
+              "name": "Internal service error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?ResourceArn=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ARN of the topic to list tags for",
+                      "key": "ResourceArn",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:34.000Z",
+              "updatedAt": "2026-07-28T00:54:34.000Z",
+              "uid": "35240-41aa0175-57af-4aa3-966d-375ba8d402a6"
+            }
+          ],
+          "createdAt": "2026-07-28T00:54:34.000Z",
+          "updatedAt": "2026-07-28T00:54:34.000Z",
+          "uid": "35240-b21cd7f4-a471-497b-8fe9-b16925970c57"
+        }
+      ],
+      "id": "7e9ee475-c57b-49ba-9bf2-b98610fdbba5",
+      "createdAt": "2026-07-28T00:54:34.000Z",
+      "updatedAt": "2026-07-28T00:54:34.000Z",
+      "uid": "35240-7e9ee475-c57b-49ba-9bf2-b98610fdbba5"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-east-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://sns.{{region}}.amazonaws.com"
+    }
+  ]
+}

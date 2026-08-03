@@ -1,0 +1,582 @@
+{
+  "info": {
+    "_postman_id": "d2f39929-a7db-4252-8a5f-2b2cf32c7034",
+    "name": "Amazon SNS Amazon Simple Notification Service (SNS) ?Action=ListTagsForResource ?Action=ListTagsForResource SMS API",
+    "description": "Amazon Simple Notification Service (SNS) is a fully managed pub/sub messaging service that enables application-to-application (A2A) and application-to-person (A2P) communication. SNS allows you to create topics, manage subscriptions, and publish messages to subscribers via multiple protocols including HTTP/S, email, SMS, SQS, Lambda, and mobile push. This specification models the SNS query API actions as RESTful paths for topic management, subscription lifecycle, and message publishing operations.\n\nContact Support:\n Name: Amazon Web Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:54:45.000Z",
+    "updatedAt": "2026-07-28T00:54:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d2f39929-a7db-4252-8a5f-2b2cf32c7034"
+  },
+  "item": [
+    {
+      "name": "?Action=GetSMSAttributes",
+      "item": [
+        {
+          "name": "Amazon Sns Get Sms Messaging Attributes",
+          "id": "9595c115-7c07-4103-80e2-081c611b4309",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/?Action=GetSMSAttributes&attributes=<string>&attributes=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "GetSMSAttributes"
+                },
+                {
+                  "description": "A list of attribute names to return. If omitted, all attributes are returned.",
+                  "key": "attributes",
+                  "value": "<string>"
+                },
+                {
+                  "description": "A list of attribute names to return. If omitted, all attributes are returned.",
+                  "key": "attributes",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns the settings for sending SMS messages from your AWS account. These attributes include the default sender ID, monthly spending limit, and delivery status logging settings."
+          },
+          "response": [
+            {
+              "id": "480bbe6b-eeb3-4881-97d7-f15e6dfca9c7",
+              "name": "SMS attributes retrieved",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?attributes=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "A list of attribute names to return. If omitted, all attributes are returned.",
+                      "key": "attributes",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <GetSMSAttributesResult>\n    <attributes>\n    </attributes>\n  </GetSMSAttributesResult>\n  <ResponseMetadata>\n    <RequestId>(string)</RequestId>\n  </ResponseMetadata>\n</element>",
+              "createdAt": "2026-07-28T00:54:46.000Z",
+              "updatedAt": "2026-07-28T00:54:46.000Z",
+              "uid": "35240-480bbe6b-eeb3-4881-97d7-f15e6dfca9c7"
+            },
+            {
+              "id": "331f1837-7c24-43b0-a032-7bc52a3c7a5f",
+              "name": "Authorization error - insufficient permissions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?attributes=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "A list of attribute names to return. If omitted, all attributes are returned.",
+                      "key": "attributes",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:46.000Z",
+              "updatedAt": "2026-07-28T00:54:46.000Z",
+              "uid": "35240-331f1837-7c24-43b0-a032-7bc52a3c7a5f"
+            },
+            {
+              "id": "cf4950ef-daee-47cb-b313-913359bcdda2",
+              "name": "Request rate exceeded - throttled",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?attributes=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "A list of attribute names to return. If omitted, all attributes are returned.",
+                      "key": "attributes",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:46.000Z",
+              "updatedAt": "2026-07-28T00:54:46.000Z",
+              "uid": "35240-cf4950ef-daee-47cb-b313-913359bcdda2"
+            },
+            {
+              "id": "a161198f-b72e-4ec2-99b0-486e0370ae2d",
+              "name": "Internal service error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?attributes=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "A list of attribute names to return. If omitted, all attributes are returned.",
+                      "key": "attributes",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:46.000Z",
+              "updatedAt": "2026-07-28T00:54:46.000Z",
+              "uid": "35240-a161198f-b72e-4ec2-99b0-486e0370ae2d"
+            }
+          ],
+          "createdAt": "2026-07-28T00:54:46.000Z",
+          "updatedAt": "2026-07-28T00:54:46.000Z",
+          "uid": "35240-9595c115-7c07-4103-80e2-081c611b4309"
+        }
+      ],
+      "id": "c0964772-c477-4af9-bff8-666c3e4ad02f",
+      "createdAt": "2026-07-28T00:54:46.000Z",
+      "updatedAt": "2026-07-28T00:54:46.000Z",
+      "uid": "35240-c0964772-c477-4af9-bff8-666c3e4ad02f"
+    },
+    {
+      "name": "?Action=CheckIfPhoneNumberIsOptedOut",
+      "item": [
+        {
+          "name": "Amazon Sns Check if a Phone Number Has Opted Out of Sms",
+          "id": "54da80dd-89e6-4a7d-9558-f48f2e284067",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/?Action=CheckIfPhoneNumberIsOptedOut&phoneNumber=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "CheckIfPhoneNumberIsOptedOut"
+                },
+                {
+                  "description": "(Required) The phone number to check in E.164 format",
+                  "key": "phoneNumber",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Accepts a phone number and indicates whether the phone holder has opted out of receiving SMS messages from your AWS account. You cannot send SMS messages to a number that is opted out."
+          },
+          "response": [
+            {
+              "id": "a3d8b750-8dfb-49ef-8882-e60f1990bb0a",
+              "name": "Opt-out status returned",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?phoneNumber=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The phone number to check in E.164 format",
+                      "key": "phoneNumber",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <CheckIfPhoneNumberIsOptedOutResult>\n    <isOptedOut>(boolean)</isOptedOut>\n  </CheckIfPhoneNumberIsOptedOutResult>\n  <ResponseMetadata>\n    <RequestId>(string)</RequestId>\n  </ResponseMetadata>\n</element>",
+              "createdAt": "2026-07-28T00:54:46.000Z",
+              "updatedAt": "2026-07-28T00:54:46.000Z",
+              "uid": "35240-a3d8b750-8dfb-49ef-8882-e60f1990bb0a"
+            },
+            {
+              "id": "afbd48ed-d17e-4500-84e6-c09998afd9fb",
+              "name": "Invalid parameter in the request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?phoneNumber=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The phone number to check in E.164 format",
+                      "key": "phoneNumber",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:46.000Z",
+              "updatedAt": "2026-07-28T00:54:46.000Z",
+              "uid": "35240-afbd48ed-d17e-4500-84e6-c09998afd9fb"
+            },
+            {
+              "id": "e1d598ec-a286-4d37-b5aa-65bbf4f66dd8",
+              "name": "Authorization error - insufficient permissions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?phoneNumber=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The phone number to check in E.164 format",
+                      "key": "phoneNumber",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:46.000Z",
+              "updatedAt": "2026-07-28T00:54:46.000Z",
+              "uid": "35240-e1d598ec-a286-4d37-b5aa-65bbf4f66dd8"
+            },
+            {
+              "id": "78e61413-1f11-4624-910c-b08915c6c84b",
+              "name": "Request rate exceeded - throttled",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?phoneNumber=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The phone number to check in E.164 format",
+                      "key": "phoneNumber",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:46.000Z",
+              "updatedAt": "2026-07-28T00:54:46.000Z",
+              "uid": "35240-78e61413-1f11-4624-910c-b08915c6c84b"
+            },
+            {
+              "id": "5fad5105-7ff8-4e1c-a9d3-cd6b1d75b1c9",
+              "name": "Internal service error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?phoneNumber=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The phone number to check in E.164 format",
+                      "key": "phoneNumber",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Error>\n    <Type>(string)</Type>\n    <Code>(string)</Code>\n    <Message>(string)</Message>\n  </Error>\n  <RequestId>(string)</RequestId>\n</element>",
+              "createdAt": "2026-07-28T00:54:46.000Z",
+              "updatedAt": "2026-07-28T00:54:46.000Z",
+              "uid": "35240-5fad5105-7ff8-4e1c-a9d3-cd6b1d75b1c9"
+            }
+          ],
+          "createdAt": "2026-07-28T00:54:46.000Z",
+          "updatedAt": "2026-07-28T00:54:46.000Z",
+          "uid": "35240-54da80dd-89e6-4a7d-9558-f48f2e284067"
+        }
+      ],
+      "id": "ed6e94a1-b4c0-408f-8208-82186a901341",
+      "createdAt": "2026-07-28T00:54:46.000Z",
+      "updatedAt": "2026-07-28T00:54:46.000Z",
+      "uid": "35240-ed6e94a1-b4c0-408f-8208-82186a901341"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-east-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://sns.{{region}}.amazonaws.com"
+    }
+  ]
+}
