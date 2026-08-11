@@ -313,6 +313,14 @@ apis:
   - type: CLI
     url: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/sns/index.html
 common:
+  - type: IssueTracker
+    url: https://github.com/awsdocs/amazon-sns-developer-guide/issues
+  - type: Releases
+    url: https://github.com/awsdocs/amazon-sns-developer-guide/releases
+  - type: CodeOfConduct
+    url: https://github.com/awsdocs/amazon-sns-developer-guide/blob/archived/CODE_OF_CONDUCT.md
+  - type: ContributionGuide
+    url: https://github.com/awsdocs/amazon-sns-developer-guide/blob/archived/CONTRIBUTING.md
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/amazon-sns/overview
   - type: AgenticAccess
