@@ -5,7 +5,7 @@
       "source": "https://aws.amazon.com/blogs/messaging-and-targeting/feed/",
       "feed_url": "https://aws.amazon.com/blogs/messaging-and-targeting/feed/",
       "title": "",
-      "saved": 0,
+      "saved": 1,
       "method": "feed"
     },
     {
@@ -17,6 +17,6 @@
       "error": "parse_failed"
     }
   ],
-  "post_count": 41,
-  "fetched": "2026-08-06T13:56:59Z"
+  "post_count": 42,
+  "fetched": "2026-08-15T12:11:08Z"
 }
