@@ -1,0 +1,460 @@
+{
+  "item": [
+    {
+      "id": "023f139a-438b-4edb-99f1-10cecc6846ac",
+      "name": "Platform Applications",
+      "description": {
+        "content": "Operations for managing platform applications used for mobile push notifications via APNs, FCM, and other push services.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9c830d30-1603-425f-9ada-e62d3c687cfa",
+          "name": "Amazon Sns Create a Platform Application for Push Notifications",
+          "request": {
+            "name": "Amazon Sns Create a Platform Application for Push Notifications",
+            "description": {
+              "content": "Creates a platform application object for one of the supported push notification services, such as APNs and FCM (Firebase Cloud Messaging), to which devices and mobile apps may register.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "CreatePlatformApplication"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region (This can only be one of us-east-1,us-east-2,us-west-1,us-west-2,eu-west-1,eu-west-2,eu-west-3,eu-central-1,eu-north-1,ap-southeast-1,ap-southeast-2,ap-northeast-1,ap-northeast-2,ap-south-1,sa-east-1,ca-central-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "Name",
+                  "value": "<string>",
+                  "description": "(Required) Application names must be unique within an AWS account"
+                },
+                {
+                  "disabled": false,
+                  "key": "Platform",
+                  "value": "<string>",
+                  "description": "(Required) The push notification platform"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "<string>",
+                  "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON)."
+                },
+                {
+                  "disabled": false,
+                  "key": "key_1",
+                  "value": "<string>",
+                  "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON)."
+                },
+                {
+                  "disabled": false,
+                  "key": "key_2",
+                  "value": "<string>",
+                  "description": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON)."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7d1cd349-d012-4bcd-9107-7644f67cef6a",
+              "name": "Platform application created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "AWS region (This can only be one of us-east-1,us-east-2,us-west-1,us-west-2,eu-west-1,eu-west-2,eu-west-3,eu-central-1,eu-north-1,ap-southeast-1,ap-southeast-2,ap-northeast-1,ap-northeast-2,ap-south-1,sa-east-1,ca-central-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Application names must be unique within an AWS account",
+                        "type": "text/plain"
+                      },
+                      "key": "Name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The push notification platform",
+                        "type": "text/plain"
+                      },
+                      "key": "Platform",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                        "type": "text/plain"
+                      },
+                      "key": "key_0",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\nexample_value\n  <ResponseMetadata>\n    <RequestId>500123</RequestId>\n  </ResponseMetadata>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "3e010da4-d4bf-44d7-8cdb-fee3d8c8afea",
+              "name": "Invalid parameter in the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "AWS region (This can only be one of us-east-1,us-east-2,us-west-1,us-west-2,eu-west-1,eu-west-2,eu-west-3,eu-central-1,eu-north-1,ap-southeast-1,ap-southeast-2,ap-northeast-1,ap-northeast-2,ap-south-1,sa-east-1,ca-central-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Application names must be unique within an AWS account",
+                        "type": "text/plain"
+                      },
+                      "key": "Name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The push notification platform",
+                        "type": "text/plain"
+                      },
+                      "key": "Platform",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                        "type": "text/plain"
+                      },
+                      "key": "key_0",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\nexample_value\n  <RequestId>500123</RequestId>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "be8c5481-38f4-4c31-957a-c5cca6dc2a3b",
+              "name": "Authorization error - insufficient permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "AWS region (This can only be one of us-east-1,us-east-2,us-west-1,us-west-2,eu-west-1,eu-west-2,eu-west-3,eu-central-1,eu-north-1,ap-southeast-1,ap-southeast-2,ap-northeast-1,ap-northeast-2,ap-south-1,sa-east-1,ca-central-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Application names must be unique within an AWS account",
+                        "type": "text/plain"
+                      },
+                      "key": "Name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The push notification platform",
+                        "type": "text/plain"
+                      },
+                      "key": "Platform",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                        "type": "text/plain"
+                      },
+                      "key": "key_0",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\nexample_value\n  <RequestId>500123</RequestId>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "33715a22-11f0-499b-94de-993dc5ad2318",
+              "name": "Internal service error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "AWS region (This can only be one of us-east-1,us-east-2,us-west-1,us-west-2,eu-west-1,eu-west-2,eu-west-3,eu-central-1,eu-north-1,ap-southeast-1,ap-southeast-2,ap-northeast-1,ap-northeast-2,ap-south-1,sa-east-1,ca-central-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Application names must be unique within an AWS account",
+                        "type": "text/plain"
+                      },
+                      "key": "Name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The push notification platform",
+                        "type": "text/plain"
+                      },
+                      "key": "Platform",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Platform-specific credential attributes. For APNS, includes PlatformCredential (private key) and PlatformPrincipal (SSL certificate). For GCM, includes PlatformCredential (API key or service account JSON).",
+                        "type": "text/plain"
+                      },
+                      "key": "key_0",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\nexample_value\n  <RequestId>500123</RequestId>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "AWS region (This can only be one of us-east-1,us-east-2,us-west-1,us-west-2,eu-west-1,eu-west-2,eu-west-3,eu-central-1,eu-north-1,ap-southeast-1,ap-southeast-2,ap-northeast-1,ap-northeast-2,ap-south-1,sa-east-1,ca-central-1)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-east-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://sns.{{region}}.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4d243821-7d8d-4529-9da4-91d72bffb118",
+    "name": "Amazon SNS Amazon Simple Notification Service (SNS) ?Action=ListTagsForResource ?Action=ListTagsForResource Platform Applications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Amazon Simple Notification Service (SNS) is a fully managed pub/sub messaging service that enables application-to-application (A2A) and application-to-person (A2P) communication. SNS allows you to create topics, manage subscriptions, and publish messages to subscribers via multiple protocols including HTTP/S, email, SMS, SQS, Lambda, and mobile push. This specification models the SNS query API actions as RESTful paths for topic management, subscription lifecycle, and message publishing operations.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon SNS Amazon Simple Notification Service (SNS) ?Action=ListTagsForResource ?Action=ListTagsForResource Publishing API",
+    "version": "2010-03-31"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Publishing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Sns Publish a Message to an Sns Topic or Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sns.{region}.amazonaws.com/?Action=Publish",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "TopicArn",
+                  "value": ""
+                },
+                {
+                  "name": "TargetArn",
+                  "value": ""
+                },
+                {
+                  "name": "PhoneNumber",
+                  "value": ""
+                },
+                {
+                  "name": "Message",
+                  "value": ""
+                },
+                {
+                  "name": "Subject",
+                  "value": ""
+                },
+                {
+                  "name": "MessageStructure",
+                  "value": ""
+                },
+                {
+                  "name": "MessageAttributes",
+                  "value": ""
+                },
+                {
+                  "name": "MessageDeduplicationId",
+                  "value": ""
+                },
+                {
+                  "name": "MessageGroupId",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Sends a message to an Amazon SNS topic, a text message (SMS) directly to a phone number, or a message to a platform application endpoint. When you publish to a topic, SNS delivers the message to each subscribing endpoint. You can send different messages for each transport protocol by using the MessageStructure parameter."
+        },
+        {
+          "info": {
+            "name": "Amazon Sns Publish up to 10 Messages to an Sns Topic in a Single Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sns.{region}.amazonaws.com/?Action=PublishBatch",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "TopicArn",
+                  "value": ""
+                },
+                {
+                  "name": "PublishBatchRequestEntries",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Publishes up to ten messages to the specified topic in a single API call. This action is useful for reducing the cost of publishing messages. The total aggregate size of all messages in a single PublishBatch call cannot exceed 262,144 bytes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

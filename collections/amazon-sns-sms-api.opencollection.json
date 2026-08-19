@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon SNS Amazon Simple Notification Service (SNS) ?Action=ListTagsForResource ?Action=ListTagsForResource SMS API",
+    "version": "2010-03-31"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SMS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Sns Get Sms Messaging Attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sns.{region}.amazonaws.com/?Action=GetSMSAttributes",
+            "params": [
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "A list of attribute names to return. If omitted, all attributes are returned."
+              }
+            ]
+          },
+          "docs": "Returns the settings for sending SMS messages from your AWS account. These attributes include the default sender ID, monthly spending limit, and delivery status logging settings."
+        },
+        {
+          "info": {
+            "name": "Amazon Sns Check if a Phone Number Has Opted Out of Sms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sns.{region}.amazonaws.com/?Action=CheckIfPhoneNumberIsOptedOut",
+            "params": [
+              {
+                "name": "phoneNumber",
+                "value": "",
+                "type": "query",
+                "description": "The phone number to check in E.164 format"
+              }
+            ]
+          },
+          "docs": "Accepts a phone number and indicates whether the phone holder has opted out of receiving SMS messages from your AWS account. You cannot send SMS messages to a number that is opted out."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon SNS Amazon Simple Notification Service (SNS) ?Action=ListTagsForResource ?Action=ListTagsForResource ?Action=TagResource API",
+    "version": "2010-03-31"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "?Action=TagResource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Sns Add Tags to an Sns Topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sns.{region}.amazonaws.com/?Action=TagResource",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "ResourceArn",
+                  "value": ""
+                },
+                {
+                  "name": "Tags",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Add tags to the specified Amazon SNS topic. Tags are key-value pairs that can be used to organize and categorize resources. When a topic is tagged, existing tags with the same key are overwritten with the new value."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

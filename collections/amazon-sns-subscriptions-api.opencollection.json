@@ -1,0 +1,199 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon SNS Amazon Simple Notification Service (SNS) ?Action=ListTagsForResource ?Action=ListTagsForResource Subscriptions API",
+    "version": "2010-03-31"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Sns Subscribe an Endpoint to an Sns Topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sns.{region}.amazonaws.com/?Action=Subscribe",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "TopicArn",
+                  "value": ""
+                },
+                {
+                  "name": "Protocol",
+                  "value": ""
+                },
+                {
+                  "name": "Endpoint",
+                  "value": ""
+                },
+                {
+                  "name": "Attributes",
+                  "value": ""
+                },
+                {
+                  "name": "ReturnSubscriptionArn",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is HTTP/S or email, or if the endpoint and the topic are not in the same AWS account, the endpoint owner must run the ConfirmSubscription action to confirm the subscription. The subscription request is returned with a pending confirmation status."
+        },
+        {
+          "info": {
+            "name": "Amazon Sns Confirm a Pending Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sns.{region}.amazonaws.com/?Action=ConfirmSubscription",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "TopicArn",
+                  "value": ""
+                },
+                {
+                  "name": "Token",
+                  "value": ""
+                },
+                {
+                  "name": "AuthenticateOnUnsubscribe",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Verifies an endpoint owner's intent to receive messages by validating the token sent to the endpoint by an earlier Subscribe action. If the token is valid, the action creates a new subscription and returns its Amazon Resource Name (ARN)."
+        },
+        {
+          "info": {
+            "name": "Amazon Sns Unsubscribe From an Sns Topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sns.{region}.amazonaws.com/?Action=Unsubscribe",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "SubscriptionArn",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Deletes a subscription. If the subscription requires authentication for deletion, only the owner of the subscription or the topic's owner can unsubscribe, and an AWS signature is required. If the Unsubscribe call does not require authentication and the requester is not the subscription owner, a final cancellation message is delivered to the endpoint."
+        },
+        {
+          "info": {
+            "name": "Amazon Sns List All Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sns.{region}.amazonaws.com/?Action=ListSubscriptions",
+            "params": [
+              {
+                "name": "NextToken",
+                "value": "",
+                "type": "query",
+                "description": "Token returned by the previous request for pagination"
+              }
+            ]
+          },
+          "docs": "Returns a list of the requester's subscriptions. Each call returns a limited list of subscriptions, up to 100. If there are more subscriptions, a NextToken is also returned. Use the NextToken parameter in a new ListSubscriptions call to get further results."
+        },
+        {
+          "info": {
+            "name": "Amazon Sns List Subscriptions for a Specific Topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sns.{region}.amazonaws.com/?Action=ListSubscriptionsByTopic",
+            "params": [
+              {
+                "name": "TopicArn",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of the topic for which you wish to list subscriptions"
+              },
+              {
+                "name": "NextToken",
+                "value": "",
+                "type": "query",
+                "description": "Token returned by the previous request for pagination"
+              }
+            ]
+          },
+          "docs": "Returns a list of the subscriptions to a specific topic. Each call returns a limited list of subscriptions, up to 100. If there are more subscriptions, a NextToken is also returned."
+        },
+        {
+          "info": {
+            "name": "Amazon Sns Get Attributes of a Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sns.{region}.amazonaws.com/?Action=GetSubscriptionAttributes",
+            "params": [
+              {
+                "name": "SubscriptionArn",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of the subscription whose properties you want to get"
+              }
+            ]
+          },
+          "docs": "Returns all of the properties of a subscription."
+        },
+        {
+          "info": {
+            "name": "Amazon Sns Set Attributes on a Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sns.{region}.amazonaws.com/?Action=SetSubscriptionAttributes",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "SubscriptionArn",
+                  "value": ""
+                },
+                {
+                  "name": "AttributeName",
+                  "value": ""
+                },
+                {
+                  "name": "AttributeValue",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Allows a subscription owner to set an attribute of the subscription to a new value."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

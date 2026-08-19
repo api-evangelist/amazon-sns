@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon SNS Amazon Simple Notification Service (SNS) ?Action=ListTagsForResource ?Action=ListTagsForResource Platform Applications API",
+    "version": "2010-03-31"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Platform Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Sns Create a Platform Application for Push Notifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sns.{region}.amazonaws.com/?Action=CreatePlatformApplication",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "Name",
+                  "value": ""
+                },
+                {
+                  "name": "Platform",
+                  "value": ""
+                },
+                {
+                  "name": "Attributes",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Creates a platform application object for one of the supported push notification services, such as APNs and FCM (Firebase Cloud Messaging), to which devices and mobile apps may register."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

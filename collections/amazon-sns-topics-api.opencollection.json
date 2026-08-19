@@ -1,0 +1,148 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon SNS Amazon Simple Notification Service (SNS) ?Action=ListTagsForResource ?Action=ListTagsForResource Topics API",
+    "version": "2010-03-31"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Topics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Sns Create a New Sns Topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sns.{region}.amazonaws.com/?Action=CreateTopic",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "Name",
+                  "value": ""
+                },
+                {
+                  "name": "Attributes",
+                  "value": ""
+                },
+                {
+                  "name": "Tags",
+                  "value": ""
+                },
+                {
+                  "name": "DataProtectionPolicy",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Creates a new SNS topic to which notifications can be published. Topics can be standard or FIFO. Returns the TopicArn of the newly created topic. If a topic with the same name already exists, this action returns the TopicArn of the existing topic."
+        },
+        {
+          "info": {
+            "name": "Amazon Sns Delete an Sns Topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sns.{region}.amazonaws.com/?Action=DeleteTopic",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "TopicArn",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Deletes a topic and all its subscriptions. Deleting a topic might prevent some messages previously sent to the topic from being delivered to subscribers. This action is idempotent, so deleting a topic that does not exist does not result in an error."
+        },
+        {
+          "info": {
+            "name": "Amazon Sns List All Sns Topics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sns.{region}.amazonaws.com/?Action=ListTopics",
+            "params": [
+              {
+                "name": "NextToken",
+                "value": "",
+                "type": "query",
+                "description": "Token returned by the previous ListTopics request for pagination"
+              }
+            ]
+          },
+          "docs": "Returns a list of the requester's topics. Each call returns a limited list of topics, up to 100. If there are more topics, a NextToken is also returned. Use the NextToken parameter in a new ListTopics call to get further results."
+        },
+        {
+          "info": {
+            "name": "Amazon Sns Get Attributes of an Sns Topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sns.{region}.amazonaws.com/?Action=GetTopicAttributes",
+            "params": [
+              {
+                "name": "TopicArn",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of the topic whose properties you want to get"
+              }
+            ]
+          },
+          "docs": "Returns all of the properties of a topic. Topic properties returned might differ based on the authorization of the user."
+        },
+        {
+          "info": {
+            "name": "Amazon Sns Set Attributes on an Sns Topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sns.{region}.amazonaws.com/?Action=SetTopicAttributes",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "TopicArn",
+                  "value": ""
+                },
+                {
+                  "name": "AttributeName",
+                  "value": ""
+                },
+                {
+                  "name": "AttributeValue",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Allows a topic owner to set an attribute of the topic to a new value. Only one attribute can be changed per call."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
