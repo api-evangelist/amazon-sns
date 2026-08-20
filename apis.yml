@@ -25,6 +25,14 @@ tags:
   - AWS
   - Email
   - Messaging
+  - Notification
+  - Pub-Sub
+  - Push Notifications
+  - SMS
+tags_raw:
+  - AWS
+  - Email
+  - Messaging
   - Notifications
   - Pub/Sub
   - Push Notifications
@@ -248,6 +256,8 @@ apis:
   humanURL: https://aws.amazon.com/sns/
   baseURL: https://sns.{region}.amazonaws.com
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
