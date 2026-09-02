@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Amazon SNS Amazon Simple Notification Service (SNS) ?Action=ListTagsForResource ?Action=ListTagsForResource Subscriptions API
   version: '2010-03-31'
@@ -345,6 +345,34 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ListSubscriptionsResponse:
+      type: object
+      properties:
+        ListSubscriptionsResult:
+          type: object
+          properties:
+            Subscriptions:
+              type: array
+              items:
+                $ref: '#/components/schemas/SubscriptionMember'
+            NextToken:
+              type: string
+              description: Token for paginating results
+          example: example_value
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    ResponseMetadata:
+      type: object
+      properties:
+        RequestId:
+          type: string
+          description: The unique request identifier
+          example: '500123'
+    SetSubscriptionAttributesResponse:
+      type: object
+      properties:
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
     ListSubscriptionsByTopicResponse:
       type: object
       properties:
@@ -359,11 +387,6 @@ components:
               type: string
               description: Token for paginating results
           example: example_value
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
-    SetSubscriptionAttributesResponse:
-      type: object
-      properties:
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
     SubscriptionMember:
@@ -389,18 +412,6 @@ components:
           type: string
           description: The topic ARN that this subscription is associated with
           example: example_value
-    ConfirmSubscriptionResponse:
-      type: object
-      properties:
-        ConfirmSubscriptionResult:
-          type: object
-          properties:
-            SubscriptionArn:
-              type: string
-              description: The ARN of the created subscription
-          example: example_value
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
     SubscribeResponse:
       type: object
       properties:
@@ -410,6 +421,20 @@ components:
             SubscriptionArn:
               type: string
               description: The ARN of the subscription. For pending subscriptions, this value is 'pending confirmation'.
+          example: example_value
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    GetSubscriptionAttributesResponse:
+      type: object
+      properties:
+        GetSubscriptionAttributesResult:
+          type: object
+          properties:
+            Attributes:
+              type: object
+              description: A map of the subscription attributes
+              additionalProperties:
+                type: string
           example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
@@ -438,50 +463,19 @@ components:
           type: string
           description: The unique request identifier
           example: '500123'
-    GetSubscriptionAttributesResponse:
+    ConfirmSubscriptionResponse:
       type: object
       properties:
-        GetSubscriptionAttributesResult:
+        ConfirmSubscriptionResult:
           type: object
           properties:
-            Attributes:
-              type: object
-              description: A map of the subscription attributes
-              additionalProperties:
-                type: string
-          example: example_value
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
-    ListSubscriptionsResponse:
-      type: object
-      properties:
-        ListSubscriptionsResult:
-          type: object
-          properties:
-            Subscriptions:
-              type: array
-              items:
-                $ref: '#/components/schemas/SubscriptionMember'
-            NextToken:
+            SubscriptionArn:
               type: string
-              description: Token for paginating results
+              description: The ARN of the created subscription
           example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
-    ResponseMetadata:
-      type: object
-      properties:
-        RequestId:
-          type: string
-          description: The unique request identifier
-          example: '500123'
   responses:
-    InternalError:
-      description: Internal service error
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     AuthorizationError:
       description: Authorization error - insufficient permissions
       content:
@@ -490,6 +484,12 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     NotFound:
       description: The requested resource does not exist
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalError:
+      description: Internal service error
       content:
         application/xml:
           schema:

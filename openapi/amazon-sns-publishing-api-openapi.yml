@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Amazon SNS Amazon Simple Notification Service (SNS) ?Action=ListTagsForResource ?Action=ListTagsForResource Publishing API
   version: '2010-03-31'
@@ -157,144 +157,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    InternalError:
-      description: Internal service error
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    AuthorizationError:
-      description: Authorization error - insufficient permissions
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource does not exist
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InvalidParameter:
-      description: Invalid parameter in the request
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Throttled:
-      description: Request rate exceeded - throttled
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ResponseMetadata:
-      type: object
-      properties:
-        RequestId:
-          type: string
-          description: The unique request identifier
-          example: '500123'
-    PublishBatchRequestEntry:
-      type: object
-      required:
-      - Id
-      - Message
-      properties:
-        Id:
-          type: string
-          description: An identifier for the message in this batch. The Id must be unique within a single PublishBatch request.
-          example: abc123
-        Message:
-          type: string
-          description: The body of the message
-          maxLength: 262144
-          example: example_value
-        Subject:
-          type: string
-          description: The subject of the batch message for email endpoints
-          example: example_value
-        MessageStructure:
-          type: string
-          description: Set to json for per-protocol messages
-          enum:
-          - json
-          example: json
-        MessageAttributes:
-          type: object
-          description: Message attributes for this entry
-          additionalProperties:
-            $ref: '#/components/schemas/MessageAttributeValue'
-          example: example_value
-        MessageDeduplicationId:
-          type: string
-          description: Deduplication ID for FIFO topics
-          maxLength: 128
-          example: '500123'
-        MessageGroupId:
-          type: string
-          description: Message group ID for FIFO topics
-          maxLength: 128
-          example: '500123'
-    PublishResponse:
-      type: object
-      properties:
-        PublishResult:
-          type: object
-          properties:
-            MessageId:
-              type: string
-              description: Unique identifier assigned to the published message
-            SequenceNumber:
-              type: string
-              description: The sequence number for FIFO topics. This field is only present for messages published to FIFO topics.
-          example: example_value
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
-    MessageAttributeValue:
-      type: object
-      required:
-      - DataType
-      properties:
-        DataType:
-          type: string
-          description: The data type of the attribute. Supported types are String, String.Array, Number, and Binary.
-          enum:
-          - String
-          - String.Array
-          - Number
-          - Binary
-          example: String
-        StringValue:
-          type: string
-          description: The string value of the attribute
-          example: example_value
-        BinaryValue:
-          type: string
-          format: byte
-          description: The binary (base64-encoded) value of the attribute
-          example: example_value
-    ErrorResponse:
-      type: object
-      properties:
-        Error:
-          type: object
-          properties:
-            Type:
-              type: string
-              description: The error type (Sender or Receiver)
-            Code:
-              type: string
-              description: The specific error code
-            Message:
-              type: string
-              description: A human-readable description of the error
-          example: example_value
-        RequestId:
-          type: string
-          description: The unique request identifier
-          example: '500123'
     PublishBatchResponse:
       type: object
       properties:
@@ -337,6 +200,143 @@ components:
           example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
+    PublishBatchRequestEntry:
+      type: object
+      required:
+      - Id
+      - Message
+      properties:
+        Id:
+          type: string
+          description: An identifier for the message in this batch. The Id must be unique within a single PublishBatch request.
+          example: abc123
+        Message:
+          type: string
+          description: The body of the message
+          maxLength: 262144
+          example: example_value
+        Subject:
+          type: string
+          description: The subject of the batch message for email endpoints
+          example: example_value
+        MessageStructure:
+          type: string
+          description: Set to json for per-protocol messages
+          enum:
+          - json
+          example: json
+        MessageAttributes:
+          type: object
+          description: Message attributes for this entry
+          additionalProperties:
+            $ref: '#/components/schemas/MessageAttributeValue'
+          example: example_value
+        MessageDeduplicationId:
+          type: string
+          description: Deduplication ID for FIFO topics
+          maxLength: 128
+          example: '500123'
+        MessageGroupId:
+          type: string
+          description: Message group ID for FIFO topics
+          maxLength: 128
+          example: '500123'
+    ResponseMetadata:
+      type: object
+      properties:
+        RequestId:
+          type: string
+          description: The unique request identifier
+          example: '500123'
+    ErrorResponse:
+      type: object
+      properties:
+        Error:
+          type: object
+          properties:
+            Type:
+              type: string
+              description: The error type (Sender or Receiver)
+            Code:
+              type: string
+              description: The specific error code
+            Message:
+              type: string
+              description: A human-readable description of the error
+          example: example_value
+        RequestId:
+          type: string
+          description: The unique request identifier
+          example: '500123'
+    PublishResponse:
+      type: object
+      properties:
+        PublishResult:
+          type: object
+          properties:
+            MessageId:
+              type: string
+              description: Unique identifier assigned to the published message
+            SequenceNumber:
+              type: string
+              description: The sequence number for FIFO topics. This field is only present for messages published to FIFO topics.
+          example: example_value
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    MessageAttributeValue:
+      type: object
+      required:
+      - DataType
+      properties:
+        DataType:
+          type: string
+          description: The data type of the attribute. Supported types are String, String.Array, Number, and Binary.
+          enum:
+          - String
+          - String.Array
+          - Number
+          - Binary
+          example: String
+        StringValue:
+          type: string
+          description: The string value of the attribute
+          example: example_value
+        BinaryValue:
+          type: string
+          format: byte
+          description: The binary (base64-encoded) value of the attribute
+          example: example_value
+  responses:
+    Throttled:
+      description: Request rate exceeded - throttled
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    AuthorizationError:
+      description: Authorization error - insufficient permissions
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource does not exist
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalError:
+      description: Internal service error
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InvalidParameter:
+      description: Invalid parameter in the request
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     AWS_IAM:
       type: http

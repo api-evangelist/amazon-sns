@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Amazon SNS Amazon Simple Notification Service (SNS) ?Action=ListTagsForResource ?Action=ListTagsForResource SMS API
   version: '2010-03-31'
@@ -105,20 +105,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    GetSMSAttributesResponse:
-      type: object
-      properties:
-        GetSMSAttributesResult:
-          type: object
-          properties:
-            attributes:
-              type: object
-              description: SMS attribute name-value pairs
-              additionalProperties:
-                type: string
-          example: example_value
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
     ResponseMetadata:
       type: object
       properties:
@@ -126,18 +112,6 @@ components:
           type: string
           description: The unique request identifier
           example: '500123'
-    CheckIfPhoneNumberIsOptedOutResponse:
-      type: object
-      properties:
-        CheckIfPhoneNumberIsOptedOutResult:
-          type: object
-          properties:
-            isOptedOut:
-              type: boolean
-              description: Indicates whether the phone number is opted out
-          example: example_value
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
     ErrorResponse:
       type: object
       properties:
@@ -158,9 +132,35 @@ components:
           type: string
           description: The unique request identifier
           example: '500123'
+    CheckIfPhoneNumberIsOptedOutResponse:
+      type: object
+      properties:
+        CheckIfPhoneNumberIsOptedOutResult:
+          type: object
+          properties:
+            isOptedOut:
+              type: boolean
+              description: Indicates whether the phone number is opted out
+          example: example_value
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    GetSMSAttributesResponse:
+      type: object
+      properties:
+        GetSMSAttributesResult:
+          type: object
+          properties:
+            attributes:
+              type: object
+              description: SMS attribute name-value pairs
+              additionalProperties:
+                type: string
+          example: example_value
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
   responses:
-    InternalError:
-      description: Internal service error
+    Throttled:
+      description: Request rate exceeded - throttled
       content:
         application/xml:
           schema:
@@ -171,14 +171,14 @@ components:
         application/xml:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    InvalidParameter:
-      description: Invalid parameter in the request
+    InternalError:
+      description: Internal service error
       content:
         application/xml:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Throttled:
-      description: Request rate exceeded - throttled
+    InvalidParameter:
+      description: Invalid parameter in the request
       content:
         application/xml:
           schema:

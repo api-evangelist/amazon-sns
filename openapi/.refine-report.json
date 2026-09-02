@@ -23,6 +23,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "amazon-sns-action-listtagsforresource-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "amazon-sns-action-tagresource-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "amazon-sns-action-untagresource-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "amazon-sns-platform-applications-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "amazon-sns-publishing-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "amazon-sns-sms-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "amazon-sns-subscriptions-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "amazon-sns-topics-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }
