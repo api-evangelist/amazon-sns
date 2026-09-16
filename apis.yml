@@ -268,6 +268,8 @@ apis:
   - type: OpenAPI
     url: openapi/amazon-sns-action-untagresource-api-openapi.yml
 common:
+- type: Website
+  url: https://amazon.com
 - type: IssueTracker
   url: https://github.com/awsdocs/amazon-sns-developer-guide/issues
 - type: Releases
