@@ -1,8 +1,7 @@
 aid: amazon-sns
 name: Amazon SNS
 description: Amazon Simple Notification Service (SNS) is a fully managed messaging service for both application-to-application
-  (A2A) and application-to-person (A2P) communication. It enables pub/sub, SMS, email, and mobile push
-  notifications.
+  (A2A) and application-to-person (A2P) communication. It enables pub/sub, SMS, email, and mobile push notifications.
 deliveryModel:
   model: unknown
   open_source: unknown
@@ -52,221 +51,46 @@ tags_raw:
 - Push Notifications
 - SMS
 apis:
-- aid: amazon-sns:amazon-sns-platform-applications-api
-  name: Amazon SNS Platform Applications API
-  description: Operations for managing platform applications used for mobile push notifications via APNs,
-    FCM, and other push services.
-  humanURL: https://aws.amazon.com/sns/
+- aid: amazon-sns:amazon-sns-api
+  name: Amazon Simple Notification Service (SNS) API
+  description: Amazon Simple Notification Service (SNS) is a fully managed pub/sub messaging service that enables
+    application-to-application (A2A) and application-to-person (A2P) communication. SNS allows you to create topics,
+    manage subscriptions, and publish messages to subscribers via multiple protocols includi
   baseURL: https://sns.{region}.amazonaws.com
   tags:
-  - Platform Applications
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-sns-platform-applications-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/sns/
-  - type: APIReference
-    url: https://docs.aws.amazon.com/sns/latest/api/welcome.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html
-  - type: Pricing
-    url: https://aws.amazon.com/sns/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/sns/faqs/
-  - type: BestPractices
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-best-practices.html
-  - type: Features
-    url: https://aws.amazon.com/sns/features/
-  - type: Security
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-security.html
-  - type: RateLimits
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-quotas.html
-  - type: CodeExamples
-    url: https://github.com/awsdocs/aws-doc-sdk-examples
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sns.html
-  - type: CLI
-    url: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/sns/index.html
-- aid: amazon-sns:amazon-sns-publishing-api
-  name: Amazon SNS Publishing API
-  description: Operations for publishing messages to SNS topics or directly to endpoints. Messages can
-    be plain text or structured JSON for per-protocol delivery.
-  humanURL: https://aws.amazon.com/sns/
-  baseURL: https://sns.{region}.amazonaws.com
-  tags:
-  - Publishing
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-sns-publishing-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/sns/
-  - type: APIReference
-    url: https://docs.aws.amazon.com/sns/latest/api/welcome.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html
-  - type: Pricing
-    url: https://aws.amazon.com/sns/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/sns/faqs/
-  - type: BestPractices
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-best-practices.html
-  - type: Features
-    url: https://aws.amazon.com/sns/features/
-  - type: Security
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-security.html
-  - type: RateLimits
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-quotas.html
-  - type: CodeExamples
-    url: https://github.com/awsdocs/aws-doc-sdk-examples
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sns.html
-  - type: CLI
-    url: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/sns/index.html
-- aid: amazon-sns:amazon-sns-sms-api
-  name: Amazon SNS SMS API
-  description: Operations for managing SMS messaging attributes and phone number opt-out lists.
-  humanURL: https://aws.amazon.com/sns/
-  baseURL: https://sns.{region}.amazonaws.com
-  tags:
-  - SMS
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-sns-sms-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/sns/
-  - type: APIReference
-    url: https://docs.aws.amazon.com/sns/latest/api/welcome.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html
-  - type: Pricing
-    url: https://aws.amazon.com/sns/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/sns/faqs/
-  - type: BestPractices
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-best-practices.html
-  - type: Features
-    url: https://aws.amazon.com/sns/features/
-  - type: Security
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-security.html
-  - type: RateLimits
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-quotas.html
-  - type: CodeExamples
-    url: https://github.com/awsdocs/aws-doc-sdk-examples
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sns.html
-  - type: CLI
-    url: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/sns/index.html
-- aid: amazon-sns:amazon-sns-subscriptions-api
-  name: Amazon SNS Subscriptions API
-  description: Operations for subscribing endpoints to topics, confirming subscriptions, listing subscriptions,
-    and unsubscribing. Subscriptions define which endpoints receive messages published to a topic.
-  humanURL: https://aws.amazon.com/sns/
-  baseURL: https://sns.{region}.amazonaws.com
-  tags:
-  - Subscription
-  tags_raw:
-  - Subscriptions
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-sns-subscriptions-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/sns/
-  - type: APIReference
-    url: https://docs.aws.amazon.com/sns/latest/api/welcome.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html
-  - type: Pricing
-    url: https://aws.amazon.com/sns/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/sns/faqs/
-  - type: BestPractices
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-best-practices.html
-  - type: Features
-    url: https://aws.amazon.com/sns/features/
-  - type: Security
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-security.html
-  - type: RateLimits
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-quotas.html
-  - type: CodeExamples
-    url: https://github.com/awsdocs/aws-doc-sdk-examples
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sns.html
-  - type: CLI
-    url: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/sns/index.html
-- aid: amazon-sns:amazon-sns-topics-api
-  name: Amazon SNS Topics API
-  description: Operations for creating, listing, configuring, and deleting SNS topics. Topics are communication
-    channels to which messages are published and from which notifications are delivered to subscribers.
-  humanURL: https://aws.amazon.com/sns/
-  baseURL: https://sns.{region}.amazonaws.com
-  tags:
-  - Topics
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-sns-topics-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/sns/
-  - type: APIReference
-    url: https://docs.aws.amazon.com/sns/latest/api/welcome.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html
-  - type: Pricing
-    url: https://aws.amazon.com/sns/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/sns/faqs/
-  - type: BestPractices
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-best-practices.html
-  - type: Features
-    url: https://aws.amazon.com/sns/features/
-  - type: Security
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-security.html
-  - type: RateLimits
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-quotas.html
-  - type: CodeExamples
-    url: https://github.com/awsdocs/aws-doc-sdk-examples
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sns.html
-  - type: CLI
-    url: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/sns/index.html
-- name: Amazon SNS Tags API
-  description: Tag management for Amazon SNS resources — list, add and remove resource tags.
-  humanURL: https://aws.amazon.com/sns/
-  baseURL: https://sns.{region}.amazonaws.com
-  tags:
-  - Tags
-  - Resource Management
   - AWS
+  - Platform Applications
+  - Publishing
+  - Resource Management
+  - SMS
+  - Subscription
   properties:
   - type: OpenAPI
-    url: openapi/amazon-sns-action-listtagsforresource-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/sns/
+    url: openapi/_original/amazon-sns-api-openapi.yml
   - type: APIReference
     url: https://docs.aws.amazon.com/sns/latest/api/welcome.html
+  - type: BestPractices
+    url: https://docs.aws.amazon.com/sns/latest/dg/sns-best-practices.html
+  - type: CLI
+    url: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/sns/index.html
+  - type: CodeExamples
+    url: https://github.com/awsdocs/aws-doc-sdk-examples
+  - type: Documentation
+    url: https://docs.aws.amazon.com/sns/
+  - type: FAQ
+    url: https://aws.amazon.com/sns/faqs/
+  - type: Features
+    url: https://aws.amazon.com/sns/features/
   - type: GettingStarted
     url: https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html
   - type: Pricing
     url: https://aws.amazon.com/sns/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/sns/faqs/
-  - type: BestPractices
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-best-practices.html
-  - type: Features
-    url: https://aws.amazon.com/sns/features/
-  - type: Security
-    url: https://docs.aws.amazon.com/sns/latest/dg/sns-security.html
   - type: RateLimits
     url: https://docs.aws.amazon.com/sns/latest/dg/sns-quotas.html
-  - type: CodeExamples
-    url: https://github.com/awsdocs/aws-doc-sdk-examples
   - type: SDKs
     url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sns.html
-  - type: CLI
-    url: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/sns/index.html
-  - type: OpenAPI
-    url: openapi/amazon-sns-action-tagresource-api-openapi.yml
-  - type: OpenAPI
-    url: openapi/amazon-sns-action-untagresource-api-openapi.yml
+  - type: Security
+    url: https://docs.aws.amazon.com/sns/latest/dg/sns-security.html
 common:
 - type: Website
   url: https://amazon.com
@@ -313,41 +137,35 @@ common:
 - type: Features
   data:
   - name: Pub/Sub Messaging
-    description: Fan-out messages to multiple subscribers through topics supporting HTTP/S, email, SQS,
-      Lambda, and SMS protocols.
+    description: Fan-out messages to multiple subscribers through topics supporting HTTP/S, email, SQS, Lambda,
+      and SMS protocols.
   - name: FIFO Topics
-    description: Strict message ordering and exactly-once delivery for use cases requiring sequence-preserving
-      fan-out.
+    description: Strict message ordering and exactly-once delivery for use cases requiring sequence-preserving fan-out.
   - name: Message Filtering
-    description: Subscription filter policies enabling subscribers to receive only the messages relevant
-      to them.
+    description: Subscription filter policies enabling subscribers to receive only the messages relevant to them.
   - name: Mobile Push Notifications
     description: Cross-platform mobile push via APNs, FCM, and other push services through platform applications.
   - name: SMS Messaging
-    description: Direct SMS text messaging to phone numbers worldwide with support for transactional and
-      promotional messages.
+    description: Direct SMS text messaging to phone numbers worldwide with support for transactional and promotional
+      messages.
   - name: Dead-Letter Queues
-    description: Capture undeliverable messages for analysis and reprocessing to ensure no messages are
-      lost.
+    description: Capture undeliverable messages for analysis and reprocessing to ensure no messages are lost.
 - type: UseCases
   data:
   - name: Application Event Fan-Out
-    description: Broadcast application events to multiple microservices simultaneously using pub/sub topic
-      subscriptions.
+    description: Broadcast application events to multiple microservices simultaneously using pub/sub topic subscriptions.
   - name: Mobile Push Campaigns
     description: Send targeted push notifications to mobile applications across iOS and Android platforms.
   - name: Alert and Monitoring Systems
     description: Deliver operational alerts via SMS, email, and HTTP endpoints for infrastructure monitoring.
   - name: Order Confirmation Notifications
-    description: Send transactional notifications for order confirmations, shipping updates, and account
-      activity.
+    description: Send transactional notifications for order confirmations, shipping updates, and account activity.
   - name: Cross-Account Event Distribution
     description: Share events across AWS accounts using SNS topic policies for multi-account architectures.
 - type: Integrations
   data:
   - name: Amazon SQS
-    description: Fan out SNS messages to SQS queues for reliable asynchronous processing across multiple
-      consumers.
+    description: Fan out SNS messages to SQS queues for reliable asynchronous processing across multiple consumers.
   - name: AWS Lambda
     description: Invoke Lambda functions directly from SNS notifications for serverless event processing.
   - name: Amazon EventBridge
