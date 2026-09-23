@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Amazon SNS Amazon Simple Notification Service (SNS) ?Action=ListTagsForResource ?Action=ListTagsForResource Publishing API
+  title: Amazon SNS Amazon Simple Notification Service (SNS)…
   version: '2010-03-31'
-  description: Amazon Simple Notification Service (SNS) is a fully managed pub/sub messaging service that enables application-to-application (A2A) and application-to-person (A2P) communication. SNS allows you to create topics, manage subscriptions, and publish messages to subscribers via multiple protocols including HTTP/S, email, SMS, SQS, Lambda, and mobile push. This specification models the SNS query API actions as RESTful paths for topic management, subscription lifecycle, and message publishing operations.
+  description: Amazon Simple Notification Service (SNS) is a fully managed pub/sub messaging service that enables application-to-application (A2A) and application-to-person (A2P) communication.
   contact:
     name: Amazon Web Services
     url: https://aws.amazon.com/sns/
@@ -158,6 +158,29 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    MessageAttributeValue:
+      type: object
+      required:
+      - DataType
+      properties:
+        DataType:
+          type: string
+          description: The data type of the attribute. Supported types are String, String.Array, Number, and Binary.
+          enum:
+          - String
+          - String.Array
+          - Number
+          - Binary
+          example: String
+        StringValue:
+          type: string
+          description: The string value of the attribute
+          example: example_value
+        BinaryValue:
+          type: string
+          format: byte
+          description: The binary (base64-encoded) value of the attribute
+          example: example_value
     PublishBatchResponse:
       type: object
       properties:
@@ -200,6 +223,33 @@ components:
           example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
+    ErrorResponse:
+      type: object
+      properties:
+        Error:
+          type: object
+          properties:
+            Type:
+              type: string
+              description: The error type (Sender or Receiver)
+            Code:
+              type: string
+              description: The specific error code
+            Message:
+              type: string
+              description: A human-readable description of the error
+          example: example_value
+        RequestId:
+          type: string
+          description: The unique request identifier
+          example: '500123'
+    ResponseMetadata:
+      type: object
+      properties:
+        RequestId:
+          type: string
+          description: The unique request identifier
+          example: '500123'
     PublishBatchRequestEntry:
       type: object
       required:
@@ -241,33 +291,6 @@ components:
           description: Message group ID for FIFO topics
           maxLength: 128
           example: '500123'
-    ResponseMetadata:
-      type: object
-      properties:
-        RequestId:
-          type: string
-          description: The unique request identifier
-          example: '500123'
-    ErrorResponse:
-      type: object
-      properties:
-        Error:
-          type: object
-          properties:
-            Type:
-              type: string
-              description: The error type (Sender or Receiver)
-            Code:
-              type: string
-              description: The specific error code
-            Message:
-              type: string
-              description: A human-readable description of the error
-          example: example_value
-        RequestId:
-          type: string
-          description: The unique request identifier
-          example: '500123'
     PublishResponse:
       type: object
       properties:
@@ -283,44 +306,9 @@ components:
           example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
-    MessageAttributeValue:
-      type: object
-      required:
-      - DataType
-      properties:
-        DataType:
-          type: string
-          description: The data type of the attribute. Supported types are String, String.Array, Number, and Binary.
-          enum:
-          - String
-          - String.Array
-          - Number
-          - Binary
-          example: String
-        StringValue:
-          type: string
-          description: The string value of the attribute
-          example: example_value
-        BinaryValue:
-          type: string
-          format: byte
-          description: The binary (base64-encoded) value of the attribute
-          example: example_value
   responses:
     Throttled:
       description: Request rate exceeded - throttled
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    AuthorizationError:
-      description: Authorization error - insufficient permissions
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource does not exist
       content:
         application/xml:
           schema:
@@ -331,8 +319,20 @@ components:
         application/xml:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    AuthorizationError:
+      description: Authorization error - insufficient permissions
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     InvalidParameter:
       description: Invalid parameter in the request
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource does not exist
       content:
         application/xml:
           schema:
