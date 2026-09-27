@@ -105,18 +105,6 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
-    Throttled:
-      description: Request rate exceeded - throttled
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalError:
-      description: Internal service error
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     AuthorizationError:
       description: Authorization error - insufficient permissions
       content:
@@ -129,7 +117,52 @@ components:
         application/xml:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    Throttled:
+      description: Request rate exceeded - throttled
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalError:
+      description: Internal service error
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ResponseMetadata:
+      type: object
+      properties:
+        RequestId:
+          type: string
+          description: The unique request identifier
+          example: '500123'
+    GetSMSAttributesResponse:
+      type: object
+      properties:
+        GetSMSAttributesResult:
+          type: object
+          properties:
+            attributes:
+              type: object
+              description: SMS attribute name-value pairs
+              additionalProperties:
+                type: string
+          example: example_value
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    CheckIfPhoneNumberIsOptedOutResponse:
+      type: object
+      properties:
+        CheckIfPhoneNumberIsOptedOutResult:
+          type: object
+          properties:
+            isOptedOut:
+              type: boolean
+              description: Indicates whether the phone number is opted out
+          example: example_value
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
     ErrorResponse:
       type: object
       properties:
@@ -150,39 +183,6 @@ components:
           type: string
           description: The unique request identifier
           example: '500123'
-    ResponseMetadata:
-      type: object
-      properties:
-        RequestId:
-          type: string
-          description: The unique request identifier
-          example: '500123'
-    CheckIfPhoneNumberIsOptedOutResponse:
-      type: object
-      properties:
-        CheckIfPhoneNumberIsOptedOutResult:
-          type: object
-          properties:
-            isOptedOut:
-              type: boolean
-              description: Indicates whether the phone number is opted out
-          example: example_value
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
-    GetSMSAttributesResponse:
-      type: object
-      properties:
-        GetSMSAttributesResult:
-          type: object
-          properties:
-            attributes:
-              type: object
-              description: SMS attribute name-value pairs
-              additionalProperties:
-                type: string
-          example: example_value
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
   securitySchemes:
     AWS_IAM:
       type: http

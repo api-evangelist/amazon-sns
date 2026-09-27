@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Amazon SNS Amazon Simple Notification Service (SNS)…
+  title: Amazon SNS Amazon Simple Notification Service (SNS) API
   version: '2010-03-31'
   description: Amazon Simple Notification Service (SNS) is a fully managed pub/sub messaging service that enables application-to-application (A2A) and application-to-person (A2P) communication.
   contact:
@@ -37,12 +37,12 @@ servers:
 security:
 - AWS_IAM: []
 tags:
-- name: ?Action=TagResource
+- name: Amazon SNS Amazon Simple Notification Service (SNS) API
 paths:
   /?Action=TagResource:
     post:
       tags:
-      - ?Action=TagResource
+      - Amazon SNS Amazon Simple Notification Service (SNS) API
       operationId: tagResource
       summary: Amazon Sns Add Tags to an Sns Topic
       description: Add tags to the specified Amazon SNS topic. Tags are key-value pairs that can be used to organize and categorize resources. When a topic is tagged, existing tags with the same key are overwritten with the new value.
@@ -82,22 +82,83 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+  /?Action=UntagResource:
+    post:
+      tags:
+      - Amazon SNS Amazon Simple Notification Service (SNS) API
+      operationId: untagResource
+      summary: Amazon Sns Remove Tags From an Sns Topic
+      description: Remove tags from the specified Amazon SNS topic.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - ResourceArn
+              - TagKeys
+              properties:
+                ResourceArn:
+                  type: string
+                  description: The ARN of the topic to remove tags from
+                TagKeys:
+                  type: array
+                  description: The list of tag keys to remove
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Tags removed successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UntagResourceResponse'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /?Action=ListTagsForResource:
+    get:
+      tags:
+      - Amazon SNS Amazon Simple Notification Service (SNS) API
+      operationId: listTagsForResource
+      summary: Amazon Sns List Tags for an Sns Topic
+      description: List all tags added to the specified Amazon SNS topic. Returns key-value pairs associated with the resource.
+      parameters:
+      - name: ResourceArn
+        in: query
+        required: true
+        description: The ARN of the topic to list tags for
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tags retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ListTagsForResourceResponse'
+        '403':
+          $ref: '#/components/responses/AuthorizationError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   responses:
-    InternalError:
-      description: Internal service error
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     AuthorizationError:
       description: Authorization error - insufficient permissions
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InvalidParameter:
-      description: Invalid parameter in the request
       content:
         application/xml:
           schema:
@@ -108,7 +169,49 @@ components:
         application/xml:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    InvalidParameter:
+      description: Invalid parameter in the request
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalError:
+      description: Internal service error
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    UntagResourceResponse:
+      type: object
+      properties:
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    ResponseMetadata:
+      type: object
+      properties:
+        RequestId:
+          type: string
+          description: The unique request identifier
+          example: '500123'
+    ListTagsForResourceResponse:
+      type: object
+      properties:
+        ListTagsForResourceResult:
+          type: object
+          properties:
+            Tags:
+              type: array
+              items:
+                $ref: '#/components/schemas/Tag'
+          example: example_value
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    TagResourceResponse:
+      type: object
+      properties:
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
     ErrorResponse:
       type: object
       properties:
@@ -125,18 +228,6 @@ components:
               type: string
               description: A human-readable description of the error
           example: example_value
-        RequestId:
-          type: string
-          description: The unique request identifier
-          example: '500123'
-    TagResourceResponse:
-      type: object
-      properties:
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
-    ResponseMetadata:
-      type: object
-      properties:
         RequestId:
           type: string
           description: The unique request identifier

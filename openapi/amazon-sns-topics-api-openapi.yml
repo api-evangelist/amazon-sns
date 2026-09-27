@@ -267,6 +267,24 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
+    AuthorizationError:
+      description: Authorization error - insufficient permissions
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource does not exist
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InvalidParameter:
+      description: Invalid parameter in the request
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     Throttled:
       description: Request rate exceeded - throttled
       content:
@@ -279,57 +297,7 @@ components:
         application/xml:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    AuthorizationError:
-      description: Authorization error - insufficient permissions
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InvalidParameter:
-      description: Invalid parameter in the request
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource does not exist
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    SetTopicAttributesResponse:
-      type: object
-      properties:
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
-    ErrorResponse:
-      type: object
-      properties:
-        Error:
-          type: object
-          properties:
-            Type:
-              type: string
-              description: The error type (Sender or Receiver)
-            Code:
-              type: string
-              description: The specific error code
-            Message:
-              type: string
-              description: A human-readable description of the error
-          example: example_value
-        RequestId:
-          type: string
-          description: The unique request identifier
-          example: '500123'
-    ResponseMetadata:
-      type: object
-      properties:
-        RequestId:
-          type: string
-          description: The unique request identifier
-          example: '500123'
     ListTopicsResponse:
       type: object
       properties:
@@ -360,23 +328,13 @@ components:
           example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
-    Tag:
+    ResponseMetadata:
       type: object
-      required:
-      - Key
-      - Value
       properties:
-        Key:
+        RequestId:
           type: string
-          description: The tag key
-          minLength: 1
-          maxLength: 128
-          example: example_value
-        Value:
-          type: string
-          description: The tag value
-          maxLength: 256
-          example: example_value
+          description: The unique request identifier
+          example: '500123'
     CreateTopicResponse:
       type: object
       properties:
@@ -394,12 +352,54 @@ components:
       properties:
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
+    SetTopicAttributesResponse:
+      type: object
+      properties:
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
     TopicMember:
       type: object
       properties:
         TopicArn:
           type: string
           description: The ARN of the topic
+          example: example_value
+    ErrorResponse:
+      type: object
+      properties:
+        Error:
+          type: object
+          properties:
+            Type:
+              type: string
+              description: The error type (Sender or Receiver)
+            Code:
+              type: string
+              description: The specific error code
+            Message:
+              type: string
+              description: A human-readable description of the error
+          example: example_value
+        RequestId:
+          type: string
+          description: The unique request identifier
+          example: '500123'
+    Tag:
+      type: object
+      required:
+      - Key
+      - Value
+      properties:
+        Key:
+          type: string
+          description: The tag key
+          minLength: 1
+          maxLength: 128
+          example: example_value
+        Value:
+          type: string
+          description: The tag value
+          maxLength: 256
           example: example_value
   parameters:
     ContentType:

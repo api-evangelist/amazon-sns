@@ -158,29 +158,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    MessageAttributeValue:
-      type: object
-      required:
-      - DataType
-      properties:
-        DataType:
-          type: string
-          description: The data type of the attribute. Supported types are String, String.Array, Number, and Binary.
-          enum:
-          - String
-          - String.Array
-          - Number
-          - Binary
-          example: String
-        StringValue:
-          type: string
-          description: The string value of the attribute
-          example: example_value
-        BinaryValue:
-          type: string
-          format: byte
-          description: The binary (base64-encoded) value of the attribute
-          example: example_value
     PublishBatchResponse:
       type: object
       properties:
@@ -223,26 +200,21 @@ components:
           example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
-    ErrorResponse:
+    PublishResponse:
       type: object
       properties:
-        Error:
+        PublishResult:
           type: object
           properties:
-            Type:
+            MessageId:
               type: string
-              description: The error type (Sender or Receiver)
-            Code:
+              description: Unique identifier assigned to the published message
+            SequenceNumber:
               type: string
-              description: The specific error code
-            Message:
-              type: string
-              description: A human-readable description of the error
+              description: The sequence number for FIFO topics. This field is only present for messages published to FIFO topics.
           example: example_value
-        RequestId:
-          type: string
-          description: The unique request identifier
-          example: '500123'
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
     ResponseMetadata:
       type: object
       properties:
@@ -250,6 +222,29 @@ components:
           type: string
           description: The unique request identifier
           example: '500123'
+    MessageAttributeValue:
+      type: object
+      required:
+      - DataType
+      properties:
+        DataType:
+          type: string
+          description: The data type of the attribute. Supported types are String, String.Array, Number, and Binary.
+          enum:
+          - String
+          - String.Array
+          - Number
+          - Binary
+          example: String
+        StringValue:
+          type: string
+          description: The string value of the attribute
+          example: example_value
+        BinaryValue:
+          type: string
+          format: byte
+          description: The binary (base64-encoded) value of the attribute
+          example: example_value
     PublishBatchRequestEntry:
       type: object
       required:
@@ -291,36 +286,35 @@ components:
           description: Message group ID for FIFO topics
           maxLength: 128
           example: '500123'
-    PublishResponse:
+    ErrorResponse:
       type: object
       properties:
-        PublishResult:
+        Error:
           type: object
           properties:
-            MessageId:
+            Type:
               type: string
-              description: Unique identifier assigned to the published message
-            SequenceNumber:
+              description: The error type (Sender or Receiver)
+            Code:
               type: string
-              description: The sequence number for FIFO topics. This field is only present for messages published to FIFO topics.
+              description: The specific error code
+            Message:
+              type: string
+              description: A human-readable description of the error
           example: example_value
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
+        RequestId:
+          type: string
+          description: The unique request identifier
+          example: '500123'
   responses:
-    Throttled:
-      description: Request rate exceeded - throttled
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalError:
-      description: Internal service error
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     AuthorizationError:
       description: Authorization error - insufficient permissions
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource does not exist
       content:
         application/xml:
           schema:
@@ -331,8 +325,14 @@ components:
         application/xml:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource does not exist
+    Throttled:
+      description: Request rate exceeded - throttled
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalError:
+      description: Internal service error
       content:
         application/xml:
           schema:
