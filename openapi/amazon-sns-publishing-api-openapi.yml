@@ -157,7 +157,102 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    AuthorizationError:
+      description: Authorization error - insufficient permissions
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalError:
+      description: Internal service error
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InvalidParameter:
+      description: Invalid parameter in the request
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource does not exist
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Throttled:
+      description: Request rate exceeded - throttled
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    PublishBatchRequestEntry:
+      type: object
+      required:
+      - Id
+      - Message
+      properties:
+        Id:
+          type: string
+          description: An identifier for the message in this batch. The Id must be unique within a single PublishBatch request.
+          example: abc123
+        Message:
+          type: string
+          description: The body of the message
+          maxLength: 262144
+          example: example_value
+        Subject:
+          type: string
+          description: The subject of the batch message for email endpoints
+          example: example_value
+        MessageStructure:
+          type: string
+          description: Set to json for per-protocol messages
+          enum:
+          - json
+          example: json
+        MessageAttributes:
+          type: object
+          description: Message attributes for this entry
+          additionalProperties:
+            $ref: '#/components/schemas/MessageAttributeValue'
+          example: example_value
+        MessageDeduplicationId:
+          type: string
+          description: Deduplication ID for FIFO topics
+          maxLength: 128
+          example: '500123'
+        MessageGroupId:
+          type: string
+          description: Message group ID for FIFO topics
+          maxLength: 128
+          example: '500123'
+    MessageAttributeValue:
+      type: object
+      required:
+      - DataType
+      properties:
+        DataType:
+          type: string
+          description: The data type of the attribute. Supported types are String, String.Array, Number, and Binary.
+          enum:
+          - String
+          - String.Array
+          - Number
+          - Binary
+          example: String
+        StringValue:
+          type: string
+          description: The string value of the attribute
+          example: example_value
+        BinaryValue:
+          type: string
+          format: byte
+          description: The binary (base64-encoded) value of the attribute
+          example: example_value
     PublishBatchResponse:
       type: object
       properties:
@@ -222,70 +317,6 @@ components:
           type: string
           description: The unique request identifier
           example: '500123'
-    MessageAttributeValue:
-      type: object
-      required:
-      - DataType
-      properties:
-        DataType:
-          type: string
-          description: The data type of the attribute. Supported types are String, String.Array, Number, and Binary.
-          enum:
-          - String
-          - String.Array
-          - Number
-          - Binary
-          example: String
-        StringValue:
-          type: string
-          description: The string value of the attribute
-          example: example_value
-        BinaryValue:
-          type: string
-          format: byte
-          description: The binary (base64-encoded) value of the attribute
-          example: example_value
-    PublishBatchRequestEntry:
-      type: object
-      required:
-      - Id
-      - Message
-      properties:
-        Id:
-          type: string
-          description: An identifier for the message in this batch. The Id must be unique within a single PublishBatch request.
-          example: abc123
-        Message:
-          type: string
-          description: The body of the message
-          maxLength: 262144
-          example: example_value
-        Subject:
-          type: string
-          description: The subject of the batch message for email endpoints
-          example: example_value
-        MessageStructure:
-          type: string
-          description: Set to json for per-protocol messages
-          enum:
-          - json
-          example: json
-        MessageAttributes:
-          type: object
-          description: Message attributes for this entry
-          additionalProperties:
-            $ref: '#/components/schemas/MessageAttributeValue'
-          example: example_value
-        MessageDeduplicationId:
-          type: string
-          description: Deduplication ID for FIFO topics
-          maxLength: 128
-          example: '500123'
-        MessageGroupId:
-          type: string
-          description: Message group ID for FIFO topics
-          maxLength: 128
-          example: '500123'
     ErrorResponse:
       type: object
       properties:
@@ -306,37 +337,6 @@ components:
           type: string
           description: The unique request identifier
           example: '500123'
-  responses:
-    AuthorizationError:
-      description: Authorization error - insufficient permissions
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource does not exist
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InvalidParameter:
-      description: Invalid parameter in the request
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Throttled:
-      description: Request rate exceeded - throttled
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalError:
-      description: Internal service error
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     AWS_IAM:
       type: http

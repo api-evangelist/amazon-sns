@@ -11,9 +11,7 @@
     "amazon-sns-subscriptions-api-openapi.yml",
     "amazon-sns-topics-api-openapi.yml"
   ],
-  "archived": [
-    "deleted 3 superseded output(s) from the previous generation"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -23,13 +21,10 @@
     "amazon-sns-api-openapi.yml: tagged paths POST /?Action=UntagResource -> Amazon SNS Amazon Simple Notification Service (SNS) API",
     "amazon-sns-api-openapi.yml: tagged paths GET /?Action=ListTagsForResource -> Amazon SNS Amazon Simple Notification Service (SNS) API",
     "amazon-sns-api-openapi.yml: declared missing tag: Amazon SNS Amazon Simple Notification Service (SNS) API",
-    "superseded outputs removed: amazon-sns-action-listtagsforresource-api-openapi.yml, amazon-sns-action-tagresource-api-openapi.yml, amazon-sns-action-untagresource-api-openapi.yml",
-    "apis.yml register: written (+6 apis, 6 total)"
+    "apis.yml register: already-registered"
   ],
   "skipped": [
-    "amazon-sns-action-listtagsforresource-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "amazon-sns-action-tagresource-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "amazon-sns-action-untagresource-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-sns-amazon-sns-amazon-simple-notification-service-sns-api-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "amazon-sns-platform-applications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "amazon-sns-publishing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "amazon-sns-sms-api-openapi.yml: previously refined output, superseded by openapi/_original/",

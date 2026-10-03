@@ -345,7 +345,21 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    UnsubscribeResponse:
+    GetSubscriptionAttributesResponse:
+      type: object
+      properties:
+        GetSubscriptionAttributesResult:
+          type: object
+          properties:
+            Attributes:
+              type: object
+              description: A map of the subscription attributes
+              additionalProperties:
+                type: string
+          example: example_value
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    SetSubscriptionAttributesResponse:
       type: object
       properties:
         ResponseMetadata:
@@ -389,37 +403,9 @@ components:
           type: string
           description: The topic ARN that this subscription is associated with
           example: example_value
-    SubscribeResponse:
+    UnsubscribeResponse:
       type: object
       properties:
-        SubscribeResult:
-          type: object
-          properties:
-            SubscriptionArn:
-              type: string
-              description: The ARN of the subscription. For pending subscriptions, this value is 'pending confirmation'.
-          example: example_value
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
-    ResponseMetadata:
-      type: object
-      properties:
-        RequestId:
-          type: string
-          description: The unique request identifier
-          example: '500123'
-    GetSubscriptionAttributesResponse:
-      type: object
-      properties:
-        GetSubscriptionAttributesResult:
-          type: object
-          properties:
-            Attributes:
-              type: object
-              description: A map of the subscription attributes
-              additionalProperties:
-                type: string
-          example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
     ConfirmSubscriptionResponse:
@@ -434,6 +420,13 @@ components:
           example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
+    ResponseMetadata:
+      type: object
+      properties:
+        RequestId:
+          type: string
+          description: The unique request identifier
+          example: '500123'
     ListSubscriptionsResponse:
       type: object
       properties:
@@ -470,9 +463,16 @@ components:
           type: string
           description: The unique request identifier
           example: '500123'
-    SetSubscriptionAttributesResponse:
+    SubscribeResponse:
       type: object
       properties:
+        SubscribeResult:
+          type: object
+          properties:
+            SubscriptionArn:
+              type: string
+              description: The ARN of the subscription. For pending subscriptions, this value is 'pending confirmation'.
+          example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
   responses:
@@ -482,8 +482,8 @@ components:
         application/xml:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource does not exist
+    InternalError:
+      description: Internal service error
       content:
         application/xml:
           schema:
@@ -494,8 +494,8 @@ components:
         application/xml:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    InternalError:
-      description: Internal service error
+    NotFound:
+      description: The requested resource does not exist
       content:
         application/xml:
           schema:

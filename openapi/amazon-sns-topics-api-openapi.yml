@@ -279,6 +279,12 @@ components:
         application/xml:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    InternalError:
+      description: Internal service error
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     InvalidParameter:
       description: Invalid parameter in the request
       content:
@@ -291,27 +297,10 @@ components:
         application/xml:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    InternalError:
-      description: Internal service error
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ListTopicsResponse:
+    DeleteTopicResponse:
       type: object
       properties:
-        ListTopicsResult:
-          type: object
-          properties:
-            Topics:
-              type: array
-              items:
-                $ref: '#/components/schemas/TopicMember'
-            NextToken:
-              type: string
-              description: Token for paginating results
-          example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
     GetTopicAttributesResponse:
@@ -328,13 +317,6 @@ components:
           example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
-    ResponseMetadata:
-      type: object
-      properties:
-        RequestId:
-          type: string
-          description: The unique request identifier
-          example: '500123'
     CreateTopicResponse:
       type: object
       properties:
@@ -347,14 +329,20 @@ components:
           example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
-    DeleteTopicResponse:
+    ListTopicsResponse:
       type: object
       properties:
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
-    SetTopicAttributesResponse:
-      type: object
-      properties:
+        ListTopicsResult:
+          type: object
+          properties:
+            Topics:
+              type: array
+              items:
+                $ref: '#/components/schemas/TopicMember'
+            NextToken:
+              type: string
+              description: Token for paginating results
+          example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
     TopicMember:
@@ -364,6 +352,13 @@ components:
           type: string
           description: The ARN of the topic
           example: example_value
+    ResponseMetadata:
+      type: object
+      properties:
+        RequestId:
+          type: string
+          description: The unique request identifier
+          example: '500123'
     ErrorResponse:
       type: object
       properties:
@@ -401,6 +396,11 @@ components:
           description: The tag value
           maxLength: 256
           example: example_value
+    SetTopicAttributesResponse:
+      type: object
+      properties:
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
   parameters:
     ContentType:
       name: Content-Type
