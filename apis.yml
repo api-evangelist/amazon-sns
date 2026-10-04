@@ -60,7 +60,8 @@ apis:
     The Amazon SNS Amazon Simple Notification Service (SNS) API API from Amazon SNS — 3 operation(s) for
     amazon sns amazon simple notification service (sns) api.
   baseURL: https://sns.{region}.amazonaws.com
-  tags:
+  tags: []
+  tags_raw:
   - Amazon SNS Amazon Simple Notification Service (SNS) API
   properties:
   - type: OpenAPI
@@ -199,6 +200,8 @@ apis:
     unsubscribing. Subscriptions define which endpoints receive messages published to a topic.
   baseURL: https://sns.{region}.amazonaws.com
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -234,6 +237,8 @@ apis:
     to which messages are published and from which notifications are delivered to subscribers.
   baseURL: https://sns.{region}.amazonaws.com
   tags:
+  - Topic
+  tags_raw:
   - Topics
   properties:
   - type: OpenAPI
