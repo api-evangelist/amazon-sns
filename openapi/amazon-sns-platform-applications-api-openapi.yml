@@ -92,8 +92,8 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
-    AuthorizationError:
-      description: Authorization error - insufficient permissions
+    InvalidParameter:
+      description: Invalid parameter in the request
       content:
         application/xml:
           schema:
@@ -104,13 +104,20 @@ components:
         application/xml:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    InvalidParameter:
-      description: Invalid parameter in the request
+    AuthorizationError:
+      description: Authorization error - insufficient permissions
       content:
         application/xml:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ResponseMetadata:
+      type: object
+      properties:
+        RequestId:
+          type: string
+          description: The unique request identifier
+          example: '500123'
     CreatePlatformApplicationResponse:
       type: object
       properties:
@@ -123,13 +130,6 @@ components:
           example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
-    ResponseMetadata:
-      type: object
-      properties:
-        RequestId:
-          type: string
-          description: The unique request identifier
-          example: '500123'
     ErrorResponse:
       type: object
       properties:

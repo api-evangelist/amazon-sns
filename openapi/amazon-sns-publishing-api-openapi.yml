@@ -158,12 +158,6 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
-    AuthorizationError:
-      description: Authorization error - insufficient permissions
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     InternalError:
       description: Internal service error
       content:
@@ -178,6 +172,12 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     NotFound:
       description: The requested resource does not exist
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    AuthorizationError:
+      description: Authorization error - insufficient permissions
       content:
         application/xml:
           schema:
@@ -230,29 +230,13 @@ components:
           description: Message group ID for FIFO topics
           maxLength: 128
           example: '500123'
-    MessageAttributeValue:
+    ResponseMetadata:
       type: object
-      required:
-      - DataType
       properties:
-        DataType:
+        RequestId:
           type: string
-          description: The data type of the attribute. Supported types are String, String.Array, Number, and Binary.
-          enum:
-          - String
-          - String.Array
-          - Number
-          - Binary
-          example: String
-        StringValue:
-          type: string
-          description: The string value of the attribute
-          example: example_value
-        BinaryValue:
-          type: string
-          format: byte
-          description: The binary (base64-encoded) value of the attribute
-          example: example_value
+          description: The unique request identifier
+          example: '500123'
     PublishBatchResponse:
       type: object
       properties:
@@ -295,28 +279,6 @@ components:
           example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
-    PublishResponse:
-      type: object
-      properties:
-        PublishResult:
-          type: object
-          properties:
-            MessageId:
-              type: string
-              description: Unique identifier assigned to the published message
-            SequenceNumber:
-              type: string
-              description: The sequence number for FIFO topics. This field is only present for messages published to FIFO topics.
-          example: example_value
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
-    ResponseMetadata:
-      type: object
-      properties:
-        RequestId:
-          type: string
-          description: The unique request identifier
-          example: '500123'
     ErrorResponse:
       type: object
       properties:
@@ -337,6 +299,44 @@ components:
           type: string
           description: The unique request identifier
           example: '500123'
+    MessageAttributeValue:
+      type: object
+      required:
+      - DataType
+      properties:
+        DataType:
+          type: string
+          description: The data type of the attribute. Supported types are String, String.Array, Number, and Binary.
+          enum:
+          - String
+          - String.Array
+          - Number
+          - Binary
+          example: String
+        StringValue:
+          type: string
+          description: The string value of the attribute
+          example: example_value
+        BinaryValue:
+          type: string
+          format: byte
+          description: The binary (base64-encoded) value of the attribute
+          example: example_value
+    PublishResponse:
+      type: object
+      properties:
+        PublishResult:
+          type: object
+          properties:
+            MessageId:
+              type: string
+              description: Unique identifier assigned to the published message
+            SequenceNumber:
+              type: string
+              description: The sequence number for FIFO topics. This field is only present for messages published to FIFO topics.
+          example: example_value
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
   securitySchemes:
     AWS_IAM:
       type: http

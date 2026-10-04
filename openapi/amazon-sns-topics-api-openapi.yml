@@ -266,43 +266,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    AuthorizationError:
-      description: Authorization error - insufficient permissions
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource does not exist
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalError:
-      description: Internal service error
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InvalidParameter:
-      description: Invalid parameter in the request
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Throttled:
-      description: Request rate exceeded - throttled
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    DeleteTopicResponse:
-      type: object
-      properties:
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
     GetTopicAttributesResponse:
       type: object
       properties:
@@ -314,18 +278,6 @@ components:
               description: A map of the topic attributes
               additionalProperties:
                 type: string
-          example: example_value
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
-    CreateTopicResponse:
-      type: object
-      properties:
-        CreateTopicResult:
-          type: object
-          properties:
-            TopicArn:
-              type: string
-              description: The Amazon Resource Name assigned to the created topic
           example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
@@ -359,6 +311,40 @@ components:
           type: string
           description: The unique request identifier
           example: '500123'
+    CreateTopicResponse:
+      type: object
+      properties:
+        CreateTopicResult:
+          type: object
+          properties:
+            TopicArn:
+              type: string
+              description: The Amazon Resource Name assigned to the created topic
+          example: example_value
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    DeleteTopicResponse:
+      type: object
+      properties:
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    Tag:
+      type: object
+      required:
+      - Key
+      - Value
+      properties:
+        Key:
+          type: string
+          description: The tag key
+          minLength: 1
+          maxLength: 128
+          example: example_value
+        Value:
+          type: string
+          description: The tag value
+          maxLength: 256
+          example: example_value
     ErrorResponse:
       type: object
       properties:
@@ -379,28 +365,42 @@ components:
           type: string
           description: The unique request identifier
           example: '500123'
-    Tag:
-      type: object
-      required:
-      - Key
-      - Value
-      properties:
-        Key:
-          type: string
-          description: The tag key
-          minLength: 1
-          maxLength: 128
-          example: example_value
-        Value:
-          type: string
-          description: The tag value
-          maxLength: 256
-          example: example_value
     SetTopicAttributesResponse:
       type: object
       properties:
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
+  responses:
+    InternalError:
+      description: Internal service error
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InvalidParameter:
+      description: Invalid parameter in the request
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource does not exist
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    AuthorizationError:
+      description: Authorization error - insufficient permissions
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Throttled:
+      description: Request rate exceeded - throttled
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     ContentType:
       name: Content-Type

@@ -156,31 +156,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    AuthorizationError:
-      description: Authorization error - insufficient permissions
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalError:
-      description: Internal service error
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InvalidParameter:
-      description: Invalid parameter in the request
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource does not exist
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     TagResourceResponse:
       type: object
@@ -194,17 +169,9 @@ components:
           type: string
           description: The unique request identifier
           example: '500123'
-    ListTagsForResourceResponse:
+    UntagResourceResponse:
       type: object
       properties:
-        ListTagsForResourceResult:
-          type: object
-          properties:
-            Tags:
-              type: array
-              items:
-                $ref: '#/components/schemas/Tag'
-          example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
     Tag:
@@ -224,11 +191,6 @@ components:
           description: The tag value
           maxLength: 256
           example: example_value
-    UntagResourceResponse:
-      type: object
-      properties:
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
     ErrorResponse:
       type: object
       properties:
@@ -249,6 +211,44 @@ components:
           type: string
           description: The unique request identifier
           example: '500123'
+    ListTagsForResourceResponse:
+      type: object
+      properties:
+        ListTagsForResourceResult:
+          type: object
+          properties:
+            Tags:
+              type: array
+              items:
+                $ref: '#/components/schemas/Tag'
+          example: example_value
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+  responses:
+    InternalError:
+      description: Internal service error
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InvalidParameter:
+      description: Invalid parameter in the request
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource does not exist
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    AuthorizationError:
+      description: Authorization error - insufficient permissions
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     AWS_IAM:
       type: http

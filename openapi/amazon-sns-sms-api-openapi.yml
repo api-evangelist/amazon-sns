@@ -105,8 +105,8 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
-    AuthorizationError:
-      description: Authorization error - insufficient permissions
+    InvalidParameter:
+      description: Invalid parameter in the request
       content:
         application/xml:
           schema:
@@ -117,8 +117,8 @@ components:
         application/xml:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    InvalidParameter:
-      description: Invalid parameter in the request
+    AuthorizationError:
+      description: Authorization error - insufficient permissions
       content:
         application/xml:
           schema:
@@ -130,20 +130,13 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    GetSMSAttributesResponse:
+    ResponseMetadata:
       type: object
       properties:
-        GetSMSAttributesResult:
-          type: object
-          properties:
-            attributes:
-              type: object
-              description: SMS attribute name-value pairs
-              additionalProperties:
-                type: string
-          example: example_value
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
+        RequestId:
+          type: string
+          description: The unique request identifier
+          example: '500123'
     CheckIfPhoneNumberIsOptedOutResponse:
       type: object
       properties:
@@ -156,13 +149,6 @@ components:
           example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
-    ResponseMetadata:
-      type: object
-      properties:
-        RequestId:
-          type: string
-          description: The unique request identifier
-          example: '500123'
     ErrorResponse:
       type: object
       properties:
@@ -183,6 +169,20 @@ components:
           type: string
           description: The unique request identifier
           example: '500123'
+    GetSMSAttributesResponse:
+      type: object
+      properties:
+        GetSMSAttributesResult:
+          type: object
+          properties:
+            attributes:
+              type: object
+              description: SMS attribute name-value pairs
+              additionalProperties:
+                type: string
+          example: example_value
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
   securitySchemes:
     AWS_IAM:
       type: http

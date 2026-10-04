@@ -345,25 +345,30 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    GetSubscriptionAttributesResponse:
+    UnsubscribeResponse:
       type: object
       properties:
-        GetSubscriptionAttributesResult:
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    SubscribeResponse:
+      type: object
+      properties:
+        SubscribeResult:
           type: object
           properties:
-            Attributes:
-              type: object
-              description: A map of the subscription attributes
-              additionalProperties:
-                type: string
+            SubscriptionArn:
+              type: string
+              description: The ARN of the subscription. For pending subscriptions, this value is 'pending confirmation'.
           example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
-    SetSubscriptionAttributesResponse:
+    ResponseMetadata:
       type: object
       properties:
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
+        RequestId:
+          type: string
+          description: The unique request identifier
+          example: '500123'
     ListSubscriptionsByTopicResponse:
       type: object
       properties:
@@ -380,53 +385,11 @@ components:
           example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
-    SubscriptionMember:
-      type: object
-      properties:
-        SubscriptionArn:
-          type: string
-          description: The subscription ARN
-          example: example_value
-        Owner:
-          type: string
-          description: The subscription owner's AWS account ID
-          example: example_value
-        Protocol:
-          type: string
-          description: The subscription protocol
-          example: example_value
-        Endpoint:
-          type: string
-          description: The subscription endpoint
-          example: example_value
-        TopicArn:
-          type: string
-          description: The topic ARN that this subscription is associated with
-          example: example_value
-    UnsubscribeResponse:
+    SetSubscriptionAttributesResponse:
       type: object
       properties:
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
-    ConfirmSubscriptionResponse:
-      type: object
-      properties:
-        ConfirmSubscriptionResult:
-          type: object
-          properties:
-            SubscriptionArn:
-              type: string
-              description: The ARN of the created subscription
-          example: example_value
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
-    ResponseMetadata:
-      type: object
-      properties:
-        RequestId:
-          type: string
-          description: The unique request identifier
-          example: '500123'
     ListSubscriptionsResponse:
       type: object
       properties:
@@ -463,25 +426,56 @@ components:
           type: string
           description: The unique request identifier
           example: '500123'
-    SubscribeResponse:
+    SubscriptionMember:
       type: object
       properties:
-        SubscribeResult:
+        SubscriptionArn:
+          type: string
+          description: The subscription ARN
+          example: example_value
+        Owner:
+          type: string
+          description: The subscription owner's AWS account ID
+          example: example_value
+        Protocol:
+          type: string
+          description: The subscription protocol
+          example: example_value
+        Endpoint:
+          type: string
+          description: The subscription endpoint
+          example: example_value
+        TopicArn:
+          type: string
+          description: The topic ARN that this subscription is associated with
+          example: example_value
+    GetSubscriptionAttributesResponse:
+      type: object
+      properties:
+        GetSubscriptionAttributesResult:
+          type: object
+          properties:
+            Attributes:
+              type: object
+              description: A map of the subscription attributes
+              additionalProperties:
+                type: string
+          example: example_value
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    ConfirmSubscriptionResponse:
+      type: object
+      properties:
+        ConfirmSubscriptionResult:
           type: object
           properties:
             SubscriptionArn:
               type: string
-              description: The ARN of the subscription. For pending subscriptions, this value is 'pending confirmation'.
+              description: The ARN of the created subscription
           example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
   responses:
-    AuthorizationError:
-      description: Authorization error - insufficient permissions
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     InternalError:
       description: Internal service error
       content:
@@ -496,6 +490,12 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     NotFound:
       description: The requested resource does not exist
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    AuthorizationError:
+      description: Authorization error - insufficient permissions
       content:
         application/xml:
           schema:
