@@ -268,6 +268,12 @@ apis:
   - type: Security
     url: https://docs.aws.amazon.com/sns/latest/dg/sns-security.html
 common:
+- type: Plans
+  url: plans/amazon-sns-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/amazon-sns-rate-limits.yml
+- type: FinOps
+  url: finops/amazon-sns-finops.yml
 - type: Website
   url: https://aws.amazon.com/sns/
 - type: IssueTracker
