@@ -19,7 +19,7 @@
     property: schemas.GetChannelConnectionResponseDto.providerId
     matched_domain: amazon.com
     detected_by: sweep-cpaas.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
   status: not-a-workflow
   arazzo: null
 - slug: amazon-sns-knock-app
@@ -38,7 +38,7 @@
     property: schemas.ChannelData.provider
     matched_domain: amazon.com
     detected_by: sweep-cpaas.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
   status: not-a-workflow
   arazzo: null
 - slug: amazon-sns-apns
@@ -53,11 +53,11 @@
   contract_reference:
     repo: amazon-sns
     spec_file: amazon-sns-platform-applications-api-openapi.yml
-    value: APNS
+    value: APNS_SANDBOX
     property: requestBody.content.Platform
     matched_domain: apple.com
     detected_by: sweep-cpaas.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
   status: not-a-workflow
   arazzo: null
 - slug: amazon-sns-fcm
@@ -76,6 +76,6 @@
     property: requestBody.content.Platform
     matched_domain: google.com
     detected_by: sweep-cpaas.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
   status: not-a-workflow
   arazzo: null
