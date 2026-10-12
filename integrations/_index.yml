@@ -20,7 +20,7 @@
     matched_domain: amazon.com
     detected_by: sweep-cpaas.py
     detected: '2026-10-12'
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: amazon-sns-knock-app
   label: knock-app
@@ -39,7 +39,7 @@
     matched_domain: amazon.com
     detected_by: sweep-cpaas.py
     detected: '2026-10-12'
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: amazon-sns-apns
   label: APNs
@@ -58,7 +58,7 @@
     matched_domain: apple.com
     detected_by: sweep-cpaas.py
     detected: '2026-10-12'
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: amazon-sns-fcm
   label: FCM
@@ -77,5 +77,5 @@
     matched_domain: google.com
     detected_by: sweep-cpaas.py
     detected: '2026-10-12'
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
