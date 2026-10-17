@@ -156,41 +156,37 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    InvalidParameter:
+      description: Invalid parameter in the request
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    AuthorizationError:
+      description: Authorization error - insufficient permissions
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource does not exist
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalError:
+      description: Internal service error
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     TagResourceResponse:
       type: object
       properties:
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
-    ResponseMetadata:
-      type: object
-      properties:
-        RequestId:
-          type: string
-          description: The unique request identifier
-          example: '500123'
-    UntagResourceResponse:
-      type: object
-      properties:
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
-    Tag:
-      type: object
-      required:
-      - Key
-      - Value
-      properties:
-        Key:
-          type: string
-          description: The tag key
-          minLength: 1
-          maxLength: 128
-          example: example_value
-        Value:
-          type: string
-          description: The tag value
-          maxLength: 256
-          example: example_value
     ErrorResponse:
       type: object
       properties:
@@ -211,6 +207,30 @@ components:
           type: string
           description: The unique request identifier
           example: '500123'
+    ResponseMetadata:
+      type: object
+      properties:
+        RequestId:
+          type: string
+          description: The unique request identifier
+          example: '500123'
+    Tag:
+      type: object
+      required:
+      - Key
+      - Value
+      properties:
+        Key:
+          type: string
+          description: The tag key
+          minLength: 1
+          maxLength: 128
+          example: example_value
+        Value:
+          type: string
+          description: The tag value
+          maxLength: 256
+          example: example_value
     ListTagsForResourceResponse:
       type: object
       properties:
@@ -224,31 +244,11 @@ components:
           example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
-  responses:
-    InternalError:
-      description: Internal service error
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InvalidParameter:
-      description: Invalid parameter in the request
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource does not exist
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    AuthorizationError:
-      description: Authorization error - insufficient permissions
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    UntagResourceResponse:
+      type: object
+      properties:
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
   securitySchemes:
     AWS_IAM:
       type: http

@@ -98,38 +98,19 @@ components:
         application/xml:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    InternalError:
-      description: Internal service error
-      content:
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     AuthorizationError:
       description: Authorization error - insufficient permissions
       content:
         application/xml:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    InternalError:
+      description: Internal service error
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ResponseMetadata:
-      type: object
-      properties:
-        RequestId:
-          type: string
-          description: The unique request identifier
-          example: '500123'
-    CreatePlatformApplicationResponse:
-      type: object
-      properties:
-        CreatePlatformApplicationResult:
-          type: object
-          properties:
-            PlatformApplicationArn:
-              type: string
-              description: ARN of the created platform application
-          example: example_value
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
     ErrorResponse:
       type: object
       properties:
@@ -150,6 +131,25 @@ components:
           type: string
           description: The unique request identifier
           example: '500123'
+    ResponseMetadata:
+      type: object
+      properties:
+        RequestId:
+          type: string
+          description: The unique request identifier
+          example: '500123'
+    CreatePlatformApplicationResponse:
+      type: object
+      properties:
+        CreatePlatformApplicationResult:
+          type: object
+          properties:
+            PlatformApplicationArn:
+              type: string
+              description: ARN of the created platform application
+          example: example_value
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
   securitySchemes:
     AWS_IAM:
       type: http

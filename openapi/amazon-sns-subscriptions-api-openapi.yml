@@ -345,43 +345,15 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    UnsubscribeResponse:
+    ConfirmSubscriptionResponse:
       type: object
       properties:
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
-    SubscribeResponse:
-      type: object
-      properties:
-        SubscribeResult:
+        ConfirmSubscriptionResult:
           type: object
           properties:
             SubscriptionArn:
               type: string
-              description: The ARN of the subscription. For pending subscriptions, this value is 'pending confirmation'.
-          example: example_value
-        ResponseMetadata:
-          $ref: '#/components/schemas/ResponseMetadata'
-    ResponseMetadata:
-      type: object
-      properties:
-        RequestId:
-          type: string
-          description: The unique request identifier
-          example: '500123'
-    ListSubscriptionsByTopicResponse:
-      type: object
-      properties:
-        ListSubscriptionsByTopicResult:
-          type: object
-          properties:
-            Subscriptions:
-              type: array
-              items:
-                $ref: '#/components/schemas/SubscriptionMember'
-            NextToken:
-              type: string
-              description: Token for paginating results
+              description: The ARN of the created subscription
           example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
@@ -390,10 +362,10 @@ components:
       properties:
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
-    ListSubscriptionsResponse:
+    ListSubscriptionsByTopicResponse:
       type: object
       properties:
-        ListSubscriptionsResult:
+        ListSubscriptionsByTopicResult:
           type: object
           properties:
             Subscriptions:
@@ -426,6 +398,25 @@ components:
           type: string
           description: The unique request identifier
           example: '500123'
+    SubscribeResponse:
+      type: object
+      properties:
+        SubscribeResult:
+          type: object
+          properties:
+            SubscriptionArn:
+              type: string
+              description: The ARN of the subscription. For pending subscriptions, this value is 'pending confirmation'.
+          example: example_value
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+    ResponseMetadata:
+      type: object
+      properties:
+        RequestId:
+          type: string
+          description: The unique request identifier
+          example: '500123'
     SubscriptionMember:
       type: object
       properties:
@@ -449,6 +440,11 @@ components:
           type: string
           description: The topic ARN that this subscription is associated with
           example: example_value
+    UnsubscribeResponse:
+      type: object
+      properties:
+        ResponseMetadata:
+          $ref: '#/components/schemas/ResponseMetadata'
     GetSubscriptionAttributesResponse:
       type: object
       properties:
@@ -463,21 +459,25 @@ components:
           example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
-    ConfirmSubscriptionResponse:
+    ListSubscriptionsResponse:
       type: object
       properties:
-        ConfirmSubscriptionResult:
+        ListSubscriptionsResult:
           type: object
           properties:
-            SubscriptionArn:
+            Subscriptions:
+              type: array
+              items:
+                $ref: '#/components/schemas/SubscriptionMember'
+            NextToken:
               type: string
-              description: The ARN of the created subscription
+              description: Token for paginating results
           example: example_value
         ResponseMetadata:
           $ref: '#/components/schemas/ResponseMetadata'
   responses:
-    InternalError:
-      description: Internal service error
+    AuthorizationError:
+      description: Authorization error - insufficient permissions
       content:
         application/xml:
           schema:
@@ -494,8 +494,8 @@ components:
         application/xml:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    AuthorizationError:
-      description: Authorization error - insufficient permissions
+    InternalError:
+      description: Internal service error
       content:
         application/xml:
           schema:
